@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jourdi Bleu — Production · Founding Mothers Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --mud:#2c2416;--moss:#514619;--orange:#d4521e;--rust:#bf3c10;--maroon:#681704;
+      --rose:#bc7e78;--cream:#efeae0;--gray:#e3ded8;--white:#f5f3ef;
+      --font-serif:'Instrument Serif',Georgia,serif;
+      --font-sans:'Atkinson Hyperlegible',system-ui,sans-serif;
+      --font-mono:'Inconsolata',monospace;
+      --space-xs:8px;--space-sm:16px;--space-md:32px;--space-lg:64px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--white);color:var(--mud);font-family:var(--font-sans);font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased;}
+    h1{font-family:var(--font-serif);font-size:clamp(48px,7vw,72px);line-height:1.05;font-weight:400;margin-bottom:var(--space-sm);}
+    h2{font-family:var(--font-serif);font-size:clamp(32px,5vw,48px);font-weight:400;line-height:1.15;margin-bottom:var(--space-sm);}
+    h3{font-family:var(--font-serif);font-size:26px;font-weight:400;line-height:1.25;margin-bottom:var(--space-xs);}
+    h4{font-family:var(--font-serif);font-size:20px;font-weight:400;font-style:italic;margin-bottom:var(--space-xs);color:var(--moss);}
+    p{margin-bottom:var(--space-sm);}p:last-child{margin-bottom:0;}em{font-style:italic;}strong{font-weight:700;}
+    .eyebrow{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.2em;font-size:11px;opacity:0.4;display:block;margin-bottom:var(--space-sm);}
+    hr{border:none;border-top:1px solid rgba(44,36,22,0.1);margin:var(--space-md) 0;}
+    .master-header{background:var(--mud);color:var(--cream);padding:28px 64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-sm);}
+    @media(max-width:700px){.master-header{padding:var(--space-md) var(--space-sm);}}
+    .master-header .brand{font-family:var(--font-mono);font-stretch:expanded;font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--cream);opacity:0.5;}
+    .master-header .client{font-family:var(--font-serif);font-size:clamp(22px,3vw,32px);color:var(--cream);}
+    .master-header .meta{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--cream);opacity:0.4;text-align:right;}
+    .tab-nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid rgba(44,36,22,0.12);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .tab-nav::-webkit-scrollbar{display:none;}
+    .tab-btn{flex-shrink:0;padding:16px 24px;border:none;background:transparent;cursor:pointer;font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--mud);opacity:0.4;border-bottom:2px solid transparent;transition:opacity 0.2s,border-color 0.2s;white-space:nowrap;}
+    .tab-btn:hover{opacity:0.7;}.tab-btn.active{opacity:1;border-bottom-color:var(--orange);}
+    .tab-panel{display:none;}.tab-panel.active{display:block;}
+    .container{max-width:860px;margin:0 auto;padding:0 var(--space-md);}
+    .section{padding:72px 64px;}
+    .section--dark{background:var(--mud);color:var(--cream);}
+    .section--dark h2,.section--dark h3,.section--dark h4{color:var(--cream);}
+    .section--dark p{color:var(--cream);}
+    .section--dark .eyebrow{color:var(--cream);opacity:0.4;}
+    .section--dark hr{border-top-color:rgba(239,234,224,0.1);}
+    .section--cream{background:var(--cream);}.section--gray{background:var(--gray);}.section--white{background:var(--white);}
+    @media(max-width:700px){.section{padding:48px var(--space-md);}}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-sm);margin-top:var(--space-md);}
+    .card{padding:36px 32px;}
+    .card--cream{background:var(--cream);}.card--gray{background:var(--gray);color:var(--mud);}.card--dark{background:var(--mud);color:var(--cream);}.card--moss{background:var(--moss);color:var(--cream);}.card--rose{background:var(--rose);color:var(--mud);}
+    .card--dark .eyebrow,.card--moss .eyebrow{color:var(--cream);}.card--gray .eyebrow{color:var(--mud);}
+    .card h3,.card h4{margin-bottom:8px;}.card p{font-size:15px;line-height:1.65;font-family:var(--font-sans);}.card p:last-child{margin-bottom:0;}
+    blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,3vw,28px);line-height:1.5;border-left:3px solid var(--orange);padding-left:var(--space-md);margin:var(--space-md) 0;color:var(--mud);}
+    .section--dark blockquote{color:var(--cream);border-left-color:var(--rose);}
+    .pull-quote{font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,3vw,28px);color:var(--rose);line-height:1.5;padding-left:var(--space-md);border-left:2px solid var(--rose);margin:var(--space-md) 0;}
+    .gap-table{width:100%;border-collapse:collapse;margin-top:var(--space-md);font-size:15px;}
+    .gap-table th{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.14em;font-size:10px;text-align:left;padding:12px 16px;background:var(--mud);color:var(--cream);}
+    .gap-table td{padding:16px;vertical-align:top;border-bottom:1px solid rgba(44,36,22,0.1);font-family:var(--font-sans);line-height:1.6;font-size:15px;}
+    .gap-table tr:nth-child(even) td{background:var(--cream);}.gap-table tr:nth-child(odd) td{background:var(--gray);}
+    @media(max-width:600px){.gap-table,.gap-table thead,.gap-table tbody,.gap-table th,.gap-table td,.gap-table tr{display:block;}.gap-table thead{display:none;}}
+    .voice-attrs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-sm);margin-top:var(--space-md);}
+    .voice-attr{padding:28px 24px;text-align:center;}
+    .voice-attr .attr-word{font-family:var(--font-serif);font-size:32px;display:block;margin-bottom:6px;}
+    .voice-attr .attr-def{font-size:14px;font-family:var(--font-sans);line-height:1.55;opacity:0.8;}
+    .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:var(--space-md);}
+    @media(max-width:600px){.do-dont{grid-template-columns:1fr;}}
+    .do-col,.dont-col{padding:28px 28px;}
+    .do-col{background:var(--cream);}.dont-col{background:var(--mud);color:var(--cream);}
+    .do-col h4,.dont-col h4{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.18em;font-size:11px;margin-bottom:var(--space-sm);font-style:normal;}
+    .do-col h4{color:var(--moss);opacity:1;}.dont-col h4{color:var(--rose);opacity:1;}
+    .do-col ul,.dont-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+    .do-col li,.dont-col li{font-size:15px;font-family:var(--font-sans);line-height:1.55;padding-left:18px;position:relative;}
+    .do-col li::before{content:"→";position:absolute;left:0;color:var(--moss);}
+    .dont-col li::before{content:"×";position:absolute;left:0;color:var(--rose);}
+    .rewrite-pair{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:var(--space-sm) 0;}
+    @media(max-width:600px){.rewrite-pair{grid-template-columns:1fr;}}
+    .rewrite-before{padding:22px 24px;background:var(--gray);}
+    .rewrite-after{padding:22px 24px;background:var(--moss);color:var(--cream);}
+    .rewrite-before .label,.rewrite-after .label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;display:block;margin-bottom:8px;}
+    .rewrite-before .label{opacity:0.5;}.rewrite-after .label{color:var(--cream);opacity:0.6;}
+    .rewrite-before p,.rewrite-after p{font-size:15px;line-height:1.6;font-family:var(--font-sans);margin:0;font-style:italic;}
+    /* ── COPY SKELETON ── */
+    .copy-page{margin-bottom:var(--space-lg);border-top:2px solid var(--mud);padding-top:var(--space-md);}
+    .copy-page:first-child{border-top:none;padding-top:0;}
+    .copy-section{margin:var(--space-md) 0;}
+    .copy-label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.2em;color:var(--orange);opacity:1;display:block;margin-bottom:6px;}
+    .copy-block{background:var(--cream);padding:24px 28px;margin-top:8px;}
+    .copy-block p{font-family:var(--font-sans);font-size:16px;line-height:1.7;margin-bottom:10px;}
+    .copy-block p:last-child{margin-bottom:0;}
+    .seo-tag{display:inline-block;font-family:var(--font-mono);font-stretch:expanded;font-size:9px;text-transform:uppercase;letter-spacing:0.14em;padding:3px 8px;background:var(--moss);color:var(--cream);margin:2px;}
+    .copy-note{font-family:var(--font-sans);font-size:13px;color:var(--rose);font-style:italic;margin-top:8px;display:block;}
+    .meta-box{background:var(--mud);color:var(--cream);padding:16px 20px;margin-top:8px;}
+    .meta-box p{font-family:var(--font-sans);font-size:14px;line-height:1.6;color:var(--cream);margin:0;}
+    .meta-box .meta-label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:var(--rose);opacity:1;display:block;margin-bottom:4px;}
+    .copy-scaffold{background:var(--gray);padding:20px 24px;margin-top:8px;border-left:3px solid var(--orange);}
+    .copy-scaffold p{font-family:var(--font-sans);font-size:14px;line-height:1.65;color:var(--mud);margin-bottom:6px;}
+    .copy-scaffold p:last-child{margin-bottom:0;}
+    .copy-scaffold .scaffold-label{font-family:var(--font-mono);font-stretch:expanded;font-size:9px;text-transform:uppercase;letter-spacing:0.16em;color:var(--orange);display:block;margin-bottom:6px;}
+    footer{background:var(--cream);padding:var(--space-md) var(--space-lg);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-sm);border-top:1px solid rgba(44,36,22,0.1);}
+    footer p{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;opacity:0.4;margin:0;}
+    @media(max-width:700px){footer{padding:var(--space-md) var(--space-sm);flex-direction:column;}}
+  </style>
+</head>
+<body>
+
+<header class="master-header">
+  <div>
+    <div class="brand">Founding Mothers Media</div>
+    <div class="client">Jourdi Bleu — Production</div>
+  </div>
+  <div class="meta">March 2026<br>Confidential &middot; Client Use Only</div>
+</header>
+
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" onclick="switchTab('voice',this)" role="tab">05 &middot; Voice Guide</button>
+  <button class="tab-btn" onclick="switchTab('copy',this)" role="tab">06 &middot; Site Copy</button>
+</nav>
+
+<!-- TAB 05: VOICE GUIDE -->
+<div id="tab-voice" class="tab-panel active">
+
+  <!-- Hero Section -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Brand Voice Guide</span>
+      <h1>The brand should sound like <em>she actually talks.</em></h1>
+      <p>This guide was built from four sources: the discovery conversation transcript, the ShoutOut Arizona press feature, the speaking page copy (her strongest public-facing writing), and the breathwork page. The goal is to close the gap between the woman in conversation and the brand on the website.</p>
+    </div>
+  </section>
+
+  <!-- Voice Character -->
+  <section class="section section--white">
+    <div class="container">
+      <h2>Five words that define how Jourdi sounds</h2>
+      <div class="voice-attrs">
+        <div class="voice-attr" style="background:var(--cream);">
+          <span class="attr-word">Raw</span>
+          <span class="attr-def">She shares the real version of her story — not the polished highlight reel. The struggle is the credibility.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--gray);">
+          <span class="attr-word">Direct</span>
+          <span class="attr-def">Speaks at one person, not an audience. 'You' not 'women' or 'clients.' Short declarative sentences land alongside longer flowing ones.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--cream);">
+          <span class="attr-word">Warm</span>
+          <span class="attr-def">Genuine care, not performative positivity. No toxic optimism. She can say hard things because the warmth underneath them is real.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--gray);">
+          <span class="attr-word">Light</span>
+          <span class="attr-def">Takes serious things seriously but not solemnly. Irreverence about spirituality makes the depth feel approachable — not scary, not exclusive.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--cream);">
+          <span class="attr-word">Responsible</span>
+          <span class="attr-def">Owns her claims. 'I say that with deep responsibility.' The boldness is earned, not borrowed. She doesn't overclaim and she doesn't shrink.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grammar + Cadence -->
+  <section class="section section--cream">
+    <div class="container">
+      <h2>How she builds a sentence</h2>
+      <div class="card-grid">
+        <div class="card card--gray">
+          <span class="eyebrow">Short-then-long rhythm</span>
+          <p>She hits hard with a short sentence. Then she opens into the explanation — often with a dash or a colon. The rhythm breathes like the work itself: quick compression, then release.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"You can't think your way out of it. The breath goes where words have never been — into the body, into what's been waiting."</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Second person, present tense</span>
+          <p>Always "you," not "women" or "clients." Always present tense — "you feel" not "you will feel." This makes the reader feel seen right now, not promised something later.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"You already have the answers. You just need somewhere safe to hear them."</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Rhetorical questions as pivots</span>
+          <p>She uses questions to shift perspective — not as a marketing device, but as the actual mechanism of her coaching. The question is the offer.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"What if you stopped trying to fix that part of you — and just loved her instead?"</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Personal testimony as proof</span>
+          <p>"When I..." and "In my experience..." are not overshares — they're the whole point. Her story is the product demonstration. She earned her credibility the hard way.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"I used to have insane stomach pain. No doctor could explain it. It was gone after the breathwork."</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Duality &amp; both/and framing</span>
+          <p>She doesn't flatten complexity. "Both can be true." "You can not like a part of yourself and still have compassion for it." This is her philosophy in sentence form.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"It's intense and it's gentle. You're in charge and it will take you somewhere you didn't expect."</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Spiritual language — earned, not decorative</span>
+          <p>"Upstairs Self," "energy," "portal," "the Universe" — these aren't buzzwords for her. They're the operating system. Use them, but ground them in what they actually mean in practice.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"Your Upstairs Self — the part of you beyond the noise, beyond the story — knows exactly what to do."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Do / Don't Word List -->
+  <section class="section section--white">
+    <div class="container">
+      <h2>The language map</h2>
+      <div class="do-dont">
+        <div class="do-col">
+          <h4>✓ Say this</h4>
+          <ul>
+            <li>"You already have the answers" — her core belief, say it often</li>
+            <li>"Your Upstairs Self" — own this term, use it consistently</li>
+            <li>"Feel it for yourself" — the product promise, keep it front and centre</li>
+            <li>"It lives in your body" — her key reframe, use it to contrast with talk therapy</li>
+            <li>"Choose your own adventure" — signals safety and agency to her audience</li>
+            <li>"Both can be true" — her philosophy in four words</li>
+            <li>"The real work" — what she offers, vs. surface-level wellness</li>
+            <li>"Lighter" — the most common outcome word her clients use</li>
+            <li>Em dashes — she thinks in dashes; the copy should too</li>
+            <li>Short + long sentence rhythm — compress, then release</li>
+          </ul>
+        </div>
+        <div class="dont-col">
+          <h4>× Avoid this</h4>
+          <ul>
+            <li>"Your most radiant self" — generic, could be anyone's tagline</li>
+            <li>"Empower/empowerment" — overused in the wellness space, no texture</li>
+            <li>"On a journey" — cliché, say what the journey actually is</li>
+            <li>"It's time to..." — used by every coach on Instagram</li>
+            <li>"Transform your life" — too vague, no felt sense</li>
+            <li>"Holistic wellness" — not her lane, too broad</li>
+            <li>Passive voice — she's direct; the copy should be too</li>
+            <li>Overly polished, distance-creating language — this brand lives close</li>
+            <li>Sentence structures that speak to "women" as a demographic group</li>
+            <li>Promising outcomes without the "but it takes practice" caveat</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before + After Rewrites -->
+  <section class="section section--cream">
+    <div class="container">
+      <h2>From the site today → to Jourdi's actual voice</h2>
+
+      <div style="margin-top:var(--space-md);">
+        <span class="eyebrow">Homepage tagline</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Current copy</span>
+            <p>"Coaching for your most radiant self."</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">In Jourdi's voice</span>
+            <p>"You already know there's more. Let's go find it — in your body, not just your head."</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-md);">
+        <span class="eyebrow">Breathwork intro copy</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Current copy</span>
+            <p>"Trauma-informed rebirthing breathwork for those ready to feel, release, and remember who they truly are."</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">In Jourdi's voice</span>
+            <p>"You can talk about what happened forever. Or you can breathe, and actually let it go. The body knows what the mind keeps trying to figure out."</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-md);">
+        <span class="eyebrow">About / bio opening</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Current direction</span>
+            <p>"Jourdi Bleu's primary focus lies in inspiring individuals to embrace their distinct greatness."</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">In Jourdi's voice</span>
+            <p>"I spent years thinking I could think my way out of what I was carrying. I couldn't. The breathwork is what finally moved it — and I've spent the last five years figuring out how to help you do the same."</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-md);">
+        <span class="eyebrow">CTA copy</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Current</span>
+            <p>"Let's Work Together" &middot; "Book a Free DISCO Call"</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">In Jourdi's voice</span>
+            <p>"Book your first session" &middot; "Try a group breathwork session first" &middot; "See if this is for you — discovery call, no pressure"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tone Spectrum Reference -->
+  <section class="section section--white">
+    <div class="container">
+      <h2>Where to land by context</h2>
+      <table class="gap-table">
+        <thead>
+          <tr>
+            <th>Context</th>
+            <th>Tone Target</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Homepage hero</td>
+            <td>Direct &middot; Seeker-coded &middot; Warm invitation</td>
+            <td>"You already know there's more. The question is whether you're ready to go get it."</td>
+          </tr>
+          <tr>
+            <td>Breathwork page</td>
+            <td>Embodied &middot; Specific &middot; Trust-building</td>
+            <td>"This isn't a meditation class. It's a doorway into the part of you that's been waiting to be heard."</td>
+          </tr>
+          <tr>
+            <td>About / bio</td>
+            <td>Personal testimony &middot; Vulnerable + strong</td>
+            <td>"I've spent over $100k on my own healing. Not because I had the money — because I knew this was the work."</td>
+          </tr>
+          <tr>
+            <td>Sales / offers</td>
+            <td>Clear &middot; Honest &middot; No hype</td>
+            <td>"This is what's included. This is what it costs. This is what to expect."</td>
+          </tr>
+          <tr>
+            <td>Social / Instagram</td>
+            <td>Light &middot; Irreverent &middot; Real</td>
+            <td>"breathwork, bitch. yes i said it." — this is already her voice on social. keep it.</td>
+          </tr>
+          <tr>
+            <td>Speaking page</td>
+            <td>Confident &middot; Credentialed &middot; Purposeful</td>
+            <td>"I was made to be on a stage. And I say that with deep responsibility." — keep this, it's perfect.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<!-- TAB 06: SITE COPY -->
+<div id="tab-copy" class="tab-panel">
+
+  <!-- Copy Hero Section -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Site Copy &middot; Reference Skeleton</span>
+      <h1>Structure first. Voice second. Keywords third — all at once.</h1>
+      <p>This skeleton maps every page section by section. Each block shows: what goes here, what keyword it targets, and a voice-matched draft anchor to write from. Reviewed with Jourdi before publishing. Cross-reference Tab 05 Voice Guide throughout.</p>
+    </div>
+  </section>
+
+  <!-- Copy Pages Container -->
+  <section class="section section--white">
+    <div class="container">
+
+      <!-- PAGE 01: HOMEPAGE -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 01</span>
+        <h2>Homepage — Welcome Home</h2>
+        <p style="font-family:var(--font-mono);font-stretch:expanded;font-size:12px;text-transform:uppercase;letter-spacing:0.16em;opacity:0.5;margin-top:var(--space-sm);">/welcome-home</p>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Title (50–60 chars)</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Jourdi Bleu — Rebirthing Breathwork Coach &amp; Life Coaching</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Description (150–160 chars)</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Rebirthing breathwork and integrated life coaching with Jourdi Bleu. If you know you're capable of more — this is how you get there. Book a session or try a group class.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">H1 — Hero</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: First impression. Speaks directly to the seeker. Must create instant recognition — she should think 'this is me.'</span>
+            <p style="margin-top:var(--space-sm);">Target keywords: rebirthing breathwork, life coaching, upstairs self</p>
+          </div>
+          <div class="copy-block">
+            <p>You already know there's more.</p>
+            <p>You've done the therapy. The yoga. The coaching. And something still isn't moving.</p>
+            <p>That's because the thing you're carrying doesn't live in your head. It lives in your body. And the only way to get to it — is to breathe.</p>
+          </div>
+          <span class="seo-tag">rebirthing breathwork</span>
+          <span class="seo-tag">life coaching</span>
+          <span class="seo-tag">upstairs self</span>
+          <span class="copy-note">→ Primary CTA: 'Try a group session' / Secondary CTA: 'Book a 1:1'</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — The Methodology</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Names the integrated approach. Creates the 'this is different' moment. Introduces the breathwork + coaching combo as one thing.</span>
+            <p style="margin-top:var(--space-sm);">Target keywords: breathwork and coaching, somatic breathwork, trauma informed breathwork</p>
+          </div>
+          <div class="copy-block">
+            <p>This isn't more of the same.</p>
+            <p>I combine rebirthing breathwork with life coaching — not as two separate things, but as one integrated approach. The coaching gives structure to what the breath uncovers. The breathwork takes you places the coaching alone never could.</p>
+          </div>
+          <span class="seo-tag">breathwork and coaching</span>
+          <span class="seo-tag">somatic breathwork</span>
+          <span class="seo-tag">trauma informed breathwork</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — Who This Is For</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Filters the right reader in (seeker, some spiritual awareness) and the wrong reader out (active addiction, total skeptic). Creates belonging.</span>
+          </div>
+          <div class="copy-block">
+            <p>If you're a seeker — you're in the right place.</p>
+            <p>You don't need to believe everything I believe. But if you have a sense that there's an Upstairs — a version of you beyond the story you keep telling yourself — and you want to actually get there, let's work.</p>
+          </div>
+          <span class="seo-tag">breathwork for seekers</span>
+          <span class="seo-tag">upstairs self</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — Start Here (mini offer overview)</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: 3-option gateway. Group session → 1:1 → Full arc. Gives every visitor a clear next step.</span>
+          </div>
+          <div class="copy-block">
+            <p>→ Try a group breathwork session first. Low-barrier, real taste of the work.</p>
+            <p>→ Book a 1:1 session. 90 minutes. Breathwork + coaching, integrated.</p>
+            <p>→ Ready for the full arc? The 3-month mentorship is where the real change happens.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 02: BREATHWORK -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 02</span>
+        <h2>Breathwork Page</h2>
+        <p style="font-family:var(--font-mono);font-stretch:expanded;font-size:12px;text-transform:uppercase;letter-spacing:0.16em;opacity:0.5;margin-top:var(--space-sm);">/breathwork</p>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Title</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Rebirthing Breathwork Sessions — Jourdi Bleu</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Description</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Trauma-informed rebirthing breathwork sessions with certified facilitator Jourdi Bleu. One-on-one and group sessions. Your Upstairs Self is waiting.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">H1 — Keep Existing</span>
+          <div class="copy-block">
+            <p style="font-family:var(--font-serif);font-style:italic;">Your breath is a doorway to your Upstairs Self.</p>
+          </div>
+          <span class="copy-note">→ This H1 is already strong. Keep it. All body copy builds from this line.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — What It Is</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Demystifies rebirthing breathwork without over-explaining. Establishes credibility through personal testimony. Creates 'I need this' recognition.</span>
+            <p style="margin-top:var(--space-sm);">Target keywords: rebirthing breathwork, conscious connected breathing, trauma release breathwork, somatic breathwork sessions</p>
+          </div>
+          <div class="copy-block">
+            <p>Rebirthing breathwork is conscious, connected breathing. No forcing, no performance — just a rhythm that takes you below the surface, below the story, and into the part of you that already knows.</p>
+            <p>I've been through the therapy. The talk. The frameworks. And none of it reached what the breathwork reached — the stuff I'd shoved down for years that was quietly running my life from below.</p>
+          </div>
+          <span class="seo-tag">rebirthing breathwork</span>
+          <span class="seo-tag">conscious connected breathing</span>
+          <span class="seo-tag">trauma release breathwork</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — What to Expect</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Addresses the #1 objection ('I don't know what will happen'). Signals safety and agency. 'You're in charge' is the key message.</span>
+          </div>
+          <div class="copy-block">
+            <p>We start with a brief coaching check-in. Then we breathe. I guide and hold the space. You go where the breath takes you — and it will take you somewhere.</p>
+            <p>It's intense and gentle at the same time. You're in charge. Nothing happens that you're not ready for — the body is intelligent like that.</p>
+          </div>
+          <span class="seo-tag">what to expect breathwork session</span>
+          <span class="seo-tag">breathwork for emotional release</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — Outcomes</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Social proof through outcomes. Keep specific and felt. Avoid over-claiming. Let the results speak.</span>
+          </div>
+          <div class="copy-block">
+            <p>Clarity on questions they couldn't answer before. Forgiveness they didn't know they needed. Physical lightness — people describe it as 'a weight I've been carrying just left.'</p>
+            <p>And sometimes, they can't put it into words at all. That's fine too. The body doesn't need words.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 03: ABOUT -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 03</span>
+        <h2>About — Jourdi's Story</h2>
+        <p style="font-family:var(--font-mono);font-stretch:expanded;font-size:12px;text-transform:uppercase;letter-spacing:0.16em;opacity:0.5;margin-top:var(--space-sm);">/about</p>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Title</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>About Jourdi Bleu — Breathwork Facilitator &amp; Life Coach</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Description</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Jourdi Bleu is a certified rebirthing breathwork facilitator, life coach, and international keynote speaker. 950+ training hours. Amazon bestselling author. She teaches from lived experience.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">H1 — Origin Hook</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Leads with the most compelling credibility signal — the $100k personal investment. Creates 'she walks her talk' trust immediately.</span>
+          </div>
+          <div class="copy-block">
+            <p>I've spent over $100k on my own healing. Not because I had the money — because I knew this was the work.</p>
+          </div>
+          <span class="seo-tag">breathwork facilitator background</span>
+          <span class="seo-tag">certified rebirthing breathwork</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — Origin Story</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Fort Myers. Addiction. Loss. The road out. Not for shock — for recognition. The client has been through something too. She needs to see Jourdi has been there.</span>
+          </div>
+          <div class="copy-block">
+            <p>I grew up in Fort Myers, Florida. There was addiction, there was trauma, there were years I spent running from what I was feeling by making it go away any way I could. I know what it is to carry things in your body that your mind doesn't want to look at.</p>
+            <p>Rebirthing breathwork is what moved the thing that nothing else could reach. I found it in 2021. I trained in Bali. I started working the week I landed back. My business started working the moment I integrated breathwork and coaching. Not a coincidence.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — Credentials</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Trust and authority layer. For the analytical reader who needs to know Jourdi has done the training. Keep factual, let them speak.</span>
+          </div>
+          <div class="copy-block">
+            <p>950+ hours of advanced training in yoga and embodied breathwork &middot; Life Coaching Diploma &middot; Background in Criminology and Youth Work &middot; Vedic Meditation training &middot; Amazon bestselling co-author, Dream To Rise &middot; International Keynote Speaker</p>
+            <p>I'm not listing these to impress you. I'm listing them so you know I take this seriously.</p>
+          </div>
+          <span class="seo-tag">certified breathwork facilitator</span>
+          <span class="seo-tag">trauma informed coach</span>
+          <span class="seo-tag">empowerment coach credentials</span>
+        </div>
+      </div>
+
+      <!-- PAGE 04: WORK WITH ME -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 04</span>
+        <h2>Work With Me</h2>
+        <p style="font-family:var(--font-mono);font-stretch:expanded;font-size:12px;text-transform:uppercase;letter-spacing:0.16em;opacity:0.5;margin-top:var(--space-sm);">/work-with-me</p>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Title</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Work With Jourdi Bleu — Breathwork Coaching Sessions &amp; Mentorship</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">H1</span>
+          <div class="copy-block">
+            <p>This is how we work together.</p>
+            <p>Start where you are. Go as deep as you're ready to go.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Offer 01 — Group Sessions</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Entry-point offer. Should feel accessible and specific. Explicitly positioned as the first step, not a lesser version of 1:1 work.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>Group Breathwork Sessions</strong></p>
+            <p>The best first step. Low-barrier, real impact. A group experience that gives you a genuine taste of the work — not a watered-down version of it.</p>
+            <p>From $65 &middot; 90 minutes &middot; In-person and online</p>
+          </div>
+          <span class="seo-tag">group breathwork sessions</span>
+          <span class="seo-tag">breathwork workshop</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Offer 02 — 1:1 Session</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Core offer. Named as ONE integrated thing — not two services. The 'you'll know immediately' language reduces booking anxiety.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>1:1 Integrated Session — Breathwork + Coaching</strong></p>
+            <p>90 minutes. Breathwork and life coaching, combined the way they're meant to be used — together. You'll bring a question or something you're working through. You'll leave with an answer that came from inside you, not from me.</p>
+            <p>$350 &middot; 90 minutes &middot; In-person or online</p>
+          </div>
+          <span class="seo-tag">1:1 breathwork session</span>
+          <span class="seo-tag">breathwork coaching</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Offer 03 — 3-Session Intensive</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Bundle offer for new 1:1 clients. Reduces single-session purchase anxiety. 'Patterns start to break' language signals real depth.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>The Intensive — 3 Sessions</strong></p>
+            <p>Three integrated sessions over 4–6 weeks. This is where patterns start to break. Where the body starts to release what it's been holding.</p>
+            <p>$975 &middot; 3 × 90-minute sessions &middot; In-person or online</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Offer 04 — 3-Month Mentorship</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Premium container. 'Not for everyone' language creates exclusivity without gatekeeping. Application requirement signals real commitment.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>The Full Arc — 3-Month Mentorship</strong></p>
+            <p>Bi-weekly 1:1 sessions (breathwork + coaching), integration support between sessions, and direct access to me when something comes up. We go deep, we go at your pace, and we stay until the thing has actually moved — not just shifted temporarily.</p>
+            <p>Not for everyone. For the person who's done dabbling and is ready to commit to the work.</p>
+            <p>From $3,800 &middot; 3 months &middot; Application required</p>
+          </div>
+          <span class="seo-tag">breathwork mentorship</span>
+          <span class="seo-tag">somatic coaching container</span>
+        </div>
+      </div>
+
+      <!-- PAGE 05: SPEAKING -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 05</span>
+        <h2>Speaking Page</h2>
+        <p style="font-family:var(--font-mono);font-stretch:expanded;font-size:12px;text-transform:uppercase;letter-spacing:0.16em;opacity:0.5;margin-top:var(--space-sm);">/speaking</p>
+
+        <div class="copy-section">
+          <span class="copy-label">Status</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">Speaking page copy is already strong. The existing tagline — 'telling true stories to worthy audiences that enlighten, inspire &amp; remind them who the F*CK they are' — is the best brand voice on the site. Keep it.</span>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Title</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Keynote Speaker Jourdi Bleu — Breathwork &amp; Wellness Speaker</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Description</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>International keynote speaker Jourdi Bleu blends science, story and soul. Topics: spiritual awakening, nervous system regulation, breathwork, women's empowerment. Book for your event.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Additions Recommended</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What to add: (1) 3 named keynote topics with 2-sentence descriptions each. (2) Speaker reel video embed. (3) Press/media logos. (4) PDF media kit download button. The bio on this page is already excellent — carry it to the main About page.</span>
+          </div>
+          <span class="copy-note">→ Keep: bio, tagline, current positioning. The speaking page voice IS the brand voice — bring it to the homepage.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- Note Before Footer -->
+<div style="background:var(--cream);padding:32px 64px;border-top:1px solid rgba(44,36,22,0.1);">
+  <div class="container">
+    <span class="eyebrow">A note on this document</span>
+    <p style="font-size:15px;max-width:640px;">All copy in Tab 06 is a working draft built from the discovery transcript, public website research, and the Voice Guide in Tab 05. It represents Jourdi's voice as I hear it — not a final product. Review every section with Jourdi before anything goes live. Adjust for accuracy, add client testimonials, and fill in any details only she would know.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Founding Mothers Media &middot; Jourdi Bleu Production &middot; March 2026</p>
+  <p>Confidential — For client use only</p>
+</footer>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
