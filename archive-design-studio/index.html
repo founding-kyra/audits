@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Architecture Audit — Archive Design Studio — Founding Mothers Media</title>
+  <meta name="description" content="A strategic brand architecture audit for Archive Design Studio — positioning, offer structure, and infrastructure priorities for a high-trust residential interior design practice.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,100..900;1,100..900&family=Instrument+Serif:ital@0;1&display=swap');
+
+    :root {
+      --mud:     #2c2416;
+      --mauve:   #9a6e6a;
+      --mustard: #c49a28;
+      --rose:    #bc8a84;
+      --cream:   #efeae0;
+      --gray:    #e3ded8;
+      --white:   #f5f3ef;
+      --serif:   'Instrument Serif', Georgia, serif;
+      --font-ui: 'Atkinson Hyperlegible Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-ui);
+      background: var(--white);
+      color: var(--mud);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── COVER ─────────────────────────────── */
+    #cover {
+      background: var(--mud);
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      border-bottom: 4px solid var(--mustard);
+    }
+    .cover-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: clamp(48px, 8vw, 96px) clamp(32px, 6vw, 80px);
+      align-items: center;
+    }
+    .cover-left .eyebrow {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      margin-bottom: 24px;
+    }
+    .cover-left .brand-name {
+      font-family: var(--serif);
+      font-size: clamp(52px, 8vw, 96px);
+      line-height: 1.0;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .cover-left .brand-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(18px, 2.5vw, 26px);
+      color: var(--rose);
+      line-height: 1.3;
+    }
+    .cover-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .screenshot-placeholder {
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 16/9;
+      background: rgba(239,234,224,0.06);
+      border: 1px solid rgba(239,234,224,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: rgba(239,234,224,0.35);
+      letter-spacing: 0.1em;
+    }
+    .cover-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px clamp(32px, 6vw, 80px);
+      border-top: 1px solid rgba(239,234,224,0.12);
+    }
+    .cover-footer-left {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      color: rgba(239,234,224,0.45);
+      letter-spacing: 0.1em;
+    }
+    .cover-footer-left span { color: var(--mustard); margin-right: 12px; }
+    .cover-footer-right {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      color: rgba(239,234,224,0.35);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── AT A GLANCE ────────────────────────── */
+    #glance {
+      background: var(--white);
+      padding: clamp(64px, 8vw, 104px) clamp(32px, 6vw, 80px);
+    }
+    .glance-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .glance-card {
+      background: var(--white);
+      border: 1px solid var(--gray);
+      padding: 32px 28px;
+    }
+    .glance-card.mustard-top { border-top: 3px solid var(--mustard); }
+    .glance-card.mud-top     { border-top: 3px solid var(--mud); }
+    .glance-card .card-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 12px;
+    }
+    .glance-card .card-value {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.5vw, 28px);
+      line-height: 1.15;
+      color: var(--mud);
+    }
+    .glance-summary {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: var(--mauve);
+      line-height: 1.8;
+    }
+    .glance-summary p { margin-bottom: 6px; }
+
+    /* ── URGENT BAND ────────────────────────── */
+    #urgent {
+      background: var(--mauve);
+      padding: 28px clamp(32px, 6vw, 80px);
+    }
+    .urgent-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(239,234,224,0.65);
+      margin-bottom: 10px;
+    }
+    #urgent p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--cream);
+      line-height: 1.5;
+    }
+
+    /* ── AUDIT SECTION (dark left / white right) ── */
+    .audit-section {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 480px;
+    }
+    .audit-left {
+      background: var(--mud);
+      padding: clamp(48px, 6vw, 80px) 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .audit-left .eyebrow {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      margin-bottom: 16px;
+    }
+    .audit-left .ghost-num {
+      position: absolute;
+      top: -8px;
+      left: 16px;
+      font-family: var(--serif);
+      font-size: clamp(80px, 12vw, 140px);
+      color: rgba(239,234,224,0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .audit-left .section-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 42px);
+      line-height: 1.05;
+      color: var(--cream);
+      margin-top: clamp(48px, 8vw, 88px);
+    }
+    .audit-right {
+      background: var(--white);
+      padding: clamp(48px, 6vw, 80px) clamp(40px, 5vw, 72px);
+    }
+
+    /* ── POSITIONING BLOCKS ─────────────────── */
+    .pos-block {
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--gray);
+    }
+    .pos-block:last-child { border-bottom: none; margin-bottom: 0; }
+    .pos-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .pos-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .pos-icon.check { background: var(--mud); color: var(--cream); }
+    .pos-icon.warn  { background: var(--mustard); color: var(--mud); }
+    .pos-label {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mauve);
+    }
+    .pos-body {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--mud);
+    }
+    .fix-box {
+      background: var(--mustard);
+      padding: 28px 32px;
+      margin-top: 8px;
+    }
+    .fix-box .fix-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(44,36,22,0.55);
+      margin-bottom: 10px;
+    }
+    .fix-box p {
+      font-family: var(--serif);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.5;
+      color: var(--mud);
+    }
+
+    /* ── BRAND IDENTITY ─────────────────────── */
+    #brand-identity {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      min-height: 500px;
+    }
+    .identity-left {
+      background: var(--cream);
+      padding: clamp(48px, 6vw, 80px) clamp(32px, 4vw, 56px);
+    }
+    .identity-left .eyebrow {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 20px;
+    }
+    .identity-left h2 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.1;
+      color: var(--mud);
+      margin-bottom: 24px;
+    }
+    .identity-left h2 em { color: var(--mauve); font-style: italic; }
+    .identity-left p {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--mud);
+    }
+    .identity-right {
+      background: var(--white);
+      padding: clamp(48px, 6vw, 80px) clamp(32px, 4vw, 56px);
+    }
+    .screenshot-slot {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--gray);
+      border: 1px solid rgba(44,36,22,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: var(--mauve);
+      margin-bottom: 32px;
+      letter-spacing: 0.1em;
+    }
+    .impression-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gray);
+    }
+    .impression-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .imp-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .imp-icon.check { background: var(--mud); color: var(--cream); }
+    .imp-icon.warn  { background: var(--mustard); color: var(--mud); }
+    .imp-text .imp-title {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--mud);
+      margin-bottom: 4px;
+    }
+    .imp-text .imp-desc {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #777;
+    }
+
+    /* ── SPLIT SECTION (The Reframe) ───────── */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 3px solid var(--mud);
+    }
+    .split-left {
+      background: var(--white);
+      padding: clamp(48px, 6vw, 80px) clamp(32px, 4vw, 56px);
+      position: relative;
+      overflow: hidden;
+    }
+    .split-left .eyebrow {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 14px;
+    }
+    .split-left .ghost-num {
+      position: absolute;
+      top: -8px;
+      left: 16px;
+      font-family: var(--serif);
+      font-size: clamp(80px, 12vw, 140px);
+      color: rgba(44,36,22,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .split-left .section-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.0;
+      color: var(--mud);
+      margin-top: clamp(40px, 6vw, 72px);
+      margin-bottom: 32px;
+    }
+    .current-copy-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 10px;
+    }
+    .current-copy {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(15px, 1.8vw, 18px);
+      line-height: 1.6;
+      color: rgba(44,36,22,0.45);
+    }
+    .split-right {
+      background: var(--mud);
+      padding: clamp(48px, 6vw, 80px) clamp(32px, 4vw, 56px);
+    }
+    .split-right p {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--cream);
+      margin-bottom: 22px;
+    }
+    .split-right p:last-child { margin-bottom: 0; }
+    .split-right p em { color: var(--rose); font-style: normal; }
+
+    /* ── OFFER ARCHITECTURE ─────────────────── */
+    #offer-arch {
+      background: var(--white);
+      padding: clamp(64px, 8vw, 104px) clamp(32px, 6vw, 80px);
+    }
+    .currently-box {
+      background: var(--mustard);
+      padding: 28px 36px;
+      margin-bottom: 40px;
+    }
+    .currently-box .curr-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(44,36,22,0.55);
+      margin-bottom: 10px;
+    }
+    .currently-box p {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--mud);
+    }
+    .offer-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .offer-card {
+      border: 1px solid var(--gray);
+      padding: 32px 28px;
+      background: var(--white);
+    }
+    .offer-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 36px;
+      color: var(--mustard);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .offer-tier {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 8px;
+    }
+    .offer-name {
+      font-family: var(--serif);
+      font-size: clamp(17px, 1.8vw, 21px);
+      color: var(--mud);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .offer-card p {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.7;
+      color: #666;
+    }
+
+    /* ── DARK SECTION ───────────────────────── */
+    .dark-section {
+      background: var(--mud);
+      padding: clamp(64px, 8vw, 104px) clamp(32px, 6vw, 80px);
+    }
+    .dark-section .eyebrow {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      margin-bottom: 14px;
+    }
+
+    /* ── BACK-END INFRA ─────────────────────── */
+    .infra-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .infra-heading {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 44px);
+      color: var(--cream);
+      margin-bottom: 32px;
+      line-height: 1.1;
+    }
+    .status-list { list-style: none; }
+    .status-list li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--cream);
+    }
+    .status-icon { font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+    .status-icon.check { color: #7bc67a; }
+    .status-icon.gap   { color: var(--mustard); }
+    .tool-box {
+      border: 1px solid rgba(239,234,224,0.1);
+      padding: 32px;
+    }
+    .tool-item {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(239,234,224,0.1);
+    }
+    .tool-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .tool-name {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .tool-desc {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(239,234,224,0.55);
+    }
+    .tool-cta {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--rose);
+      margin-top: 24px;
+      line-height: 1.5;
+    }
+
+    /* ── INCOME ARCHITECTURE ────────────────── */
+    .income-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--gray);
+      margin-bottom: 28px;
+    }
+    .metric-cell {
+      background: var(--white);
+      padding: 28px 24px;
+    }
+    .metric-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 10px;
+    }
+    .metric-value {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.5vw, 30px);
+      color: var(--mud);
+      line-height: 1.1;
+    }
+    .bottom-line-box {
+      background: var(--mustard);
+      padding: 28px 32px;
+    }
+    .bottom-line-box p {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--mud);
+      margin-bottom: 12px;
+    }
+    .bottom-line-box .cta-line {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--mud);
+      margin-bottom: 0;
+    }
+
+    /* ── MARKETING COLS ─────────────────────── */
+    .marketing-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .mkt-col h3 {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      margin-bottom: 24px;
+    }
+    .mkt-fix-box {
+      background: rgba(196,154,40,0.15);
+      border-left: 3px solid var(--mustard);
+      padding: 16px 20px;
+      margin-top: 24px;
+    }
+    .mkt-fix-box p {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--cream);
+    }
+
+    /* ── THE BIG OPPORTUNITY ────────────────── */
+    #opportunity {
+      background: var(--mud);
+      padding: clamp(80px, 12vw, 140px) clamp(32px, 6vw, 80px);
+    }
+    .opp-left {
+      font-family: var(--serif);
+      font-size: clamp(26px, 4vw, 48px);
+      line-height: 1.15;
+      color: var(--cream);
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+    .opp-right {
+      font-family: var(--serif);
+      font-size: clamp(26px, 4vw, 48px);
+      line-height: 1.15;
+      color: var(--cream);
+      max-width: 680px;
+      text-align: right;
+      margin-left: auto;
+    }
+    .opp-left em, .opp-right em { color: var(--rose); font-style: normal; }
+
+    /* ── rX PRIORITIES ──────────────────────── */
+    .rx-header {
+      background: var(--mustard);
+      padding: 32px clamp(32px, 6vw, 80px);
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+    }
+    .rx-mark {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(48px, 8vw, 96px);
+      line-height: 1;
+      color: rgba(44,36,22,0.18);
+    }
+    .rx-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(20px, 3vw, 32px);
+      color: var(--mud);
+      line-height: 1.2;
+    }
+    .priority-list {
+      background: var(--white);
+      padding: clamp(48px, 6vw, 80px) clamp(32px, 6vw, 80px);
+    }
+    .priority-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--gray);
+      align-items: start;
+    }
+    .priority-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .priority-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(48px, 7vw, 80px);
+      line-height: 1;
+      color: rgba(44,36,22,0.12);
+      text-align: right;
+    }
+    .priority-title {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.2vw, 28px);
+      color: var(--mud);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .priority-desc {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.7;
+      color: #666;
+    }
+
+    /* ── OFFER PITCH ────────────────────────── */
+    #offer {
+      background: var(--mud);
+      padding: clamp(64px, 8vw, 104px) clamp(32px, 6vw, 80px);
+      border-bottom: 3px solid var(--rose);
+    }
+    .offer-pitch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+    .offer-headline {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+    .offer-headline em { color: var(--rose); font-style: italic; }
+    .offer-sub {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(239,234,224,0.55);
+    }
+    .offer-item {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(239,234,224,0.1);
+    }
+    .offer-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .offer-item-title {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--mustard);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .offer-item p {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(239,234,224,0.65);
+    }
+    .price-box {
+      background: var(--rose);
+      padding: 28px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .price-text {
+      font-family: var(--serif);
+      font-size: clamp(18px, 2.2vw, 26px);
+      color: var(--cream);
+      line-height: 1.3;
+    }
+    .price-link {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(239,234,224,0.4);
+      padding-bottom: 2px;
+    }
+
+    /* ── CLOSING ────────────────────────────── */
+    #closing {
+      background: var(--mud);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(64px, 8vw, 104px) clamp(32px, 6vw, 80px) 40px;
+    }
+    .closing-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 0;
+    }
+    .closing-line {
+      font-family: var(--serif);
+      font-size: clamp(28px, 5vw, 60px);
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .closing-line.italic { font-style: italic; color: var(--rose); }
+    .closing-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(239,234,224,0.12);
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: rgba(239,234,224,0.35);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .closing-footer a {
+      color: var(--rose);
+      text-decoration: none;
+    }
+
+    /* ── MANUAL INPUT FLAG ──────────────────── */
+    .manual-flag {
+      display: inline-block;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      background: rgba(196,154,40,0.12);
+      border: 1px solid var(--mustard);
+      color: var(--mustard);
+      padding: 2px 7px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ── SECTION NUMBER INLINE ─────────────── */
+    .section-num-inline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 11px;
+      color: rgba(239,234,224,0.25);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 1024px) {
+      .audit-section       { grid-template-columns: 220px 1fr; }
+      .glance-cards        { gap: 16px; }
+      .offer-cards         { gap: 16px; }
+      #brand-identity      { grid-template-columns: 220px 1fr; }
+    }
+    @media (max-width: 768px) {
+      .cover-main          { grid-template-columns: 1fr; }
+      .cover-right         { display: none; }
+      .audit-section       { grid-template-columns: 1fr; }
+      .glance-cards        { grid-template-columns: 1fr; }
+      #brand-identity      { grid-template-columns: 1fr; }
+      .split-section       { grid-template-columns: 1fr; }
+      .infra-grid          { grid-template-columns: 1fr; }
+      .income-metrics      { grid-template-columns: 1fr; }
+      .marketing-cols      { grid-template-columns: 1fr; }
+      .offer-pitch-grid    { grid-template-columns: 1fr; }
+      .offer-cards         { grid-template-columns: 1fr; }
+      .priority-item       { grid-template-columns: 60px 1fr; }
+      .closing-footer      { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ SECTION 1 — COVER ══════════════════════════════════════════ -->
+<section id="cover">
+  <div class="cover-main">
+    <div class="cover-left">
+      <p class="eyebrow">Founding Mothers Media</p>
+      <h1 class="brand-name">Archive<br>Design<br>Studio</h1>
+      <p class="brand-sub">Stephanie — Interior Design + Creative Direction</p>
+    </div>
+    <div class="cover-right">
+      <div class="screenshot-placeholder" role="img" aria-label="Current website screenshot placeholder for Archive Design Studio">
+        [ current site screenshot ]
+      </div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <div class="cover-footer-left">
+      <span>Brand Architecture Audit</span>Interior Design + Creative Direction — Early Launch Stage
+    </div>
+    <div class="cover-footer-right">FM · foundingmothersmedia.com</div>
+  </div>
+</section>
+
+<!-- ══ SECTION 2 — AT A GLANCE ════════════════════════════════════ -->
+<section id="glance">
+  <div class="glance-cards">
+    <div class="glance-card mustard-top">
+      <p class="card-label">Category</p>
+      <p class="card-value">Interior Design + Creative Direction</p>
+    </div>
+    <div class="glance-card mud-top">
+      <p class="card-label">Revenue Stage</p>
+      <p class="card-value">Pre-revenue / Active Launch</p>
+    </div>
+    <div class="glance-card mud-top">
+      <p class="card-label">Primary Constraint</p>
+      <p class="card-value">Portfolio under construction — no published client work</p>
+    </div>
+  </div>
+  <div class="glance-summary">
+    <p>↳ What's solid: The brand vision is clear, the aesthetic is sophisticated, the philosophy is genuinely differentiated, and contracts are already in place.</p>
+    <p>↳ The honest tension: The infrastructure and credibility signals aren't yet matching the caliber of client you're building toward.</p>
+  </div>
+</section>
+
+<!-- ══ SECTION 3 — URGENT BAND ═══════════════════════════════════ -->
+<section id="urgent">
+  <p class="urgent-label">Active launch</p>
+  <p>You are mid-build — LLC filed, EIN received, website nearly live. This audit is organized around getting the foundation right before you go fully public, not after.</p>
+</section>
+
+<!-- ══ SECTION 4 — POSITIONING CLARITY ════════════════════════════ -->
+<section class="audit-section" id="positioning">
+  <div class="audit-left">
+    <p class="eyebrow">Brand Foundation</p>
+    <span class="ghost-num">01</span>
+    <h2 class="section-title">Positioning /<br>Clarity</h2>
+  </div>
+  <div class="audit-right">
+
+    <div class="pos-block">
+      <div class="pos-header">
+        <div class="pos-icon check">✓</div>
+        <span class="pos-label">Working</span>
+      </div>
+      <div class="pos-body">
+        <p>Your positioning is rare and it's already in your language. "I want clients to see me as a listener and problem-solver who designs for them, not someone selling a trend or a signature style" — that IS your differentiation, stated plainly. Most designers competing for the same clients are selling an aesthetic. You're selling judgment. That's harder to fake, and harder to replace once clients experience it.</p>
+      </div>
+    </div>
+
+    <div class="pos-block">
+      <div class="pos-header">
+        <div class="pos-icon warn">!</div>
+        <span class="pos-label">Unclear</span>
+      </div>
+      <div class="pos-body">
+        <p>The current homepage — "Creating spaces that feel intuitive, and support the way people live, work, and gather" — is good but generic. It doesn't tell a cold visitor why you specifically, versus any other thoughtful designer. The word "intuitive" is doing a lot of work without evidence behind it. For the high-trust residential client you're targeting, the site currently communicates aesthetic without communicating qualification. Those aren't the same thing.</p>
+      </div>
+    </div>
+
+    <div class="fix-box">
+      <p class="fix-label">Your positioning sentence — use this</p>
+      <p>Archive is a residential design practice for clients who want a space that reflects how they actually live — not a designer's signature, not a trend. Stephanie works as guide and advocate from the first conversation through the last detail.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SECTION 5 — BRAND PRESENCE + IDENTITY ═════════════════════ -->
+<section id="brand-identity">
+  <div class="identity-left">
+    <p class="eyebrow">Brand Presence</p>
+    <h2>The brand is<br><em>ahead</em> of the<br>infrastructure.</h2>
+    <p>Your visual identity is genuinely sophisticated — dark palette, refined typography, considered spacing. The site reads like a studio that has been doing this for years. The gap isn't the aesthetic. It's the credibility architecture underneath it: the platform choice, the missing portfolio, the informal payment setup. The visual brand is ready. The infrastructure supporting it isn't yet.</p>
+  </div>
+  <div class="identity-right">
+    <div class="screenshot-slot" role="img" aria-label="Website screenshot of Archive Design Studio homepage">
+      [ website screenshot ]
+    </div>
+    <div class="impression-item">
+      <div class="imp-icon check">✓</div>
+      <div class="imp-text">
+        <p class="imp-title">Visual brand: sharp and confident</p>
+        <p class="imp-desc">Dark palette, italic serif with hollow letter treatment, warm neutrals on top. The aesthetic telegraphs "high-end boutique practice" immediately. This is working exactly as intended.</p>
+      </div>
+    </div>
+    <div class="impression-item">
+      <div class="imp-icon warn">!</div>
+      <div class="imp-text">
+        <p class="imp-title">Platform: Canva limits your SEO ceiling</p>
+        <p class="imp-desc">Canva websites render via JavaScript canvas injection — search engines can't read the text properly, there's no meta description, and the page title is literally "H O M E." For a word-of-mouth practice this matters less daily, but it closes off organic discovery entirely.</p>
+      </div>
+    </div>
+    <div class="impression-item">
+      <div class="imp-icon warn">!</div>
+      <div class="imp-text">
+        <p class="imp-title">Archives page: empty is a credibility gap</p>
+        <p class="imp-desc">The portfolio placeholder ("will live here soon") signals in-progress rather than established. For a referral arriving at your site, it raises the question before you've had a chance to answer it. See the portfolio strategy in the rX section below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 6 — THE REFRAME ════════════════════════════════════ -->
+<section class="split-section" id="reframe">
+  <div class="split-left">
+    <p class="eyebrow">Copy + Voice</p>
+    <span class="ghost-num">03</span>
+    <h2 class="section-title">The /<br>Reframe</h2>
+    <p class="current-copy-label">Currently on site:</p>
+    <p class="current-copy">"Creating spaces that feel intuitive, and support the way people live, work, and gather."</p>
+  </div>
+  <div class="split-right">
+    <p>You said it yourself: you're not selling a look. You're selling <em>deep listening, clarity, and a design process that starts with the people who actually live there.</em> That's what the copy needs to say.</p>
+    <p>Your clients won't find you because your Instagram is curated. They'll find you because someone they trust said, "She actually listened. She didn't put her stamp on our house." Your brand needs to make that referral easy to give — and easy for the person receiving it to repeat.</p>
+    <p>The goal for every word on this site: give a prospective client <em>the language to explain to their spouse why they should hire you.</em> "Intuitive spaces" doesn't do that. "A designer who designs for you, not for her portfolio" — that does.</p>
+  </div>
+</section>
+
+<!-- ══ SECTION 7 — OFFER ARCHITECTURE ════════════════════════════ -->
+<section id="offer-arch">
+  <div class="currently-box">
+    <p class="curr-label">Offer State — Current</p>
+    <p>A cold visitor can see that Archive does interior design and creative direction. What they cannot see: how to engage you, what a project looks like, what the investment range is, or what happens after they send an email. The inquiry prompt is appropriately selective — but it's the only signal. There's no offer structure, no tiered entry point, and no way for a not-yet-ready prospect to stay in orbit. You're building for word-of-mouth, which is right. But word-of-mouth still needs somewhere to land.</p>
+  </div>
+  <div class="offer-cards">
+    <div class="offer-card">
+      <p class="offer-num">1</p>
+      <p class="offer-tier">Entry</p>
+      <h3 class="offer-name">The Introductory Conversation</h3>
+      <p>A focused 30-minute consultation to assess project fit, discuss scope, and determine next steps. Free or low-cost ($75–150). Filters for serious clients and establishes the relationship before you commit time to a proposal. This is the entry point you don't yet have named.</p>
+    </div>
+    <div class="offer-card">
+      <p class="offer-num">2</p>
+      <p class="offer-tier">Core</p>
+      <h3 class="offer-name">Full-Service Residential Design</h3>
+      <p>Concept through execution — spatial planning, materiality, sourcing, contractor coordination, and styling. Your primary service. The site implies it but doesn't name it explicitly. Price point and scope should be visible in your process documentation, even if pricing itself stays inquiry-based. <span class="manual-flag">⚑ NEEDS MANUAL INPUT: current rate / package structure</span></p>
+    </div>
+    <div class="offer-card">
+      <p class="offer-num">3</p>
+      <p class="offer-tier">Premium / Future</p>
+      <h3 class="offer-name">Creative Direction Retainer</h3>
+      <p>Ongoing creative direction for clients with evolving projects — commercial, experiential, or residential clients who need a long-term design partner. The "creative direction" half of your name is doing work that isn't yet named in your offer structure. This is the premium tier, and it's already implied by what you do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 8 — BACK-END INFRASTRUCTURE ════════════════════════ -->
+<section class="dark-section" id="backend">
+  <div class="infra-grid">
+    <div>
+      <p class="eyebrow">Operations</p>
+      <span class="section-num-inline">05</span>
+      <h2 class="infra-heading">Back-End /<br>Infrastructure</h2>
+      <ul class="status-list">
+        <li>
+          <span class="status-icon check">✓</span>
+          <span><strong>Contracts:</strong> In place. This is non-negotiable for residential work and you're already doing it right.</span>
+        </li>
+        <li>
+          <span class="status-icon check">✓</span>
+          <span><strong>Business entity:</strong> LLC filed, EIN received. The legal foundation is solid.</span>
+        </li>
+        <li>
+          <span class="status-icon check">✓</span>
+          <span><strong>Inquiry process:</strong> Clear project brief request on the site provides a functional first filter for serious clients.</span>
+        </li>
+        <li>
+          <span class="status-icon gap">△</span>
+          <span><strong>Payment:</strong> Venmo, Zelle, and cash only. For high-end residential clients, this signals early-stage. You need at minimum a Stripe link or a proper invoicing tool before you pitch your first $5K+ project.</span>
+        </li>
+        <li>
+          <span class="status-icon gap">△</span>
+          <span><strong>Business bank account:</strong> In progress. Complete this before accepting any paid work — it's the prerequisite for everything else.</span>
+        </li>
+        <li>
+          <span class="status-icon gap">△</span>
+          <span><strong>Booking / scheduling:</strong> None. Email inquiry only. Fine for now, but plan for a lightweight scheduling system before volume grows.</span>
+        </li>
+        <li>
+          <span class="status-icon gap">△</span>
+          <span><strong>Proposal + onboarding process:</strong> Not visible. <span class="manual-flag">⚑ NEEDS MANUAL INPUT: formal proposal template?</span></span>
+        </li>
+      </ul>
+    </div>
+    <div class="tool-box">
+      <div class="tool-item">
+        <p class="tool-name">HoneyBook or Dubsado</p>
+        <p class="tool-desc">Studio management platform for proposals, contracts, invoicing, and client portals — all in one. Either replaces the Venmo/Zelle setup immediately and makes you look like an established practice from the first touchpoint. HoneyBook is friendlier to start; Dubsado has more customization for complex workflows.</p>
+      </div>
+      <div class="tool-item">
+        <p class="tool-name">Stripe (standalone)</p>
+        <p class="tool-desc">If you're not ready for a full studio management tool, Stripe links are the minimum viable professional payment solution. Free to set up, looks legitimate, connects directly to your business bank account.</p>
+      </div>
+      <div class="tool-item">
+        <p class="tool-name">Squarespace or Showit (website migration)</p>
+        <p class="tool-desc">Canva websites are a good starting point but not a long-term home for a high-trust service business. Squarespace offers better SEO infrastructure and native inquiry forms. Showit is the standard for design-forward service businesses. Plan the migration before you invest more into the current Canva build.</p>
+      </div>
+      <p class="tool-cta">The goal of the back end: a client who finds Archive through a referral should be able to go from discovery to signed contract without anything feeling informal or DIY.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 9 — INCOME ARCHITECTURE ════════════════════════════ -->
+<section class="audit-section" id="income">
+  <div class="audit-left">
+    <p class="eyebrow">The Math</p>
+    <span class="ghost-num">06</span>
+    <h2 class="section-title">Income /<br>Architecture</h2>
+  </div>
+  <div class="audit-right">
+    <div class="income-metrics">
+      <div class="metric-cell">
+        <p class="metric-label">Current Rate</p>
+        <p class="metric-value">Not yet set <span class="manual-flag">⚑</span></p>
+      </div>
+      <div class="metric-cell">
+        <p class="metric-label">Revenue Target (12 mo.)</p>
+        <p class="metric-value">Not specified <span class="manual-flag">⚑</span></p>
+      </div>
+      <div class="metric-cell">
+        <p class="metric-label">Clients Needed to Hit Target</p>
+        <p class="metric-value">TBD — pending rate <span class="manual-flag">⚑</span></p>
+      </div>
+      <div class="metric-cell">
+        <p class="metric-label">Secondary Revenue Stream</p>
+        <p class="metric-value">Creative Direction Retainer (future)</p>
+      </div>
+    </div>
+    <div class="bottom-line-box">
+      <p>High-end residential interior design is a low-volume, high-relationship business. You don't need fifty clients. You need four to eight exceptional ones per year, priced to reflect the full scope of your involvement — from first conversation through final walkthrough. The math only works if the pricing is right from the start. Setting your rate too low in the early phase trains the wrong clients to expect the wrong number, and recalibrating mid-stream is painful.</p>
+      <p class="cta-line">The path: set a rate before you take your first paid project. Not after.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 10 — MARKETING + CONTENT ══════════════════════════ -->
+<section class="dark-section" id="marketing">
+  <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:40px; flex-wrap:wrap;">
+    <span class="section-num-inline" style="margin-bottom:0;">07</span>
+    <p class="eyebrow" style="margin-bottom:0;">Marketing</p>
+    <h2 style="font-family:var(--serif); font-size:clamp(28px,4vw,48px); color:var(--cream); line-height:1.05; margin-bottom:0; flex:1;">Content + Visibility</h2>
+  </div>
+  <div class="marketing-cols">
+    <div class="mkt-col">
+      <h3>What's Working</h3>
+      <ul class="status-list">
+        <li>
+          <span class="status-icon check">✓</span>
+          <span>Social media and email are your primary discovery channels — both are appropriate for a high-trust, relationship-driven practice. You're not chasing the wrong audience.</span>
+        </li>
+        <li>
+          <span class="status-icon check">✓</span>
+          <span>The word-of-mouth strategy is the right strategy. High-end residential clients do not find their designers on Google. They find them through people they already trust.</span>
+        </li>
+        <li>
+          <span class="status-icon check">✓</span>
+          <span>The site copy already communicates care and intentionality. The voice is present. It needs sharpening, not rebuilding.</span>
+        </li>
+      </ul>
+      <div class="mkt-fix-box">
+        <p>Your referral strategy needs a landing surface. Right now someone could be referred to you and arrive at a site with an empty portfolio page. Fix the portfolio before you actively pursue new clients.</p>
+      </div>
+    </div>
+    <div class="mkt-col">
+      <h3>What Needs Building</h3>
+      <ul class="status-list">
+        <li>
+          <span class="status-icon gap">△</span>
+          <span><strong>Portfolio:</strong> The "Archives" section is the most important page on your site and it's currently empty. See the portfolio strategy in the rX section for how to solve this without client photography.</span>
+        </li>
+        <li>
+          <span class="status-icon gap">△</span>
+          <span><strong>Email list:</strong> No sign-up mechanism visible anywhere on the site. A simple opt-in gives you a direct channel to prospects who aren't ready to hire yet but want to stay connected.</span>
+        </li>
+        <li>
+          <span class="status-icon gap">△</span>
+          <span><strong>Instagram:</strong> No handle visible on the site or in your intake form. If you're active, link it. If not, decide before launch whether it's part of the strategy. <span class="manual-flag">⚑ NEEDS MANUAL INPUT: Instagram status</span></span>
+        </li>
+        <li>
+          <span class="status-icon gap">△</span>
+          <span><strong>Google Business Profile:</strong> Not found. For a local residential practice, a GMB listing is a basic credibility signal — even if most business comes from referrals, it's what people check after being referred. <span class="manual-flag">⚑ NEEDS MANUAL INPUT: location for GMB setup</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 11 — THE BIG OPPORTUNITY ══════════════════════════ -->
+<section id="opportunity">
+  <p class="opp-left">Your aesthetic is <em>there.</em> Your philosophy is clear. Your contracts are signed. This is not a talent problem.</p>
+  <p class="opp-right">It's a <em>credibility infrastructure</em> problem. And credibility infrastructure is the most fixable problem there is.</p>
+</section>
+
+<!-- ══ SECTION 12 — rX PRIORITIES ════════════════════════════════ -->
+<div class="rx-header">
+  <span class="rx-mark">rX</span>
+  <h2>Do these 6 things. In this order:</h2>
+</div>
+<div class="priority-list">
+
+  <div class="priority-item">
+    <div class="priority-num">1</div>
+    <div>
+      <h3 class="priority-title">Open the business bank account and set up Stripe before you take your first paid project</h3>
+      <p class="priority-desc">You're already mid-launch and the financial infrastructure is the one thing that has to happen before anything else. Venmo and Zelle work for splitting dinner — not for four-figure design retainers. Get the bank account open, connect it to Stripe, and issue your first invoice through a tool that looks like a business. This is a one-day task with a disproportionate credibility return.</p>
+    </div>
+  </div>
+
+  <div class="priority-item">
+    <div class="priority-num">2</div>
+    <div>
+      <h3 class="priority-title">Solve the portfolio problem now — before you go fully live</h3>
+      <p class="priority-desc">You don't need client photos to have a portfolio. You have conceptual work from school and your own home. Curate 3–5 tight case study entries: a concept board, a materials palette, a short process note about what you were solving for, and one strong final image. Label them clearly — "Personal residence," "Academic project." Clients hiring at this level respect transparency about process. What they won't respect is nothing. The Archives page needs content before anyone is referred to your site.</p>
+    </div>
+  </div>
+
+  <div class="priority-item">
+    <div class="priority-num">3</div>
+    <div>
+      <h3 class="priority-title">Set your rate before you take your first inquiry</h3>
+      <p class="priority-desc">Pricing isn't on the site — that's appropriate for a bespoke service. But you need to know your number before a client asks. Residential interior designers typically work on hourly ($85–200/hr), flat project fee, or a percentage of project budget (10–25%). Pick a structure, set a floor, and know it cold before your first consultation. Underpricing in the first six months sets a baseline you'll spend years correcting.</p>
+    </div>
+  </div>
+
+  <div class="priority-item">
+    <div class="priority-num">4</div>
+    <div>
+      <h3 class="priority-title">Update the homepage headline to make your differentiation explicit</h3>
+      <p class="priority-desc">Replace "Creating spaces that feel intuitive, and support the way people live, work, and gather" with something that says what makes you different — not just what design does in general. Your positioning sentence from Section 1 is already written. Put it on the page. A referral arriving at your site should understand immediately why you specifically, not just what interior designers do in general.</p>
+    </div>
+  </div>
+
+  <div class="priority-item">
+    <div class="priority-num">5</div>
+    <div>
+      <h3 class="priority-title">Plan the migration from Canva to Squarespace or Showit — don't invest more in the current build</h3>
+      <p class="priority-desc">Canva served you well for launch speed, but it's a ceiling, not a foundation. Squarespace offers the best balance of SEO infrastructure, native inquiry forms, and design control for a service business at your stage. Showit is better for design-forward practices with more time investment. Pick one, plan the migration, and stop adding features to the Canva site in the meantime.</p>
+    </div>
+  </div>
+
+  <div class="priority-item">
+    <div class="priority-num">6</div>
+    <div>
+      <h3 class="priority-title">Add a simple email opt-in and claim your Google Business Profile</h3>
+      <p class="priority-desc">Two low-effort, high-return moves: (1) add a one-field email opt-in — even "occasional notes from the studio" is enough for people who aren't ready to hire yet; (2) claim your Google Business Profile with your location, category (interior designer), and 2–3 photos. Neither replaces referral strategy — but they're the free credibility signals a $10K/project client will quietly check after they've been referred.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ SECTION 13 — OFFER PITCH ══════════════════════════════════ -->
+<section id="offer">
+  <div class="offer-pitch-grid">
+    <div>
+      <h2 class="offer-headline">This is where<br><em>the build</em><br>actually begins.</h2>
+      <p class="offer-sub">You have the vision, the aesthetic, and the philosophy already. Founding Mothers Media works alongside you to build the infrastructure that makes the rest of it possible — not by telling you what to do, but by doing the parts you shouldn't have to figure out alone while also running a design practice.</p>
+    </div>
+    <div>
+      <div class="offer-item">
+        <p class="offer-item-title">Brand + Infrastructure Build</p>
+        <p>We handle the strategic layer — offer architecture, positioning language, website copy, and operational setup — so you can stay focused on the design work.</p>
+      </div>
+      <div class="offer-item">
+        <p class="offer-item-title">Ongoing Strategic Partnership</p>
+        <p>Monthly sessions to work through what's coming next — pricing decisions, new offer launches, referral systems, and the pivots that happen in year one of any practice.</p>
+      </div>
+      <div class="offer-item">
+        <p class="offer-item-title">Built for Founders at Launch</p>
+        <p>You're not behind. You're building something from scratch with intention. The Root retainer is designed for exactly this stage: before the chaos, so the foundation can hold the weight of what's coming.</p>
+      </div>
+    </div>
+  </div>
+  <div class="price-box">
+    <p class="price-text">The Root Retainer — let's talk about what this looks like for Archive.</p>
+    <a href="https://foundingmothersmedia.com" class="price-link">foundingmothersmedia.com →</a>
+  </div>
+</section>
+
+<!-- ══ SECTION 14 — CLOSING ═══════════════════════════════════════ -->
+<section id="closing">
+  <div class="closing-body">
+    <p class="closing-line">You're building a practice</p>
+    <p class="closing-line italic">people will wait for.</p>
+    <p class="closing-line">The work is already there.</p>
+    <p class="closing-line italic">Now build the thing that holds it.</p>
+    <p class="closing-line">Archive is ready.</p>
+  </div>
+  <div class="closing-footer">
+    <a href="https://foundingmothersmedia.com">Let's Work Together</a>
+    <span>Founding Mothers Media — Brand Architecture Audit</span>
+    <span>foundingmothersmedia.com</span>
+  </div>
+</section>
+
+</body>
+</html>
