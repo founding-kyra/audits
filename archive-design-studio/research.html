@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archive Design Studio — Research · Founding Mothers Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --mud:#2c2416;--moss:#514619;--orange:#d4521e;--rust:#bf3c10;--maroon:#681704;
+      --rose:#bc7e78;--cream:#efeae0;--gray:#e3ded8;--white:#f5f3ef;
+      --font-serif:'Instrument Serif',Georgia,serif;
+      --font-sans:'Atkinson Hyperlegible',system-ui,sans-serif;
+      --font-mono:'Inconsolata',monospace;
+      --space-xs:8px;--space-sm:16px;--space-md:32px;--space-lg:64px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--white);color:var(--mud);font-family:var(--font-sans);font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased;}
+    h1{font-family:var(--font-serif);font-size:clamp(48px,7vw,72px);line-height:1.05;font-weight:400;margin-bottom:var(--space-sm);}
+    h2{font-family:var(--font-serif);font-size:clamp(32px,5vw,48px);font-weight:400;line-height:1.15;margin-bottom:var(--space-sm);}
+    h3{font-family:var(--font-serif);font-size:26px;font-weight:400;line-height:1.25;margin-bottom:var(--space-xs);}
+    h4{font-family:var(--font-serif);font-size:20px;font-weight:400;font-style:italic;margin-bottom:var(--space-xs);color:var(--moss);}
+    p{margin-bottom:var(--space-sm);}p:last-child{margin-bottom:0;}em{font-style:italic;}strong{font-weight:700;}
+    .eyebrow{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.2em;font-size:11px;opacity:0.4;display:block;margin-bottom:var(--space-sm);}
+    hr{border:none;border-top:1px solid rgba(44,36,22,0.1);margin:var(--space-md) 0;}
+    .master-header{background:var(--mud);color:var(--cream);padding:28px 64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-sm);}
+    @media(max-width:700px){.master-header{padding:var(--space-md) var(--space-sm);}}
+    .master-header .brand{font-family:var(--font-mono);font-stretch:expanded;font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--cream);opacity:0.5;}
+    .master-header .client{font-family:var(--font-serif);font-size:clamp(22px,3vw,32px);color:var(--cream);}
+    .master-header .meta{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--cream);opacity:0.4;text-align:right;}
+    .tab-nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid rgba(44,36,22,0.12);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .tab-nav::-webkit-scrollbar{display:none;}
+    .tab-btn{flex-shrink:0;padding:16px 24px;border:none;background:transparent;cursor:pointer;font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--mud);opacity:0.4;border-bottom:2px solid transparent;transition:opacity 0.2s,border-color 0.2s;white-space:nowrap;}
+    .tab-btn:hover{opacity:0.7;}.tab-btn.active{opacity:1;border-bottom-color:var(--orange);}
+    .tab-panel{display:none;}.tab-panel.active{display:block;}
+    .container{max-width:860px;margin:0 auto;padding:0 var(--space-md);}
+    .section{padding:72px 64px;}
+    .section--dark{background:var(--mud);color:var(--cream);}
+    .section--dark h2,.section--dark h3,.section--dark h4{color:var(--cream);}
+    .section--dark p{color:var(--cream);}
+    .section--dark .eyebrow{color:var(--cream);opacity:0.4;}
+    .section--dark hr{border-top-color:rgba(239,234,224,0.1);}
+    .section--cream{background:var(--cream);}.section--gray{background:var(--gray);}.section--white{background:var(--white);}
+    @media(max-width:700px){.section{padding:48px var(--space-md);}}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-sm);margin-top:var(--space-md);}
+    .card{padding:36px 32px;}
+    .card--cream{background:var(--cream);}.card--gray{background:var(--gray);color:var(--mud);}.card--dark{background:var(--mud);color:var(--cream);}.card--moss{background:var(--moss);color:var(--cream);}.card--rose{background:var(--rose);color:var(--mud);}
+    .card--dark .eyebrow,.card--moss .eyebrow{color:var(--cream);}.card--gray .eyebrow{color:var(--mud);}
+    .card h3,.card h4{margin-bottom:8px;}.card p{font-size:15px;line-height:1.65;font-family:var(--font-sans);}.card p:last-child{margin-bottom:0;}
+    blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,3vw,28px);line-height:1.5;border-left:3px solid var(--orange);padding-left:var(--space-md);margin:var(--space-md) 0;color:var(--mud);}
+    .section--dark blockquote{color:var(--cream);border-left-color:var(--rose);}
+    .pull-quote{font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,3vw,28px);color:var(--rose);line-height:1.5;padding-left:var(--space-md);border-left:2px solid var(--rose);margin:var(--space-md) 0;}
+    .gap-table{width:100%;border-collapse:collapse;margin-top:var(--space-md);font-size:15px;}
+    .gap-table th{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.14em;font-size:10px;text-align:left;padding:12px 16px;background:var(--mud);color:var(--cream);}
+    .gap-table td{padding:16px;vertical-align:top;border-bottom:1px solid rgba(44,36,22,0.1);font-family:var(--font-sans);line-height:1.6;font-size:15px;}
+    .gap-table tr:nth-child(even) td{background:var(--cream);}.gap-table tr:nth-child(odd) td{background:var(--gray);}
+    .gap-label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;display:block;margin-bottom:4px;}
+    .gap-label--problem{color:var(--rust);opacity:0.9;}.gap-label--good{color:var(--moss);opacity:0.9;}
+    @media(max-width:600px){.gap-table,.gap-table thead,.gap-table tbody,.gap-table th,.gap-table td,.gap-table tr{display:block;}.gap-table thead{display:none;}}
+    .pill{display:inline-block;font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.14em;font-size:9px;padding:4px 10px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+    .pill--gap{background:var(--rust);color:var(--white);}.pill--strength{background:var(--moss);color:var(--white);}
+    .rec-list{list-style:none;counter-reset:rec;margin-top:var(--space-md);display:flex;flex-direction:column;gap:var(--space-sm);}
+    .rec-list li{counter-increment:rec;display:grid;grid-template-columns:48px 1fr;gap:var(--space-sm);align-items:start;}
+    .rec-list li::before{content:counter(rec,decimal-leading-zero);font-family:var(--font-mono);font-stretch:expanded;font-size:13px;font-weight:700;color:var(--orange);letter-spacing:0.1em;padding-top:4px;}
+    .rec-content h3{font-size:24px;margin-bottom:4px;}.rec-content p{font-size:15px;line-height:1.65;color:var(--moss);margin:0;font-family:var(--font-sans);}
+    .trigger-list{list-style:none;margin-top:var(--space-md);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-sm);}
+    .trigger-list li{background:rgba(239,234,224,0.07);padding:28px 24px;border-left:2px solid var(--rose);}
+    .trigger-list li .label{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.18em;font-size:10px;color:var(--rose);display:block;margin-bottom:8px;}
+    .trigger-list li p{font-family:var(--font-sans);font-size:15px;color:var(--cream);margin:0;}
+    .trigger-list--light li{background:rgba(44,36,22,0.05);border-left-color:var(--orange);}
+    .trigger-list--light li .label{color:var(--moss);}
+    .trigger-list--light li p{color:var(--mud);}
+    .verbatim{font-style:italic;font-family:var(--font-serif);opacity:0.7;font-size:14px;display:block;margin-top:6px;}
+    .offer-flow{margin-top:var(--space-md);display:flex;flex-direction:column;gap:2px;}
+    .offer-row{display:grid;grid-template-columns:150px 1fr 1fr;gap:2px;}
+    @media(max-width:640px){.offer-row{grid-template-columns:1fr;}}
+    .offer-cell{padding:22px 26px;}
+    .offer-cell--label{background:var(--mud);color:var(--cream);display:flex;flex-direction:column;justify-content:center;}
+    .offer-cell--label .eyebrow{color:var(--cream);opacity:0.5;margin-bottom:4px;}
+    .offer-cell--label strong{font-family:var(--font-serif);font-size:20px;font-weight:400;font-style:italic;color:var(--cream);}
+    .offer-cell--current{background:var(--gray);}.offer-cell--suggested{background:var(--cream);}
+    .offer-cell .eyebrow{margin-bottom:8px;}.offer-cell p{font-size:14px;line-height:1.6;margin:0;font-family:var(--font-sans);}
+    .sitemap{margin-top:var(--space-md);}
+    .sitemap-row{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-sm);align-items:stretch;}
+    .sitemap-node{padding:16px 20px;font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;flex:1;min-width:130px;display:flex;flex-direction:column;gap:4px;}
+    .sitemap-node--home{background:var(--mud);color:var(--cream);}
+    .sitemap-node--page{background:var(--gray);color:var(--mud);}
+    .sitemap-node--add{background:var(--cream);color:var(--mud);border:1px dashed rgba(44,36,22,0.25);}
+    .sitemap-node .node-title{font-weight:700;}
+    .sitemap-node .node-kw{font-size:9px;opacity:0.7;margin-top:4px;font-style:normal;font-family:var(--font-sans);font-stretch:normal;text-transform:none;letter-spacing:0;}
+    .sitemap-connector{text-align:center;font-family:var(--font-mono);font-size:18px;color:var(--rose);opacity:0.5;padding:4px 0;}
+    .icp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-sm);margin-top:var(--space-md);}
+    .icp-card{padding:28px 24px;background:var(--cream);border-top:3px solid var(--mud);}
+    .icp-card .emoji{font-size:28px;display:block;margin-bottom:8px;}
+    .icp-card h4{font-style:normal;font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.16em;font-size:10px;color:var(--mud);opacity:0.6;margin-bottom:8px;}
+    .icp-card p{font-size:14px;line-height:1.6;font-family:var(--font-sans);margin:0;}
+    .tried-list,.objection-list{list-style:none;margin-top:var(--space-md);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-xs);}
+    .tried-list li,.objection-list li{padding:14px 18px;font-family:var(--font-sans);font-size:15px;display:flex;align-items:flex-start;gap:10px;}
+    .tried-list li{background:var(--gray);}.objection-list li{background:var(--cream);border-left:2px solid var(--rose);}
+    .tried-list li .ico,.objection-list li .ico{font-size:16px;flex-shrink:0;margin-top:2px;}
+    .seo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-sm);margin-top:var(--space-md);}
+    .seo-card{padding:20px 22px;background:var(--white);border-left:3px solid var(--orange);}
+    .seo-card .kw{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--orange);display:block;margin-bottom:6px;}
+    .seo-card p{font-family:var(--font-sans);font-size:14px;line-height:1.6;margin:0;color:var(--mud);}
+    footer{background:var(--cream);padding:var(--space-md) var(--space-lg);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-sm);border-top:1px solid rgba(44,36,22,0.1);}
+    footer p{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;opacity:0.4;margin:0;}
+    @media(max-width:700px){footer{padding:var(--space-md) var(--space-sm);flex-direction:column;}}
+  </style>
+</head>
+<body>
+
+<header class="master-header">
+  <div>
+    <div class="brand">Founding Mothers Media</div>
+    <div class="client">Archive Design Studio — Research</div>
+  </div>
+  <div class="meta">March 2026<br>Confidential &middot; Client Use Only</div>
+</header>
+
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" onclick="switchTab('audit',this)" role="tab">01 &middot; Brand Audit</button>
+  <button class="tab-btn" onclick="switchTab('blueprint',this)" role="tab">02 &middot; Site Blueprint</button>
+  <button class="tab-btn" onclick="switchTab('offers',this)" role="tab">03 &middot; Offer Map</button>
+  <button class="tab-btn" onclick="switchTab('portrait',this)" role="tab">04 &middot; Client Portrait</button>
+  <button class="tab-btn" onclick="switchTab('avatar-build',this)" role="tab">05 &middot; Avatar &rarr; Build</button>
+</nav>
+
+<!-- TAB 01: BRAND AUDIT -->
+<div id="tab-audit" class="tab-panel active">
+
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Brand Architecture Audit</span>
+      <h1>The brand is ahead of the website. <em>That's the assignment.</em></h1>
+      <blockquote>Function + beauty = the real magic.</blockquote>
+      <p>Archive doesn't have a website yet — and that's actually the cleanest starting position possible. There's no wrong impression to undo, no outdated copy to apologize for. There's just Stephanie: credentialed, confident, technically trained, with a live project at $125/hr already in motion and a builder ready to refer her to every client he has.</p>
+      <p>The task is not to explain what an interior designer does. The task is to build a front door that looks exactly as good as the rooms she's about to fill — and signals, in seconds, that Archive is not the typical interior design website. Because it isn't. And she isn't.</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>What Archive communicates right now</h2>
+      <p>No website exists yet, so this audit focuses on brand presence signals already in play — and the brand story that needs to come through on launch day.</p>
+      <div class="card-grid">
+        <div class="card card--gray">
+          <span class="eyebrow">Business Foundation — Strong</span>
+          <h3>Floyd business license, bank account, Google Workspace, Google Business Profile</h3>
+          <p>The infrastructure is real. This is not a hobbyist. The scaffolding of a legitimate studio is already in place, and the first paying project is live before the website even exists.</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Anchor Client — Strong</span>
+          <h3>OmniBuild partnership secured at $125/hr</h3>
+          <p>Matt from OmniBuild plans to refer Stephanie to all clients. This is a builder-to-designer pipeline that, if protected and nurtured, could sustain a six-figure solo practice without a single cold lead from Google.</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Brand Name — Strong</span>
+          <h3>"Archive" — curated, storied, unhurried</h3>
+          <p>Named after museums as spaces that blend interior design, wayfinding, storytelling, and graphic design. The name does heavy lifting. It signals taste, curation, permanence — the exact opposite of trend-chasing.</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Technical Credibility — Strong</span>
+          <h3>Interior architect training, not just decoration</h3>
+          <p>BA Interior Design, Radford (4.0 GPA). Trained in construction documents, building systems, plumbing, lighting (Kelvins), universal design. This is the credential that separates her from every "decorator" on the job site.</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Website — Gap</span>
+          <h3>Does not exist yet</h3>
+          <p>No web presence means no proof of taste for a client who finds her through Google or a referral that goes to "look her up first." The brand lives entirely in word-of-mouth right now. That changes on launch day.</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Portfolio — Gap</span>
+          <h3>Before/after photos pending (Buffalo Mountain project)</h3>
+          <p>The OmniBuild cabin project will generate the first real portfolio content. Before/after from the Buffalo Mountain store project is also incoming. The website needs to launch with something — even one well-shot project is enough to establish taste.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <h2>The positioning gap and the opportunity</h2>
+      <p>Pulled directly from the discovery conversation — what Stephanie said, what the market currently signals, and where the brand has room to own something.</p>
+      <table class="gap-table">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Market Default</th>
+            <th>Archive's Opportunity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="gap-label gap-label--problem">What others do</span>
+              Visual Positioning
+            </td>
+            <td>
+              <span class="gap-label gap-label--problem">Gap</span>
+              Homogeneous interior design websites — white, airy, minimal, interchangeable
+            </td>
+            <td>
+              Stephanie explicitly called this out in discovery: she does NOT want the typical look. Archive has permission to be editorial, dark, textural, warm. That's the differentiation on sight.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="gap-label gap-label--problem">What others do</span>
+              Credentials Signal
+            </td>
+            <td>
+              <span class="gap-label gap-label--problem">Gap</span>
+              Most design sites bury credentials or omit them entirely
+            </td>
+            <td>
+              "Interior architect" is the key framing. She understands Kelvins, load-bearing walls, plumbing, universal design. Her competitors are decorators. She is an architect of interiors. That distinction belongs at the front door.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="gap-label gap-label--problem">What others do</span>
+              Market Positioning
+            </td>
+            <td>
+              <span class="gap-label gap-label--problem">Gap</span>
+              Floyd / SW VA design market skews rural, rustic, and generic
+            </td>
+            <td>
+              "Too cool for Floyd, but here for Floyd." Stephanie's taste level is out-of-market. The affluent migration into the Blue Ridge region (property prices up 16% YoY) needs a designer who doesn't look like everyone else here. Archive is that designer.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="gap-label gap-label--problem">What others do</span>
+              Client Relationship
+            </td>
+            <td>
+              <span class="gap-label gap-label--problem">Gap</span>
+              Transactional: quote → project → invoice
+            </td>
+            <td>
+              Stephanie's process is therapeutic: deep client questioning, aversions mapping, nervous system reset through space. She's building rooms that make people exhale. That experience deserves language — and it belongs on the website.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="gap-label gap-label--problem">What others do</span>
+              Builder Relationships
+            </td>
+            <td>
+              <span class="gap-label gap-label--problem">Gap</span>
+              Most designers fight for credibility on job sites
+            </td>
+            <td>
+              Stephanie "speaks builder." She bridges the communication gap between architects, contractors, and clients — and saves projects time and money in the process. This is an untold differentiator that will resonate with high-end residential buyers who've been burned by miscommunication before.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="gap-label gap-label--good">What's true</span>
+              Brand Name
+            </td>
+            <td>
+              <span class="gap-label gap-label--good">Strength</span>
+              "Archive" carries museum, curation, permanence, story
+            </td>
+            <td>
+              Build the whole website around what the name already means. Archive as concept — not just a studio name. Every piece of copy can lean on it: the rooms as places where memories are kept safe; design as an act of curation, not decoration.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="gap-label gap-label--good">What's true</span>
+              Five-Year Vision
+            </td>
+            <td>
+              <span class="gap-label gap-label--good">Strength</span>
+              Archive as umbrella brand (Archive Home, Archive Bath, Archive Seasonal, furniture line)
+            </td>
+            <td>
+              The website should feel big enough to hold that future. Avoid micro-positioning that boxes the brand into "small-town interior designer." Design for where she's going: museum commissions, DC commercial spaces, out-of-state projects.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <h2>The five brand anchors</h2>
+      <div class="pull-quote">Collected. Warm. Layered. Storied. Unapologetic.</div>
+      <ul class="trigger-list">
+        <li>
+          <span class="label">Collected</span>
+          <p>Every object has a story. Archive isn't decorated — it's curated. Spaces feel found, not fabricated. The brand communicates that same intentionality: nothing is filler, everything earns its place.</p>
+        </li>
+        <li>
+          <span class="label">Warm</span>
+          <p>Terracotta, rust, ochre, amber. Warmth as a design value, not a trend. Cool tones are almost entirely absent from the visual world Archive lives in. The brand should feel like a well-lit room, not a showroom.</p>
+        </li>
+        <li>
+          <span class="label">Layered</span>
+          <p>Texture is the hero — woven baskets, stacked books, kilim rugs, linen on linen. The brand communicates depth, not surface. A client who works with Archive doesn't get a room. They get an experience that builds over time.</p>
+        </li>
+        <li>
+          <span class="label">Storied</span>
+          <p>Archive means "a place for important, special memories, feelings, and moments kept safe." The word does work. Every room Stephanie designs is meant to hold something. Copy and positioning should carry that weight.</p>
+        </li>
+        <li>
+          <span class="label">Unapologetic</span>
+          <p>Stephanie is an interior architect in a market that calls her a decorator. She trained for this. She has a 4.0. She's already charging $125/hr. The brand should wear its confidence the same way she does — warm but completely sure of itself.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>Top 5 website build priorities</h2>
+      <ul class="rec-list">
+        <li>
+          <div class="rec-content">
+            <h3>Signal taste before anything else</h3>
+            <p>The homepage above the fold has one job: prove this is a different kind of interior design studio. Editorial header image, wide typography, warm and textural. If it looks like every other ID website, the brand has already failed at the front door.</p>
+          </div>
+        </li>
+        <li>
+          <div class="rec-content">
+            <h3>Lead with the credential, not just the service</h3>
+            <p>"Interior architect" should appear in the first two scrolls of the homepage — not buried in an About page. This is the thing that earns the rate, earns the referral, and earns the trust of clients who've been burned before.</p>
+          </div>
+        </li>
+        <li>
+          <div class="rec-content">
+            <h3>Make the process feel like care, not a checklist</h3>
+            <p>Stephanie's process is sensory and empathy-driven: mapping aversions, listening deeply, asking who visits the space and what makes them feel safe. That process needs a home on the site — because it's what high-end clients are actually buying.</p>
+          </div>
+        </li>
+        <li>
+          <div class="rec-content">
+            <h3>Launch with portfolio content — even one project</h3>
+            <p>Before/after from the Buffalo Mountain store project, plus documentation from the OmniBuild cabin as it progresses. One beautifully photographed project tells the story better than any copy can. Budget for the $4,000 shoot when the cabin is done.</p>
+          </div>
+        </li>
+        <li>
+          <div class="rec-content">
+            <h3>SEO-anchor around "interior designer Floyd VA" and surrounding region</h3>
+            <p>Floyd is small. Roanoke, Blacksburg, Christiansburg, and the New River Valley are the radius. Affluent clients moving to the Blue Ridge from out-of-state search nationally, then locally. Own the local terms before any competitor does.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div><!-- /tab-audit -->
+
+<!-- TAB 02: SITE BLUEPRINT -->
+<div id="tab-blueprint" class="tab-panel">
+
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Site Blueprint &middot; Canva Build</span>
+      <h1>Six pages. One clear journey from <em>discovery to deposit.</em></h1>
+      <p>The Archive website is being built in Canva. That's a real constraint and a real asset — Canva's visual-first environment actually suits a brand that leads with taste. The blueprint below is designed for a 6-page single-site that converts a warm referral into a booked discovery call. SEO keywords are mapped per page for foundation-level search visibility.</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>Page hierarchy</h2>
+      <div class="sitemap">
+        <div class="sitemap-row">
+          <div class="sitemap-node sitemap-node--home" style="flex:0 0 100%;">
+            <span class="node-title">Home</span>
+            <span class="node-kw">Interior designer Floyd VA · interior designer SW Virginia · Archive Design Studio</span>
+          </div>
+        </div>
+        <div class="sitemap-connector">↓</div>
+        <div class="sitemap-row">
+          <div class="sitemap-node sitemap-node--page">
+            <span class="node-title">About</span>
+            <span class="node-kw">Interior architect Virginia · who is Archive Design Studio · Stephanie designer Floyd VA</span>
+          </div>
+          <div class="sitemap-node sitemap-node--page">
+            <span class="node-title">Services</span>
+            <span class="node-kw">Interior design services Virginia · FF&amp;E procurement · full service interior design Blue Ridge</span>
+          </div>
+          <div class="sitemap-node sitemap-node--page">
+            <span class="node-title">Work</span>
+            <span class="node-kw">Interior design portfolio Virginia · before after interior design · cabin interior design Virginia</span>
+          </div>
+        </div>
+        <div class="sitemap-connector">↓</div>
+        <div class="sitemap-row">
+          <div class="sitemap-node sitemap-node--page">
+            <span class="node-title">Process</span>
+            <span class="node-kw">How interior design works · interior design process Virginia · what to expect interior designer</span>
+          </div>
+          <div class="sitemap-node sitemap-node--add">
+            <span class="node-title">Contact / Start Here</span>
+            <span class="node-kw">Hire interior designer Floyd VA · interior design consultation Virginia · book interior designer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <h2>What lives on each page</h2>
+      <div class="card-grid">
+        <div class="card card--gray">
+          <span class="eyebrow">Home</span>
+          <h3>First impression + brand proof</h3>
+          <p>Hero: editorial image (textural, warm, not typical). Headline anchored to the brand position. One-line credential. Featured project preview. Brief brand philosophy statement. CTA → book a discovery call.</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">About</span>
+          <h3>The person behind the studio</h3>
+          <p>Who Stephanie is. Where "Archive" came from (museum concept, curation, kept-safe memories). Credentials: interior architect training, 4.0, Radford. What she believes about space. Design influences (Ilse Crawford, Kelly Wearstler). The dual identity: designer + creative director.</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Services</span>
+          <h3>A la carte + full service options</h3>
+          <p>Design Only · FF&amp;E Procurement · Project Management · Full Service. Brief explanation of the a la carte model — every project is different, every scope is built to fit. Mention builder and commercial partnerships. CTA to discovery call.</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Work</span>
+          <h3>Portfolio — starts with one project</h3>
+          <p>Launch with one well-photographed project (Buffalo Mountain and/or OmniBuild cabin). Project card: scope, location, a short story about what the client needed. Scale this page as the portfolio grows. This is the taste proof.</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Process</span>
+          <h3>What it's like to work with Archive</h3>
+          <p>Phase-by-phase breakdown: Discovery → Vision → Design Development → Procurement → Installation. Emphasize the empathy layer: aversions mapping, sensory considerations, who visits the space. Timeline honesty (6 months to 1 year). The nervous system reset outcome.</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Contact / Start Here</span>
+          <h3>The conversion page</h3>
+          <p>Simple contact form. Visual style quiz link (Stephanie's own action item). What to expect from the discovery call. Location signal (Floyd, VA / SW Virginia). Google Business link for reviews once active.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>SEO keyword map</h2>
+      <p>These are the priority search terms for Archive to own in the SW Virginia / Blue Ridge market. All are realistic ranking targets for a new site in a low-competition regional market.</p>
+      <div class="seo-grid">
+        <div class="seo-card">
+          <span class="kw">Primary — Floyd</span>
+          <p>Interior designer Floyd VA · interior design studio Floyd Virginia · Archive Design Studio Floyd</p>
+        </div>
+        <div class="seo-card">
+          <span class="kw">Regional</span>
+          <p>Interior designer SW Virginia · interior designer New River Valley · interior designer Blue Ridge VA · interior designer Roanoke VA · interior designer Blacksburg VA</p>
+        </div>
+        <div class="seo-card">
+          <span class="kw">Service Keywords</span>
+          <p>Full service interior design Virginia · FF&amp;E procurement Virginia · interior architect Virginia · residential interior designer Virginia mountains</p>
+        </div>
+        <div class="seo-card">
+          <span class="kw">Client Type</span>
+          <p>Luxury interior designer Virginia · high-end interior design Blue Ridge · cabin interior design Virginia · mountain home interior designer</p>
+        </div>
+        <div class="seo-card">
+          <span class="kw">Long Tail</span>
+          <p>How to hire an interior designer Virginia · what does interior design cost Virginia · interior designer vs decorator Virginia</p>
+        </div>
+        <div class="seo-card">
+          <span class="kw">Brand Terms</span>
+          <p>Archive Design Studio · archive interior design · Stephanie Archive designer Floyd VA</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /tab-blueprint -->
+
+<!-- TAB 03: OFFER MAP -->
+<div id="tab-offers" class="tab-panel">
+
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Offer Map &middot; Service Architecture</span>
+      <h1>A la carte because every project is different — <em>but the story still needs structure.</em></h1>
+      <p>Stephanie already knows her model: a la carte, scope-built, every engagement different. That's the right call for high-end residential design. The opportunity is to create enough structure on the website that a warm referral can self-qualify — and a cold inquiry knows what to expect before they ever get on a call.</p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <h2>The service architecture</h2>
+      <div class="offer-flow">
+        <div class="offer-row">
+          <div class="offer-cell offer-cell--label">
+            <span class="eyebrow">Entry</span>
+            <strong>The Intro</strong>
+          </div>
+          <div class="offer-cell offer-cell--current">
+            <p>Discovery call (free). Visual style quiz (Stephanie's own action item — not yet live).</p>
+          </div>
+          <div class="offer-cell offer-cell--suggested">
+            <p>30-min discovery call, no charge. Add the visual style quiz before launch — it does double duty as a lead qualifier and a client onboarding tool. Low friction, high signal.</p>
+          </div>
+        </div>
+        <div class="offer-row">
+          <div class="offer-cell offer-cell--label">
+            <span class="eyebrow">Standalone</span>
+            <strong>The Consult</strong>
+          </div>
+          <div class="offer-cell offer-cell--current">
+            <p>Not clearly defined as a standalone paid offer yet.</p>
+          </div>
+          <div class="offer-cell offer-cell--suggested">
+            <p>Design Consultation — flat fee $250–$350, 90 min. For clients who need direction but aren't ready for a full project. Generates immediate revenue, builds relationship, often converts to full-service. Good for the "can you just tell me what to do with this room" client.</p>
+          </div>
+        </div>
+        <div class="offer-row">
+          <div class="offer-cell offer-cell--label">
+            <span class="eyebrow">Core</span>
+            <strong>Design Only</strong>
+          </div>
+          <div class="offer-cell offer-cell--current">
+            <p>Concept development, mood boards → presentation boards, to-scale furniture plans, construction documents. Hourly at $125+.</p>
+          </div>
+          <div class="offer-cell offer-cell--suggested">
+            <p>Keep hourly model. On the website: describe this as concept through construction documents — what the client gets, why it matters, what would happen without it. Emphasize technical depth (real drawings, not Pinterest boards).</p>
+          </div>
+        </div>
+        <div class="offer-row">
+          <div class="offer-cell offer-cell--label">
+            <span class="eyebrow">Add-On</span>
+            <strong>FF&amp;E Procurement</strong>
+          </div>
+          <div class="offer-cell offer-cell--current">
+            <p>Furniture, fixtures &amp; equipment selection + purchasing. Hourly + markups (trade pricing to retail differential).</p>
+          </div>
+          <div class="offer-cell offer-cell--suggested">
+            <p>Keep the model. On the website: emphasize access — trade pricing, vendor relationships, quality control. Clients don't just save time. They get things they can't get themselves. The markup conversation stays off the website.</p>
+          </div>
+        </div>
+        <div class="offer-row">
+          <div class="offer-cell offer-cell--label">
+            <span class="eyebrow">Premium</span>
+            <strong>Full Service</strong>
+          </div>
+          <div class="offer-cell offer-cell--current">
+            <p>Design + FF&amp;E + project management. OmniBuild model ($125/hr confirmed).</p>
+          </div>
+          <div class="offer-cell offer-cell--suggested">
+            <p>This is the flagship. Lead with it on the services page. For the "Sweetheart Fancy Pants" client — VP, doctor, person who values time above all — full service means one person who handles everything and reports back. That's the sell.</p>
+          </div>
+        </div>
+        <div class="offer-row">
+          <div class="offer-cell offer-cell--label">
+            <span class="eyebrow">B2B</span>
+            <strong>Builder Partnership</strong>
+          </div>
+          <div class="offer-cell offer-cell--current">
+            <p>OmniBuild anchor relationship. Matt referring all clients to Stephanie.</p>
+          </div>
+          <div class="offer-cell offer-cell--suggested">
+            <p>Consider a quiet "For Builders" section or page — not public-facing but linkable for referral conversations. Positions Archive as a builder-integrated studio that understands job site dynamics and respects the contractor relationship. Long-term this is a major growth lever.</p>
+          </div>
+        </div>
+        <div class="offer-row">
+          <div class="offer-cell offer-cell--label">
+            <span class="eyebrow">Future</span>
+            <strong>Retainer</strong>
+          </div>
+          <div class="offer-cell offer-cell--current">
+            <p>Considering for ongoing client relationships. Not yet defined or offered.</p>
+          </div>
+          <div class="offer-cell offer-cell--suggested">
+            <p>Once two or three full-service projects are complete, introduce a Retainer option — monthly design direction for existing clients (style quiz updates, seasonal refreshes, new room additions). Passive-ish recurring income. Archive Seasonal is already in the 5-year vision — this is the precursor to it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>Revenue structure at a glance</h2>
+      <div class="card-grid">
+        <div class="card card--dark">
+          <span class="eyebrow">Year 1 Target</span>
+          <h3>4–5 full projects + ongoing OmniBuild work</h3>
+          <p>Six figures is the target. OmniBuild as anchor + 3–4 direct residential clients gets there. One well-photographed project per quarter builds the portfolio simultaneously.</p>
+        </div>
+        <div class="card card--moss">
+          <span class="eyebrow">Rate Strategy</span>
+          <h3>$125/hr established — do not discount</h3>
+          <p>The OmniBuild rate is a market signal, not just a number. It tells every future client what Stephanie values her time at. The website should not mention pricing — but it should signal a taste and rigor level that makes $125/hr feel like a bargain.</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Markup Income</span>
+          <h3>FF&amp;E markups are a significant revenue layer</h3>
+          <p>Trade-to-retail differential on furniture, fixtures, and equipment. Vendor source confidentiality is standard practice (same as restaurant wholesale pricing). This is never discussed publicly — but it should be factored into how full-service is positioned as "worth it."</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Photography Investment</span>
+          <h3>Budget $4,000 for full-day shoot on first major project</h3>
+          <p>Stephanie has already done the math: $4,000 for photography rights, negotiated upfront in the client contract. One well-shot project generates portfolio content that pays dividends for years. This is a business expense, not a luxury.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /tab-offers -->
+
+<!-- TAB 04: CLIENT PORTRAIT -->
+<div id="tab-portrait" class="tab-panel">
+
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Client Portrait &middot; Ideal Client Profile</span>
+      <h1>Kyra calls them <em>"Sweetheart Fancy Pants."</em> That's the whole brief.</h1>
+      <div class="pull-quote">They're busy professionals who value time above everything. They want someone to read their mind — and get it right the first time.</div>
+      <p>Kyra coined "Sweetheart Fancy Pants" in the discovery call, and it's a perfect ICP descriptor. It's warm but it's specific: this is someone with taste, with resources, with less time than patience — and with high standards they've likely already been disappointed by before. They don't want to be educated about design. They want to be taken care of.</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>Three client archetypes</h2>
+      <div class="icp-grid">
+        <div class="icp-card">
+          <span class="emoji">🏥</span>
+          <h4>The Busy Professional</h4>
+          <p>Corporate VP, doctor, executive. Relocated to or building in the Blue Ridge. Has the budget. Has strong opinions but no time to execute them. Has been frustrated by contractors who don't listen. Wants one person to own the project end-to-end and report back with solutions.</p>
+        </div>
+        <div class="icp-card">
+          <span class="emoji">🏡</span>
+          <h4>The Legacy Client</h4>
+          <p>Building or renovating a family space — lake house, mountain cabin, generational home. The project carries emotional weight. They want it done right, not just done. These clients become long-term relationships and the best referral sources.</p>
+        </div>
+        <div class="icp-card">
+          <span class="emoji">🏗️</span>
+          <h4>The Builder's Referral</h4>
+          <p>Coming through OmniBuild or future builder partnerships. Often already mid-project. Needs a designer who "speaks builder" — who won't slow down the job site, who understands construction documents, who respects the contractor hierarchy while advocating for the client.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <h2>What they've already tried</h2>
+      <ul class="tried-list">
+        <li><span class="ico">↗</span>DIY'd a room with Pinterest and ended up with furniture that doesn't fit the space</li>
+        <li><span class="ico">↗</span>Hired a "decorator" who just pointed at expensive things and left them to figure out the rest</li>
+        <li><span class="ico">↗</span>Relied on the contractor to make design decisions — got a functional but soulless result</li>
+        <li><span class="ico">↗</span>Bought a new construction home and can't figure out why it doesn't feel like theirs yet</li>
+        <li><span class="ico">↗</span>Spent months on Instagram saving inspiration that doesn't add up to an actual room</li>
+        <li><span class="ico">↗</span>Started a renovation and are now living in a construction zone longer than they expected</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>What they need to hear — and believe — before hiring</h2>
+      <ul class="objection-list">
+        <li><span class="ico">◦</span>"She actually understands construction — she's not just going to give me a mood board"</li>
+        <li><span class="ico">◦</span>"Her taste level matches mine — I can see it in how the brand looks"</li>
+        <li><span class="ico">◦</span>"She'll take care of everything — I don't have to manage this myself"</li>
+        <li><span class="ico">◦</span>"She knows how to talk to contractors — my last designer made the job site tense"</li>
+        <li><span class="ico">◦</span>"The project will actually be done in a reasonable timeframe — she's been honest about the process"</li>
+        <li><span class="ico">◦</span>"She's going to help me create a space my family will actually live in — not just look at"</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <h2>The real thing they're buying</h2>
+      <div class="pull-quote">A nervous system reset. A space that lets them exhale and focus on what actually matters.</div>
+      <p>Stephanie named this in the discovery conversation: her goal is to create spaces that allow clients to focus on family, community, rest, and rekindling passions. She's not selling a renovated kitchen. She's selling the version of their life that becomes possible once the space supports it.</p>
+      <p>That's the copy frame for everything: before Archive, the space was working against them. After Archive, the space works for them. The transformation is functional AND emotional — and that combination is exactly what justifies a premium rate.</p>
+    </div>
+  </section>
+
+</div><!-- /tab-portrait -->
+
+<!-- TAB 05: AVATAR → BUILD -->
+<div id="tab-avatar-build" class="tab-panel">
+
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Avatar &rarr; Build &middot; Conversion Strategy</span>
+      <h1>The website's only job: turn a warm referral <em>into a booked call.</em></h1>
+      <p>Archive's primary acquisition channel is referral — OmniBuild, word-of-mouth, the growing network of people who know Stephanie. The website's job is not to generate cold leads. It's to be the place a warm referral lands that makes them think "yes, obviously, I'm booking this call." Every page decision flows from that.</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>The referral arrival journey</h2>
+      <div class="card-grid">
+        <div class="card card--gray">
+          <span class="eyebrow">Step 1 — They arrive</span>
+          <h3>Homepage above the fold</h3>
+          <p><strong>What they need to feel in 5 seconds:</strong> This designer has taste. This isn't like every other interior design site. She's serious. They load the page and something about the visual language tells them immediately — this is different.</p>
+          <p><strong>Build decision:</strong> Hero image must be editorial and textural, not airy and white. Wide/compressed typography (Canva equivalent of Portal). Warm color palette. No stock-looking imagery.</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Step 2 — They scroll</span>
+          <h3>Credential + philosophy signal</h3>
+          <p><strong>What they need to know:</strong> She's not a decorator. She's trained as an interior architect. She understands the technical side and the human side — and she "speaks builder" so the project won't turn into a job site power struggle.</p>
+          <p><strong>Build decision:</strong> Short credential callout within first two scrolls. Not a resume — a positioning statement. "Interior architect. Not just interior designer."</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Step 3 — They investigate</span>
+          <h3>About page and/or Work page</h3>
+          <p><strong>What they're looking for:</strong> Proof that the taste level is real. A person behind the brand they can trust. The story behind the name "Archive." Something that makes them feel like this designer would understand their specific project.</p>
+          <p><strong>Build decision:</strong> About page leads with the Archive concept before credentials. Work page needs at least one fully documented project — even one good project is enough to establish the eye.</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Step 4 — They consider</span>
+          <h3>Services + Process pages</h3>
+          <p><strong>What they need to see:</strong> Options that feel tailored to them (a la carte model). A process that sounds thorough but human. Honest timeline expectations ("things take longer — she'll tell you upfront, and that's actually a good sign").</p>
+          <p><strong>Build decision:</strong> Services page is clear but warm. Process page shows empathy before it shows phases. The nervous system reset language belongs here — this is what the process is designed to produce.</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Step 5 — They convert</span>
+          <h3>Contact / Start Here page</h3>
+          <p><strong>What they need to feel:</strong> Low friction. Clear next step. A sense that the discovery call is a conversation, not a pitch. The visual style quiz (once built) gives them something to do that feels useful before the call.</p>
+          <p><strong>Build decision:</strong> Single clear CTA. Simple form. "Here's what happens next" — three sentences. Book via TidyCal or similar. No pricing on this page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <h2>The visual brand signals that do the conversion work</h2>
+      <table class="gap-table">
+        <thead>
+          <tr>
+            <th>Signal</th>
+            <th>What it communicates</th>
+            <th>How to build it in Canva</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Wide, compressed typography</strong></td>
+            <td>Editorial confidence. "We know what we're doing and we're not trying to blend in."</td>
+            <td>Use wide/condensed font styles in Canva for headlines. Portal-adjacent feel — architectural, serious, not decorative.</td>
+          </tr>
+          <tr>
+            <td><strong>Warm, textural imagery</strong></td>
+            <td>This designer understands how rooms feel, not just how they look.</td>
+            <td>No stock white-room photography. Use imagery with warmth — terracotta, linen, woven materials. Even Canva stock has better options if filtered correctly.</td>
+          </tr>
+          <tr>
+            <td><strong>Monotone with intentional color pops</strong></td>
+            <td>Restraint = taste. One intentional pop of color per view signals a designer who edits.</td>
+            <td>Dark base, cream text, one warm accent color (rust/terracotta) used sparingly and with intention.</td>
+          </tr>
+          <tr>
+            <td><strong>Negative space</strong></td>
+            <td>Unhurried. Confident. Not trying to fill every pixel. Like a well-designed room, what's left out matters as much as what's in.</td>
+            <td>Resist the temptation to fill every section. Let sections breathe. White space communicates premium.</td>
+          </tr>
+          <tr>
+            <td><strong>No clip art, no busy graphics</strong></td>
+            <td>"THIS IS NOT AI" energy. Everything is deliberate.</td>
+            <td>Graphic elements should feel architectural — thin rules, structured grids, no decorative ornaments that could come from a template.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <h2>The one positioning line to build the whole site around</h2>
+      <div class="pull-quote">Archive is not a decorator. It's a curator of the spaces your life actually happens in.</div>
+      <p>Everything on the website should ladder up to this. The credentials exist because curation requires real knowledge. The process is what curation looks like in practice. The client portrait is the person who finally gets a space worthy of their life. The brand name says it plainly: Archive. This is where important things are kept safe.</p>
+      <p>The differentiator isn't a service list. It's a philosophy: that the rooms we live in shape what we're able to do in them. Stephanie builds rooms that let clients exhale — and come back to themselves. That's the archive worth building.</p>
+    </div>
+  </section>
+
+</div><!-- /tab-avatar-build -->
+
+<footer>
+  <p>Archive Design Studio &middot; Research</p>
+  <p>Founding Mothers Media &middot; March 2026</p>
+  <p>Confidential &middot; Internal Use</p>
+</footer>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>{p.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

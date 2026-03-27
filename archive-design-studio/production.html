@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archive Design Studio — Production · Founding Mothers Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --mud:#2c2416;--moss:#514619;--orange:#d4521e;--rust:#bf3c10;--maroon:#681704;
+      --rose:#bc7e78;--cream:#efeae0;--gray:#e3ded8;--white:#f5f3ef;
+      --font-serif:'Instrument Serif',Georgia,serif;
+      --font-sans:'Atkinson Hyperlegible',system-ui,sans-serif;
+      --font-mono:'Inconsolata',monospace;
+      --space-xs:8px;--space-sm:16px;--space-md:32px;--space-lg:64px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--white);color:var(--mud);font-family:var(--font-sans);font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased;}
+    h1{font-family:var(--font-serif);font-size:clamp(48px,7vw,72px);line-height:1.05;font-weight:400;margin-bottom:var(--space-sm);}
+    h2{font-family:var(--font-serif);font-size:clamp(32px,5vw,48px);font-weight:400;line-height:1.15;margin-bottom:var(--space-sm);}
+    h3{font-family:var(--font-serif);font-size:26px;font-weight:400;line-height:1.25;margin-bottom:var(--space-xs);}
+    h4{font-family:var(--font-serif);font-size:20px;font-weight:400;font-style:italic;margin-bottom:var(--space-xs);color:var(--moss);}
+    p{margin-bottom:var(--space-sm);}p:last-child{margin-bottom:0;}em{font-style:italic;}strong{font-weight:700;}
+    .eyebrow{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.2em;font-size:11px;opacity:0.4;display:block;margin-bottom:var(--space-sm);}
+    hr{border:none;border-top:1px solid rgba(44,36,22,0.1);margin:var(--space-md) 0;}
+    .master-header{background:var(--mud);color:var(--cream);padding:28px 64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-sm);}
+    @media(max-width:700px){.master-header{padding:var(--space-md) var(--space-sm);}}
+    .master-header .brand{font-family:var(--font-mono);font-stretch:expanded;font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--cream);opacity:0.5;}
+    .master-header .client{font-family:var(--font-serif);font-size:clamp(22px,3vw,32px);color:var(--cream);}
+    .master-header .meta{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--cream);opacity:0.4;text-align:right;}
+    .tab-nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid rgba(44,36,22,0.12);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .tab-nav::-webkit-scrollbar{display:none;}
+    .tab-btn{flex-shrink:0;padding:16px 24px;border:none;background:transparent;cursor:pointer;font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--mud);opacity:0.4;border-bottom:2px solid transparent;transition:opacity 0.2s,border-color 0.2s;white-space:nowrap;}
+    .tab-btn:hover{opacity:0.7;}.tab-btn.active{opacity:1;border-bottom-color:var(--orange);}
+    .tab-panel{display:none;}.tab-panel.active{display:block;}
+    .container{max-width:860px;margin:0 auto;padding:0 var(--space-md);}
+    .section{padding:72px 64px;}
+    .section--dark{background:var(--mud);color:var(--cream);}
+    .section--dark h2,.section--dark h3,.section--dark h4{color:var(--cream);}
+    .section--dark p{color:var(--cream);}
+    .section--dark .eyebrow{color:var(--cream);opacity:0.4;}
+    .section--dark hr{border-top-color:rgba(239,234,224,0.1);}
+    .section--cream{background:var(--cream);}.section--gray{background:var(--gray);}.section--white{background:var(--white);}
+    @media(max-width:700px){.section{padding:48px var(--space-md);}}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-sm);margin-top:var(--space-md);}
+    .card{padding:36px 32px;}
+    .card--cream{background:var(--cream);}.card--gray{background:var(--gray);color:var(--mud);}.card--dark{background:var(--mud);color:var(--cream);}.card--moss{background:var(--moss);color:var(--cream);}.card--rose{background:var(--rose);color:var(--mud);}
+    .card--dark .eyebrow,.card--moss .eyebrow{color:var(--cream);}.card--gray .eyebrow{color:var(--mud);}
+    .card h3,.card h4{margin-bottom:8px;}.card p{font-size:15px;line-height:1.65;font-family:var(--font-sans);}.card p:last-child{margin-bottom:0;}
+    blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,3vw,28px);line-height:1.5;border-left:3px solid var(--orange);padding-left:var(--space-md);margin:var(--space-md) 0;color:var(--mud);}
+    .section--dark blockquote{color:var(--cream);border-left-color:var(--rose);}
+    .pull-quote{font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,3vw,28px);color:var(--rose);line-height:1.5;padding-left:var(--space-md);border-left:2px solid var(--rose);margin:var(--space-md) 0;}
+    .gap-table{width:100%;border-collapse:collapse;margin-top:var(--space-md);font-size:15px;}
+    .gap-table th{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.14em;font-size:10px;text-align:left;padding:12px 16px;background:var(--mud);color:var(--cream);}
+    .gap-table td{padding:16px;vertical-align:top;border-bottom:1px solid rgba(44,36,22,0.1);font-family:var(--font-sans);line-height:1.6;font-size:15px;}
+    .gap-table tr:nth-child(even) td{background:var(--cream);}.gap-table tr:nth-child(odd) td{background:var(--gray);}
+    @media(max-width:600px){.gap-table,.gap-table thead,.gap-table tbody,.gap-table th,.gap-table td,.gap-table tr{display:block;}.gap-table thead{display:none;}}
+    .voice-attrs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-sm);margin-top:var(--space-md);}
+    .voice-attr{padding:28px 24px;text-align:center;}
+    .voice-attr .attr-word{font-family:var(--font-serif);font-size:32px;display:block;margin-bottom:6px;}
+    .voice-attr .attr-def{font-size:14px;font-family:var(--font-sans);line-height:1.55;opacity:0.8;}
+    .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:var(--space-md);}
+    @media(max-width:600px){.do-dont{grid-template-columns:1fr;}}
+    .do-col,.dont-col{padding:28px 28px;}
+    .do-col{background:var(--cream);}.dont-col{background:var(--mud);color:var(--cream);}
+    .do-col h4,.dont-col h4{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.18em;font-size:11px;margin-bottom:var(--space-sm);font-style:normal;}
+    .do-col h4{color:var(--moss);opacity:1;}.dont-col h4{color:var(--rose);opacity:1;}
+    .do-col ul,.dont-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+    .do-col li,.dont-col li{font-size:15px;font-family:var(--font-sans);line-height:1.55;padding-left:18px;position:relative;}
+    .do-col li::before{content:"→";position:absolute;left:0;color:var(--moss);}
+    .dont-col li::before{content:"×";position:absolute;left:0;color:var(--rose);}
+    .rewrite-pair{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:var(--space-sm) 0;}
+    @media(max-width:600px){.rewrite-pair{grid-template-columns:1fr;}}
+    .rewrite-before{padding:22px 24px;background:var(--gray);}
+    .rewrite-after{padding:22px 24px;background:var(--moss);color:var(--cream);}
+    .rewrite-before .label,.rewrite-after .label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;display:block;margin-bottom:8px;}
+    .rewrite-before .label{opacity:0.5;}.rewrite-after .label{color:var(--cream);opacity:0.6;}
+    .rewrite-before p,.rewrite-after p{font-size:15px;line-height:1.6;font-family:var(--font-sans);margin:0;font-style:italic;}
+    .copy-page{margin-bottom:var(--space-lg);border-top:2px solid var(--mud);padding-top:var(--space-md);}
+    .copy-page:first-child{border-top:none;padding-top:0;}
+    .copy-section{margin:var(--space-md) 0;}
+    .copy-label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.2em;color:var(--orange);opacity:1;display:block;margin-bottom:6px;}
+    .copy-block{background:var(--cream);padding:24px 28px;margin-top:8px;}
+    .copy-block p{font-family:var(--font-sans);font-size:16px;line-height:1.7;margin-bottom:10px;}
+    .copy-block p:last-child{margin-bottom:0;}
+    .seo-tag{display:inline-block;font-family:var(--font-mono);font-stretch:expanded;font-size:9px;text-transform:uppercase;letter-spacing:0.14em;padding:3px 8px;background:var(--moss);color:var(--cream);margin:2px;}
+    .copy-note{font-family:var(--font-sans);font-size:13px;color:var(--rose);font-style:italic;margin-top:8px;display:block;}
+    .meta-box{background:var(--mud);color:var(--cream);padding:16px 20px;margin-top:8px;}
+    .meta-box p{font-family:var(--font-sans);font-size:14px;line-height:1.6;color:var(--cream);margin:0;}
+    .meta-box .meta-label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:var(--rose);opacity:1;display:block;margin-bottom:4px;}
+    .copy-scaffold{background:var(--gray);padding:20px 24px;margin-top:8px;border-left:3px solid var(--orange);}
+    .copy-scaffold p{font-family:var(--font-sans);font-size:14px;line-height:1.65;color:var(--mud);margin-bottom:6px;}
+    .copy-scaffold p:last-child{margin-bottom:0;}
+    .copy-scaffold .scaffold-label{font-family:var(--font-mono);font-stretch:expanded;font-size:9px;text-transform:uppercase;letter-spacing:0.16em;color:var(--orange);display:block;margin-bottom:6px;}
+    footer{background:var(--cream);padding:var(--space-md) var(--space-lg);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-sm);border-top:1px solid rgba(44,36,22,0.1);}
+    footer p{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;opacity:0.4;margin:0;}
+    @media(max-width:700px){footer{padding:var(--space-md) var(--space-sm);flex-direction:column;}}
+  </style>
+</head>
+<body>
+
+<header class="master-header">
+  <div>
+    <div class="brand">Founding Mothers Media</div>
+    <div class="client">Archive Design Studio — Production</div>
+  </div>
+  <div class="meta">March 2026<br>Confidential &middot; Client Use Only</div>
+</header>
+
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" onclick="switchTab('voice',this)" role="tab">05 &middot; Voice Guide</button>
+  <button class="tab-btn" onclick="switchTab('copy',this)" role="tab">06 &middot; Site Copy</button>
+</nav>
+
+<!-- TAB 05: VOICE GUIDE -->
+<div id="tab-voice" class="tab-panel active">
+
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Brand Voice Guide</span>
+      <h1>The brand should sound like someone who <em>knows exactly what she loves.</em></h1>
+      <p>This guide was built from the discovery call transcript, Stephanie's own words about her aesthetic influences, and the brand identity work completed in the branding session. The goal: close any gap between the woman in conversation — direct, confident, warm, unhurried — and the copy that a potential client reads before they've ever met her.</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>Five words that define how Archive sounds</h2>
+      <div class="voice-attrs">
+        <div class="voice-attr" style="background:var(--cream);">
+          <span class="attr-word">Directorial</span>
+          <span class="attr-def">Stephanie self-identifies as interior designer AND creative director. The copy should carry that dual identity — not asking permission, not hedging. It directs.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--gray);">
+          <span class="attr-word">Warm</span>
+          <span class="attr-def">There's real care for the client's lived experience. "Sweetheart Fancy Pants" — Kyra's term for the ideal Archive client — captures it perfectly: tasteful, resourceful, time-poor, and high-standard. The brand is warm without being soft.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--cream);">
+          <span class="attr-word">Unhurried</span>
+          <span class="attr-def">Projects take 6 months to a year. She won't rush it. The brand doesn't hustle — it takes its time because time is how you get it right. The copy breathes at the same pace the work does.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--gray);">
+          <span class="attr-word">Credentialed</span>
+          <span class="attr-def">Radford BA, 4.0 GPA, trained as interior architect. Understands Kelvins, universal design, construction documents. She earned the right to speak with authority — the copy should use it.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--cream);">
+          <span class="attr-word">Honest</span>
+          <span class="attr-def">"Things will go wrong. I'll tell you upfront." Stephanie is radically honest about timelines and expectations — and that honesty is a competitive advantage. The copy doesn't oversell. It sets the table accurately.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <h2>How Archive builds a sentence</h2>
+      <div class="card-grid">
+        <div class="card card--gray">
+          <span class="eyebrow">Short-then-open rhythm</span>
+          <p>Leads with a crisp declarative. Then opens into the explanation. The rhythm mirrors the work itself: precise intent, then generous execution.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"This is not a decoration service. It's a complete rethinking of how your space works for your life."</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Sensory before technical</span>
+          <p>Lead with how a space will feel — exhale, warmth, the smell of linen — then follow with the technical credibility that earns it. Never lead with the credential. Lead with the experience the credential makes possible.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"The room you've been trying to create for years — we'll find it. Not by following trends, but by listening to you."</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Curation language, not decoration language</span>
+          <p>"Curated" over "decorated." "Designed" over "styled." "Collected" over "purchased." The vocabulary signals the level of intentionality before the client even reads the description.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"We don't fill rooms. We build them — layer by layer, object by object, texture by texture."</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Second person, present tense</span>
+          <p>"You" not "clients." "Your home" not "the home." Present tense — "you feel" not "you will feel." The reader should feel seen in real time, not promised something in the future.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"You already know what you love. Archive helps you trust it — and build around it."</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">The honest caveat as credibility signal</span>
+          <p>Stephanie's radical honesty about timelines and what goes wrong in renovation is a differentiator. Lean into it. It signals experience, not uncertainty — clients have been burned by designers who promised what they couldn't deliver.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"Projects like this take time — usually more than you expect. That's normal. And I'll tell you exactly why at every step."</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Builder-bridge language</span>
+          <p>For contractor referral contexts and the About page: "I speak builder" is a real differentiator. Name it without jargon. Clients who've had communication failures on a job site will feel it immediately.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"I trained as an interior architect. I understand what the contractor needs, what the architect drew, and what you actually want — and I translate between all three."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>The language map</h2>
+      <div class="do-dont">
+        <div class="do-col">
+          <h4>✓ Archive says this</h4>
+          <ul>
+            <li>"Curated" — central to the brand concept; use it often and mean it</li>
+            <li>"Interior architect" — the credential that separates her from every decorator in the region</li>
+            <li>"The space works for your life" — outcome language, not aesthetic language</li>
+            <li>"Collected over time" — signals the unhurried, intentional quality of the work</li>
+            <li>"The rooms your life actually happens in" — grounds the work in lived experience</li>
+            <li>"Function + beauty" — Stephanie's own words; this is the core philosophy</li>
+            <li>"We listen before we design" — the empathy differentiator, up front</li>
+            <li>Sensory words: texture, warmth, exhale, light, layered, unhurried</li>
+            <li>Em dashes — confident punctuation; the copy thinks in dashes</li>
+            <li>Archive, Archive Home, Archive as concept — build the brand vocabulary</li>
+          </ul>
+        </div>
+        <div class="dont-col">
+          <h4>× Archive avoids this</h4>
+          <ul>
+            <li>"Dream home" — overused in the design space, no texture</li>
+            <li>"Transform your space" — every design website says this</li>
+            <li>"Elevate your home" — meaningless without context</li>
+            <li>"Luxury" as a standalone word — show it, don't claim it</li>
+            <li>"Innovative design solutions" — corporate language, wrong register</li>
+            <li>"We're passionate about design" — every competitor says this</li>
+            <li>"Timeless and modern" — this phrase has been used to death</li>
+            <li>Passive voice — Archive is direct; the copy should be too</li>
+            <li>AI-sounding, overly polished language — Stephanie literally wrote "THIS IS NOT AI" on her brand board</li>
+            <li>Any copy that could belong to any other interior design studio in the country</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container">
+      <h2>Voice in practice — rewrites</h2>
+
+      <div class="copy-section">
+        <span class="copy-label">Generic → Archive</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Generic ID Website</span>
+            <p>"We create beautiful, functional spaces that reflect your personal style and transform your home."</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">Archive Voice</span>
+            <p>"We build rooms that let you exhale. Spaces designed around how you actually live — not around a trend, not around a template. Around you."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="copy-section">
+        <span class="copy-label">Generic → Archive</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Generic Services Page</span>
+            <p>"Our experienced team offers full-service interior design, including furniture selection, space planning, and project management."</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">Archive Voice</span>
+            <p>"From the first concept to the final install — we handle it. Design, procurement, project management, and the translator your contractor actually needs on site."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="copy-section">
+        <span class="copy-label">Generic → Archive</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Generic About Page</span>
+            <p>"Hi, I'm Stephanie! I'm an interior designer based in Floyd, Virginia. I'm passionate about creating spaces you'll love."</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">Archive Voice</span>
+            <p>"Stephanie trained as an interior architect — not just a decorator. She understands Kelvins, construction drawings, load-bearing walls, and the gap between what your contractor built and what you actually wanted. She bridges it."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /tab-voice -->
+
+<!-- TAB 06: SITE COPY -->
+<div id="tab-copy" class="tab-panel">
+
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Site Copy &middot; All Pages</span>
+      <h1>Ready to drop into Canva. <em>Voice first. Keywords woven in.</em></h1>
+      <p>Each page below includes: headline options, body copy, SEO meta title + description, and Canva placement notes. Copy is written in Archive's voice — directorial, sensory, credentialed — and built around the referral conversion journey mapped in the Research doc.</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+
+      <!-- HOME PAGE -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 01</span>
+        <h2>Home</h2>
+        <p>The front door. First impression + proof of taste + single CTA.</p>
+
+        <div class="meta-box">
+          <span class="meta-label">SEO Meta Title</span>
+          <p>Archive Design Studio | Interior Designer Floyd, VA</p>
+          <span class="meta-label" style="margin-top:12px;">SEO Meta Description</span>
+          <p>Archive Design Studio is a full-service interior design studio based in Floyd, Virginia — serving SW Virginia, the New River Valley, and the Blue Ridge. Spaces designed for how you actually live.</p>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Hero Headline (above fold)</span>
+          <div class="copy-block">
+            <p><strong>Option A (concept-led):</strong><br>
+            Rooms that hold what matters.</p>
+            <p><strong>Option B (outcome-led):</strong><br>
+            Spaces designed for the life you're actually living.</p>
+            <p><strong>Option C (position-led):</strong><br>
+            Interior design. Creative direction. Floyd, Virginia.</p>
+          </div>
+          <span class="copy-note">Canva note: Headline in wide/compressed type (Portal equivalent). Warm, textural hero image behind it. Not white, not airy — something that looks collected.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Hero Sub-copy (1–2 lines)</span>
+          <div class="copy-block">
+            <p>Archive Design Studio builds spaces around the people who live in them — not around trends, not around templates. Full-service design, rooted in technical precision and human listening.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Credential Callout (within first 2 scrolls)</span>
+          <div class="copy-block">
+            <p>Interior architect. Not just interior designer.<br>
+            <em>The difference matters on every job site.</em></p>
+          </div>
+          <span class="copy-note">Short, bold callout block. Not a paragraph — a declaration. Could be a stat-style callout: "Interior architect training. 4.0. $125/hr. Already on site."</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Brand Philosophy Block</span>
+          <div class="copy-block">
+            <p>An archive is a place where important things are kept safe.</p>
+            <p>We build rooms that work that way — spaces that hold your family's life, that support the way you actually move through your days, that let you exhale when you walk in. Function and beauty, together. That's the real magic.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Featured Project Teaser (portfolio link)</span>
+          <div class="copy-block">
+            <p><em>[Project name, location]</em><br>
+            Full-service interior design · Blue Ridge VA</p>
+            <p>→ See the work</p>
+          </div>
+          <span class="copy-note">Swap in Buffalo Mountain or OmniBuild cabin once photographed. Even a process photo with a brief description is better than no portfolio section at launch.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">CTA</span>
+          <div class="copy-block">
+            <p>Ready to start? Book a discovery call.<br>
+            <em>No pressure. Just a conversation about your space.</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT PAGE -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 02</span>
+        <h2>About</h2>
+        <p>The name. The person. The credential. The philosophy. In that order.</p>
+
+        <div class="meta-box">
+          <span class="meta-label">SEO Meta Title</span>
+          <p>About Archive Design Studio | Interior Architect, Floyd VA | Stephanie</p>
+          <span class="meta-label" style="margin-top:12px;">SEO Meta Description</span>
+          <p>Meet Stephanie, founder of Archive Design Studio — an interior architect trained at Radford University, based in Floyd, Virginia. Designing spaces that make people exhale.</p>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Page Headline</span>
+          <div class="copy-block">
+            <p><strong>Option A:</strong> The name means something.</p>
+            <p><strong>Option B:</strong> Built by someone who actually knows how buildings work.</p>
+            <p><strong>Option C:</strong> An archive is a place where important things are kept safe.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Brand Story Block</span>
+          <div class="copy-block">
+            <p>Archive comes from the museum — a space that holds memories, stories, craftsmanship, and intention all at once. Interior design. Wayfinding. Graphic design. Storytelling. All of it, collected under one roof.</p>
+            <p>That's the practice Stephanie set out to build in Floyd, Virginia: a studio that treats every project as a space worth curating. Not decorating. Not filling. Curating — the way a museum does — with intention, with depth, with a clear point of view about what belongs and why.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Credential Block</span>
+          <div class="copy-block">
+            <p>Stephanie trained as an interior architect at Radford University — where interior design is taught alongside architecture, building systems, universal design principles, and construction documentation. She graduated with a 4.0.</p>
+            <p>That means she reads drawings. She understands Kelvins, plumbing rough-ins, load-bearing walls, and change orders. When she's on a job site, she's not the decorator. She's the technical creative — and the translator between what you want, what your architect drew, and what your contractor is building.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Philosophy Block</span>
+          <div class="copy-block">
+            <p>Good design makes you exhale. It takes a space that's been working against you — too loud, too cluttered, too much of someone else's vision — and turns it into something that holds you. Supports your family. Gives you room to rest, to focus, to come back to yourself.</p>
+            <p>That's what Archive builds. Not just beautiful rooms. Rooms that do something for the people living in them.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Design Influences Block (optional, adds humanity)</span>
+          <div class="copy-block">
+            <p>Stephanie's approach is shaped by Ilse Crawford — the London-based designer who treats sensory experience, textiles, and human conversation as the foundation of every space. And by Kelly Wearstler — who proves that editorial confidence and high-end craftsmanship can coexist beautifully.</p>
+            <p>The throughline: design that serves people first. Beauty that has a reason for being there.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">CTA</span>
+          <div class="copy-block">
+            <p>Let's talk about your space. Book a discovery call — no commitment, just a conversation.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICES PAGE -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 03</span>
+        <h2>Services</h2>
+        <p>A la carte model. Full service option leads. Every scope is different.</p>
+
+        <div class="meta-box">
+          <span class="meta-label">SEO Meta Title</span>
+          <p>Interior Design Services Floyd VA | Archive Design Studio</p>
+          <span class="meta-label" style="margin-top:12px;">SEO Meta Description</span>
+          <p>Full-service interior design, FF&amp;E procurement, and project management in Southwest Virginia. Archive Design Studio — built for high-end residential clients who value quality and time.</p>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Page Headline</span>
+          <div class="copy-block">
+            <p><strong>Option A:</strong> Every project is different. Every scope is built to fit.</p>
+            <p><strong>Option B:</strong> From concept to install — we handle it.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Intro Paragraph</span>
+          <div class="copy-block">
+            <p>No two rooms are the same. No two clients need the same thing. Archive works on an a la carte model — which means you get exactly what your project requires, nothing you don't, and a clear scope before any work begins.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Service: Full Service Design (lead offer)</span>
+          <div class="copy-block">
+            <p><strong>Full Service</strong><br>
+            Design + procurement + project management. One point of contact. From the first concept drawing to the day you walk back into a finished room.</p>
+            <p>This is the Archive flagship — for clients who want the space to be exceptional and don't want to manage the process themselves. You'll be consulted, updated, and involved at every meaningful decision point. The rest is handled.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Service: Design Only</span>
+          <div class="copy-block">
+            <p><strong>Design Only</strong><br>
+            Concept development, mood boards, to-scale furniture plans, and construction documents. The full design package — ready for your contractor to execute.</p>
+            <p>This is real documentation. Not Pinterest boards. Drawings your builder can work from, with dimensions, material specs, and the technical precision that keeps a project on track.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Service: FF&amp;E Procurement</span>
+          <div class="copy-block">
+            <p><strong>Furniture, Fixtures &amp; Equipment</strong><br>
+            Selection, sourcing, and purchasing of everything that goes into the space. Archive works with trade vendors — which means access to pieces, quality levels, and lead times that aren't available off the showroom floor.</p>
+            <p>You get what you wanted. We handle the vendor relationships, delivery coordination, and quality checks.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Service: Design Consultation</span>
+          <div class="copy-block">
+            <p><strong>Design Consultation</strong><br>
+            90 minutes. One room or one problem. A clear direction you can take and execute yourself — or hand to a contractor with confidence.</p>
+            <p>For the client who knows something isn't working but can't put their finger on why. We'll find it, name it, and hand you a plan.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Builder Partnership Note</span>
+          <div class="copy-block">
+            <p><strong>Working with a builder?</strong><br>
+            Archive integrates directly into builder-led residential projects. We understand job site dynamics, construction documentation, and what it takes to keep a project moving without creating conflict. Ask about our builder partnership model.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">CTA</span>
+          <div class="copy-block">
+            <p>Not sure which scope is right for your project? That's what the discovery call is for. Book one — it's free, and it's where the real conversation starts.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROCESS PAGE -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 04</span>
+        <h2>Process</h2>
+        <p>Empathy first. Phases second. Honesty about timeline throughout.</p>
+
+        <div class="meta-box">
+          <span class="meta-label">SEO Meta Title</span>
+          <p>How Interior Design Works | The Archive Process | Floyd, VA</p>
+          <span class="meta-label" style="margin-top:12px;">SEO Meta Description</span>
+          <p>What to expect when you work with Archive Design Studio — from discovery through installation. A clear, honest walkthrough of the design process.</p>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Page Headline</span>
+          <div class="copy-block">
+            <p><strong>Option A:</strong> Design that starts with listening — not sketching.</p>
+            <p><strong>Option B:</strong> The Archive process. Thorough, honest, and worth the time.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Process Intro</span>
+          <div class="copy-block">
+            <p>Great design doesn't start with a mood board. It starts with questions — the kind most designers don't ask. Who visits your home? What makes you feel safe in a room? What do you absolutely hate? What did you love about the last space you lived in?</p>
+            <p>Archive's process is circular, not linear. We design, review, adjust, and iterate — not because we didn't get it right the first time, but because great rooms evolve. Here's how it works.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Phase 1 — Discovery</span>
+          <div class="copy-block">
+            <p><strong>01 · Discovery</strong><br>
+            We start with a conversation. What's the space? Who lives in it? What's working, what isn't, and — importantly — what do you hate? (Aversions are as important as preferences.) We use a visual style quiz and Pinterest boards to build a shared language before anyone touches a drawing.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Phase 2 — Vision</span>
+          <div class="copy-block">
+            <p><strong>02 · Vision</strong><br>
+            Mood boards — not one, usually several — that explore the full range of where the space could go. These are exploratory and collage-style: textures, palettes, references, objects. This is where we see what resonates, what doesn't, and why.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Phase 3 — Design Development</span>
+          <div class="copy-block">
+            <p><strong>03 · Design Development</strong><br>
+            From mood board to presentation board — the refined direction, this is what we're doing. To-scale furniture plans. Construction drawings. Material and finish specifications. Shop drawings for custom elements, with revision rounds built into the process.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Phase 4 — Procurement</span>
+          <div class="copy-block">
+            <p><strong>04 · Procurement</strong><br>
+            Selecting, sourcing, and ordering everything the space needs. Trade vendor relationships, quality control, delivery coordination. This phase takes as long as it takes — good pieces have lead times, and we won't rush them.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Phase 5 — Installation + Reveal</span>
+          <div class="copy-block">
+            <p><strong>05 · Installation</strong><br>
+            The day the room comes together. We oversee placement, styling, and any final adjustments. You walk back in — and the space you imagined is the space you're standing in.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Timeline Honesty Block</span>
+          <div class="copy-block">
+            <p><strong>A note on timing.</strong><br>
+            Renovation and design projects almost always take longer than you expect. A typical full-service project runs 6 months to a year — sometimes more. That's not a warning sign. It's what quality takes.</p>
+            <p>Stephanie will tell you the real timeline from the first call. She'd rather you know up front than be surprised mid-project.</p>
+          </div>
+          <span class="copy-note">This block is a differentiator. Leave it in. It builds trust and pre-qualifies clients who need a quick turnaround.</span>
+        </div>
+      </div>
+
+      <!-- WORK PAGE -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 05</span>
+        <h2>Work</h2>
+        <p>Portfolio. Launch with one strong project. Scale with the practice.</p>
+
+        <div class="meta-box">
+          <span class="meta-label">SEO Meta Title</span>
+          <p>Interior Design Portfolio | Archive Design Studio | SW Virginia</p>
+          <span class="meta-label" style="margin-top:12px;">SEO Meta Description</span>
+          <p>See Archive Design Studio's interior design work — residential and commercial projects in Floyd, Virginia and the Blue Ridge region.</p>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Page Intro</span>
+          <div class="copy-block">
+            <p>Every project in the Archive begins the same way: listening. What comes out of each one is entirely different — because the space, the client, and the story are always different.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Project Card Template (reuse per project)</span>
+          <div class="copy-block">
+            <p><strong>[Project name or descriptor]</strong><br>
+            Location · Scope type</p>
+            <p>[2–3 sentences about what the client needed and what the project became. Sensory, specific. Not "beautiful space" — what made it this client's space.]</p>
+            <p>→ View project</p>
+          </div>
+          <span class="copy-note">For Buffalo Mountain / OmniBuild cabin launch: write the project story from process photos if final photography isn't yet available. Even "in progress" projects establish the portfolio story.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Footer CTA on Work Page</span>
+          <div class="copy-block">
+            <p>Like what you see? Let's talk about what we could build for you.</p>
+            <p>→ Book a discovery call</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT PAGE -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 06</span>
+        <h2>Contact / Start Here</h2>
+        <p>Low friction. One CTA. What to expect before the call.</p>
+
+        <div class="meta-box">
+          <span class="meta-label">SEO Meta Title</span>
+          <p>Book a Discovery Call | Archive Design Studio | Floyd, Virginia</p>
+          <span class="meta-label" style="margin-top:12px;">SEO Meta Description</span>
+          <p>Start here. Book a free discovery call with Archive Design Studio — interior designer in Floyd, VA serving Southwest Virginia and the Blue Ridge region.</p>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Page Headline</span>
+          <div class="copy-block">
+            <p><strong>Option A:</strong> Let's talk about your space.</p>
+            <p><strong>Option B:</strong> The first conversation is always free.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">What to Expect Copy</span>
+          <div class="copy-block">
+            <p>The discovery call is a 30-minute conversation — no pitch, no pressure. We'll talk about your project, your space, what you need, and whether Archive is the right fit. You'll leave with a clear sense of what working together would look like.</p>
+            <p>If you want to come prepared: take the visual style quiz first. It gives us a shared language before we even get on the call.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Location Signal</span>
+          <div class="copy-block">
+            <p>Archive Design Studio<br>
+            Floyd, Virginia · Southwest Virginia · New River Valley · Blue Ridge</p>
+            <p><em>Taking projects throughout the SW Virginia region and beyond.</em></p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Form / Booking CTA</span>
+          <div class="copy-block">
+            <p>[Contact form: Name, Email, Project type, Tell me about your space (2–3 sentences)]</p>
+            <p>— or —</p>
+            <p>[Book directly: TidyCal link]</p>
+          </div>
+          <span class="copy-note">Visual style quiz goes here once Stephanie builds it (her action item from discovery call). Add as a secondary CTA: "Take the style quiz first →"</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /tab-copy -->
+
+<footer>
+  <p>Archive Design Studio &middot; Production</p>
+  <p>Founding Mothers Media &middot; March 2026</p>
+  <p>Confidential &middot; Internal Use</p>
+</footer>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>{p.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
