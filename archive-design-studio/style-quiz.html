@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interior Style Discovery — Archive Design Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --mud:    #2c2416;
+      --moss:   #514619;
+      --orange: #d4521e;
+      --rust:   #bf3c10;
+      --maroon: #681704;
+      --rose:   #bc7e78;
+      --cream:  #efeae0;
+      --gray:   #e3ded8;
+      --white:  #f5f3ef;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono:  'Inconsolata', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-serif);
+      background: var(--white);
+      color: var(--mud);
+      min-height: 100vh;
+    }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(44,36,22,0.08);
+      z-index: 100;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--orange);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--mud);
+      color: var(--cream);
+      padding: 72px 64px 64px;
+      text-align: center;
+    }
+    .site-header .eyebrow {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      margin-bottom: 20px;
+    }
+    .site-header h1 {
+      font-size: clamp(30px, 5.5vw, 52px);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .site-header h1 em { font-style: italic; color: var(--rose); }
+    .site-header .subhead {
+      font-size: 17px;
+      opacity: 0.65;
+      max-width: 440px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 32px;
+    }
+    .header-meta span {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.35;
+    }
+
+    /* ── QUIZ CONTAINER ── */
+    .quiz-wrap {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 64px 32px 120px;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.35;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* ── QUESTION SCREEN ── */
+    .q-screen {
+      display: none;
+    }
+    .q-screen.active {
+      display: block;
+      animation: rise 0.3s ease both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-number {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.3;
+      margin-bottom: 14px;
+    }
+
+    .q-text {
+      font-size: clamp(20px, 3.5vw, 28px);
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 28px;
+      color: var(--mud);
+    }
+
+    /* ── OPTIONS ── */
+    .opt-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 28px;
+    }
+
+    .opt-item {
+      border: 1.5px solid rgba(44,36,22,0.1);
+      border-radius: 10px;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-family: var(--font-serif);
+      font-size: 16px;
+      line-height: 1.45;
+      color: var(--mud);
+      background: var(--white);
+      transition: border-color 0.15s ease, background 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .opt-item:hover {
+      border-color: rgba(44,36,22,0.25);
+      background: var(--cream);
+    }
+    .opt-item.selected {
+      border-color: var(--orange);
+      background: var(--cream);
+    }
+
+    .opt-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(44,36,22,0.25);
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .opt-item.selected .opt-dot {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+
+    /* ── NEXT BUTTON ── */
+    .next-btn {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--mud);
+      color: var(--cream);
+      border: none;
+      border-radius: 10px;
+      padding: 14px 30px;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, background 0.2s ease;
+    }
+    .next-btn.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .next-btn:hover { background: var(--moss); }
+
+    /* ── EMAIL GATE ── */
+    .email-screen {
+      display: none;
+    }
+    .email-screen.active {
+      display: block;
+      animation: rise 0.35s ease both;
+    }
+
+    .email-card {
+      background: var(--mud);
+      color: var(--cream);
+      border-radius: 10px;
+      padding: 52px 44px;
+    }
+    .email-card .eyebrow {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.35;
+      margin-bottom: 16px;
+    }
+    .email-card h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .email-card h2 em { font-style: italic; color: var(--rose); }
+    .email-card p {
+      font-size: 16px;
+      opacity: 0.65;
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 400px;
+    }
+
+    .email-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .email-form input {
+      background: rgba(239,234,224,0.07);
+      border: 1.5px solid rgba(239,234,224,0.15);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .email-form input::placeholder { color: var(--cream); opacity: 0.35; }
+    .email-form input:focus { border-color: rgba(239,234,224,0.4); }
+
+    .submit-btn {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 15px 32px;
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: var(--rust); }
+
+    /* ── RESULTS ── */
+    .results-screen { display: none; }
+    .results-screen.active {
+      display: block;
+      animation: rise 0.4s ease both;
+    }
+
+    .result-eyebrow {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.35;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .result-name {
+      font-size: clamp(36px, 7vw, 58px);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .result-name em { font-style: italic; color: var(--orange); }
+
+    .result-tagline {
+      font-size: 19px;
+      font-style: italic;
+      color: var(--rose);
+      margin-bottom: 32px;
+      line-height: 1.4;
+    }
+
+    .result-description {
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+
+    .result-traits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+    .trait-chip {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: var(--gray);
+      color: var(--mud);
+      padding: 8px 14px;
+      border-radius: 10px;
+    }
+
+    .result-divider {
+      border: none;
+      border-top: 1px solid rgba(44,36,22,0.1);
+      margin: 40px 0;
+    }
+
+    /* Life layer card */
+    .life-card {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 28px 30px;
+      margin-bottom: 28px;
+    }
+    .life-card .card-label {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.35;
+      margin-bottom: 12px;
+    }
+    .life-card p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--mud);
+    }
+
+    /* Palette card */
+    .palette-card {
+      background: var(--gray);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .palette-card .card-label {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.35;
+      margin-bottom: 8px;
+    }
+    .palette-card p {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--mud);
+      line-height: 1.6;
+    }
+
+    /* CTA card */
+    .cta-card {
+      background: var(--mud);
+      color: var(--cream);
+      border-radius: 10px;
+      padding: 40px 36px;
+    }
+    .cta-card h3 {
+      font-size: clamp(22px, 3.5vw, 30px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .cta-card h3 em { font-style: italic; color: var(--rose); }
+    .cta-card p {
+      font-size: 16px;
+      opacity: 0.65;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 420px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 14px 28px;
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .cta-btn:hover { background: var(--rust); }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--mud);
+      color: var(--cream);
+      text-align: center;
+      padding: 28px 32px;
+    }
+    .site-footer p {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.3;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .site-header { padding: 56px 24px 48px; }
+      .header-meta { flex-direction: column; gap: 10px; align-items: center; }
+      .quiz-wrap { padding: 48px 20px 80px; }
+      .email-card { padding: 36px 24px; }
+      .cta-card { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+  <header class="site-header">
+    <p class="eyebrow">Archive Design Studio</p>
+    <h1>Find Your <em>Interior Style</em></h1>
+    <p class="subhead">17 questions. Honest answers. A home that finally feels like you.</p>
+    <div class="header-meta">
+      <span>17 questions</span>
+      <span>5 min</span>
+      <span>Free</span>
+    </div>
+  </header>
+
+  <main class="quiz-wrap" id="quizWrap">
+    <!-- Questions injected by JS -->
+
+    <!-- EMAIL GATE -->
+    <div class="email-screen" id="emailScreen">
+      <div class="email-card">
+        <p class="eyebrow">Almost there</p>
+        <h2>Your profile is <em>ready.</em></h2>
+        <p>Drop your name and email to unlock your full Interior Style result — and what it actually means for your space.</p>
+        <form class="email-form" id="emailForm" novalidate>
+          <input type="text"  id="inputName"  placeholder="Your first name"    required autocomplete="given-name">
+          <input type="email" id="inputEmail" placeholder="Your email address"  required autocomplete="email">
+          <button type="submit" class="submit-btn">See My Style Profile →</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results-screen" id="resultsScreen">
+      <span class="result-eyebrow">Your Interior Style</span>
+      <h2 class="result-name" id="rName"></h2>
+      <p class="result-tagline" id="rTagline"></p>
+      <p class="result-description" id="rDescription"></p>
+      <div class="result-traits" id="rTraits"></div>
+
+      <hr class="result-divider">
+
+      <div class="palette-card">
+        <p class="card-label">Your Palette Direction</p>
+        <p id="rPalette"></p>
+      </div>
+
+      <div class="life-card">
+        <p class="card-label">Your Life Layer</p>
+        <p id="rLifestyle"></p>
+      </div>
+
+      <div class="cta-card">
+        <h3>Ready to make it <em>real?</em></h3>
+        <p>Archive Design Studio builds homes that look exactly like you feel — without the years of trial and error. Let's talk about your space.</p>
+        <a id="ctaLink" href="#" class="cta-btn">Book a Consultation →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Archive Design Studio &nbsp;·&nbsp; Interior Style Discovery</p>
+  </footer>
+
+<script>
+// ============================================================
+// CONFIGURATION
+// ============================================================
+// To capture emails: replace null with your Tally webhook,
+// Formspree endpoint, or any POST-accepting URL.
+// e.g. const WEBHOOK = 'https://tally.so/r/XXXXXXX';
+const WEBHOOK = null;
+
+// Your booking / consultation link
+const BOOKING_URL = 'mailto:archivebystephanie@gmail.com?subject=Style%20Consultation%20Request';
+
+// ============================================================
+// DATA
+// ============================================================
+const SECTIONS = [
+  { label: 'Part 01 — Your Space',  start: 0,  end: 6  },
+  { label: 'Part 02 — Your Style',  start: 7,  end: 11 },
+  { label: 'Part 03 — Your Life',   start: 12, end: 16 }
+];
+
+// Profile index legend:
+// 0 = The Quiet Edit       (minimal, grounded, serene)
+// 1 = The Warm Layer       (cozy, textured, inviting)
+// 2 = The Soulful Collector(personal, storied, eclectic)
+// 3 = The Bold Statement   (expressive, sculptural, unapologetic)
+// 4 = The Elevated Function(tailored, considered, livable)
+
+const QS = [
+  // ── SECTION 1: Your Space ──────────────────────────────
+  {
+    text: 'When your space feels off, what\'s usually wrong?',
+    opts: [
+      { text: 'Too cluttered or chaotic',           p: 0 },
+      { text: 'Too empty or cold',                  p: 1 },
+      { text: 'Doesn\'t feel like "me"',            p: 2 },
+      { text: 'Feels outdated or disconnected',     p: 3 },
+      { text: 'It\'s not functioning well',         p: 4 },
+    ]
+  },
+  {
+    text: 'What do you crave more of at home?',
+    opts: [
+      { text: 'Calm and quiet',        p: 0 },
+      { text: 'Warmth and comfort',    p: 1 },
+      { text: 'Beauty and inspiration',p: 2 },
+      { text: 'Order and clarity',     p: 3 },
+      { text: 'Ease and flow',         p: 4 },
+    ]
+  },
+  {
+    text: 'Which decision feels hardest?',
+    opts: [
+      { text: 'Letting go of things',           p: 0 },
+      { text: 'Choosing colors and materials',  p: 1 },
+      { text: 'Pulling everything together',    p: 2 },
+      { text: 'Making it feel elevated',        p: 3 },
+      { text: 'Knowing where to start',         p: 4 },
+    ]
+  },
+  {
+    text: 'What do you notice first in a space?',
+    opts: [
+      { text: 'How it feels',    p: 0 },
+      { text: 'The lighting',    p: 1 },
+      { text: 'The details',     p: 2 },
+      { text: 'The furniture',   p: 3 },
+      { text: 'The layout',      p: 4 },
+    ]
+  },
+  {
+    text: 'Be honest — your current space is:',
+    opts: [
+      { text: 'Overwhelming',              p: 0 },
+      { text: 'Underwhelming',             p: 1 },
+      { text: 'Almost there, but not quite',p: 2 },
+      { text: 'Inconsistent',              p: 3 },
+      { text: 'Not working for my life',   p: 4 },
+    ]
+  },
+  {
+    text: 'Your dream home feels:',
+    opts: [
+      { text: 'Minimal and grounded',    p: 0 },
+      { text: 'Cozy and layered',        p: 1 },
+      { text: 'Collected and personal',  p: 2 },
+      { text: 'Bold and expressive',     p: 3 },
+      { text: 'Elevated and effortless', p: 4 },
+    ]
+  },
+  {
+    text: 'What matters most to you long-term?',
+    opts: [
+      { text: 'Peace',    p: 0 },
+      { text: 'Comfort',  p: 1 },
+      { text: 'Identity', p: 2 },
+      { text: 'Beauty',   p: 3 },
+      { text: 'Function', p: 4 },
+    ]
+  },
+  // ── SECTION 2: Interior Style Discovery ───────────────
+  {
+    text: 'Your instinct with color is:',
+    opts: [
+      { text: 'Keep it neutral',              p: 0 },
+      { text: 'Warm it up with earth tones',  p: 1 },
+      { text: 'Mix and layer tones',          p: 2 },
+      { text: 'Go bold or go home',           p: 3 },
+      { text: 'Minimal but intentional',      p: 4 },
+    ]
+  },
+  {
+    text: 'When everything matches, you feel:',
+    opts: [
+      { text: 'Calm',                 p: 0 },
+      { text: 'Bored',                p: 1 },
+      { text: 'Safe',                 p: 2 },
+      { text: 'Uninspired',           p: 3 },
+      { text: 'Like it needs contrast',p: 4 },
+    ]
+  },
+  {
+    text: 'Your ideal materials:',
+    opts: [
+      { text: 'Light woods, linen, stone',    p: 0 },
+      { text: 'Leather, wool, aged wood',     p: 1 },
+      { text: 'Mixed metals, vintage finishes',p: 2 },
+      { text: 'Glass, lacquer, bold surfaces',p: 3 },
+      { text: 'Marble, tailored upholstery',  p: 4 },
+    ]
+  },
+  {
+    text: 'Your furniture preference:',
+    opts: [
+      { text: 'Low, simple, functional',  p: 0 },
+      { text: 'Comfortable and inviting', p: 1 },
+      { text: 'Collected over time',      p: 2 },
+      { text: 'Sculptural and bold',      p: 3 },
+      { text: 'Structured and tailored',  p: 4 },
+    ]
+  },
+  {
+    text: 'If your space were edited, you\'d want:',
+    opts: [
+      { text: 'Less, but better',   p: 0 },
+      { text: 'More warmth',        p: 1 },
+      { text: 'More personality',   p: 2 },
+      { text: 'More impact',        p: 3 },
+      { text: 'More cohesion',      p: 4 },
+    ]
+  },
+  // ── SECTION 3: Your Life ──────────────────────────────
+  {
+    text: 'Who lives in your home day-to-day?',
+    opts: [
+      { text: 'Just me',                                   p: 0 },
+      { text: 'Me and a partner',                          p: 1 },
+      { text: 'Family with young kids',                    p: 2 },
+      { text: 'Family with older kids or teens',           p: 3 },
+      { text: 'Multi-generational — parents or guests often staying', p: 4 },
+    ]
+  },
+  {
+    text: 'Your home needs to handle:',
+    opts: [
+      { text: 'Quiet, personal routines',       p: 0 },
+      { text: 'Everyday family life',           p: 1 },
+      { text: 'Frequent guests or sleepovers',  p: 2 },
+      { text: 'Hosting gatherings or dinners',  p: 3 },
+      { text: 'A little bit of everything',     p: 4 },
+    ]
+  },
+  {
+    text: 'Pets in your world:',
+    opts: [
+      { text: 'No pets',                        p: 0 },
+      { text: 'One easygoing pet',              p: 1 },
+      { text: 'Multiple pets',                  p: 2 },
+      { text: 'Pets are basically the main characters', p: 3 },
+      { text: 'I design around my pets',        p: 4 },
+    ]
+  },
+  {
+    text: 'Hosting style:',
+    opts: [
+      { text: 'Rarely host',                        p: 0 },
+      { text: 'Small, cozy hangs',                  p: 1 },
+      { text: 'Casual drop-ins',                    p: 2 },
+      { text: 'Planned dinners or gatherings',      p: 3 },
+      { text: 'I love hosting and want it to feel special', p: 4 },
+    ]
+  },
+  {
+    text: 'What matters most when people come over?',
+    opts: [
+      { text: 'It feels calm and comfortable',    p: 0 },
+      { text: 'It feels warm and welcoming',      p: 1 },
+      { text: 'It feels interesting and personal',p: 2 },
+      { text: 'It makes an impression',           p: 3 },
+      { text: 'It feels effortless but elevated', p: 4 },
+    ]
+  }
+];
+
+const PROFILES = [
+  {
+    id: 'quiet-edit',
+    name: 'The Quiet Edit',
+    tagline: 'You design by subtraction.',
+    description: 'Your ideal space is one where everything has earned its place. You\'re drawn to stillness — not emptiness, but intentional calm. Clean lines, natural light, a few considered objects. You likely already know what you want to remove. The work is trusting that less is, actually, the whole point.',
+    traits: ['Minimal', 'Grounded', 'Intentional', 'Serene'],
+    palette: 'Warm whites · raw linen · pale stone · natural oak · soft shadow'
+  },
+  {
+    id: 'warm-layer',
+    name: 'The Warm Layer',
+    tagline: 'Comfort is your design brief.',
+    description: 'You want your home to feel like an embrace — textured, amber-lit, lived in with care. A well-worn leather chair, thick wool throws, a kitchen that smells like something. You\'re not interested in cold or clinical. Every room should feel like somewhere you\'d actually want to stay. The challenge is making it feel elevated without losing the warmth.',
+    traits: ['Cozy', 'Textured', 'Layered', 'Inviting'],
+    palette: 'Warm terracotta · aged leather · deep walnut · honeyed linen · beeswax'
+  },
+  {
+    id: 'soulful-collector',
+    name: 'The Soulful Collector',
+    tagline: 'Every piece has a life.',
+    description: 'Your home is a reflection of who you are — where you\'ve been, what you love, who you\'ve become. You collect with purpose: an inherited piece here, a market find there, something made by hand. The risk is "collected" tips into "cluttered." The work is editing without losing the soul — keeping the story without losing the thread.',
+    traits: ['Personal', 'Storied', 'Layered', 'Curated'],
+    palette: 'Mixed metals · vintage oak · patinated brass · indigo linen · aged ivory'
+  },
+  {
+    id: 'bold-statement',
+    name: 'The Bold Statement',
+    tagline: 'Your space announces you.',
+    description: 'You\'re not interested in playing it safe. Design, for you, is self-expression — and you want a space that reflects your full personality, not a cautious version of it. You notice furniture first. You\'re drawn to rooms that command attention. The work is channeling that boldness with intention — so the space feels powerful, not loud.',
+    traits: ['Expressive', 'Sculptural', 'Deliberate', 'Unapologetic'],
+    palette: 'Deep saturates · lacquered surfaces · matte black · rich jewel tones · bold contrast'
+  },
+  {
+    id: 'elevated-function',
+    name: 'The Elevated Function',
+    tagline: 'Beautiful and built for real life.',
+    description: 'You want a home that works — not just one that looks good in photos. You\'re strategic: layout before everything, and a beautiful room that doesn\'t flow quietly drives you mad. You want refined materials and a considered aesthetic, never at the cost of livability. The goal is effortless — rooms that handle real life without showing it.',
+    traits: ['Tailored', 'Considered', 'Livable', 'Effortless'],
+    palette: 'Marble · structured upholstery · warm greige · refined metals · clean contrast'
+  }
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let current  = 0;
+let answers  = new Array(QS.length).fill(null);
+let userName = '';
+
+// ============================================================
+// BUILD QUESTIONS
+// ============================================================
+function buildQuestions() {
+  const wrap = document.getElementById('quizWrap');
+  const emailScreen = document.getElementById('emailScreen');
+
+  QS.forEach((q, i) => {
+    const screen = document.createElement('div');
+    screen.className = 'q-screen' + (i === 0 ? ' active' : '');
+    screen.id = `q${i}`;
+
+    // Section label (shown at first Q of each section)
+    const sec = SECTIONS.find(s => i === s.start);
+    if (sec) {
+      const lbl = document.createElement('span');
+      lbl.className = 'section-label';
+      lbl.textContent = sec.label;
+      screen.appendChild(lbl);
+    }
+
+    // Q number
+    const num = document.createElement('p');
+    num.className = 'q-number';
+    num.textContent = `Question ${i + 1} of ${QS.length}`;
+    screen.appendChild(num);
+
+    // Q text
+    const txt = document.createElement('h2');
+    txt.className = 'q-text';
+    txt.textContent = q.text;
+    screen.appendChild(txt);
+
+    // Options
+    const ul = document.createElement('ul');
+    ul.className = 'opt-list';
+    q.opts.forEach((opt, j) => {
+      const li = document.createElement('li');
+      li.className = 'opt-item';
+      li.dataset.q = i;
+      li.dataset.o = j;
+      li.innerHTML = `<span class="opt-dot"></span>${opt.text}`;
+      li.addEventListener('click', () => pick(i, j));
+      ul.appendChild(li);
+    });
+    screen.appendChild(ul);
+
+    // Next button
+    const btn = document.createElement('button');
+    btn.className = 'next-btn';
+    btn.id = `nb${i}`;
+    btn.textContent = (i < QS.length - 1) ? 'Next →' : 'Get My Results →';
+    btn.addEventListener('click', () => advance(i));
+    screen.appendChild(btn);
+
+    wrap.insertBefore(screen, emailScreen);
+  });
+
+  updateBar();
+}
+
+// ============================================================
+// INTERACTION
+// ============================================================
+function pick(qIdx, oIdx) {
+  document.querySelectorAll(`[data-q="${qIdx}"]`).forEach(el => el.classList.remove('selected'));
+  document.querySelector(`[data-q="${qIdx}"][data-o="${oIdx}"]`).classList.add('selected');
+  answers[qIdx] = oIdx;
+  document.getElementById(`nb${qIdx}`).classList.add('show');
+}
+
+function advance(i) {
+  if (answers[i] === null) return;
+  document.getElementById(`q${i}`).classList.remove('active');
+
+  if (i < QS.length - 1) {
+    current = i + 1;
+    document.getElementById(`q${current}`).classList.add('active');
+    updateBar();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    document.getElementById('emailScreen').classList.add('active');
+    updateBar();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('emailForm').addEventListener('submit', submitEmail);
+  }
+}
+
+function updateBar() {
+  document.getElementById('progressBar').style.width =
+    ((current / QS.length) * 100) + '%';
+}
+
+// ============================================================
+// EMAIL SUBMIT
+// ============================================================
+function submitEmail(e) {
+  e.preventDefault();
+  userName = document.getElementById('inputName').value.trim() || '';
+  const email = document.getElementById('inputEmail').value.trim();
+  if (!email) return;
+
+  // Optional webhook
+  if (WEBHOOK) {
+    const result = getProfile();
+    fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: userName, email, profile: PROFILES[result].name, answers })
+    }).catch(() => {});
+  }
+
+  document.getElementById('emailScreen').classList.remove('active');
+  showResults();
+}
+
+// ============================================================
+// CALCULATE PROFILE
+// ============================================================
+function getProfile() {
+  const scores = [0, 0, 0, 0, 0];
+  // Score only the style questions (0–11)
+  for (let i = 0; i < 12; i++) {
+    if (answers[i] !== null) scores[QS[i].opts[answers[i]].p]++;
+  }
+  return scores.indexOf(Math.max(...scores));
+}
+
+function getLifestyleNote() {
+  const notes = [];
+
+  // Q12 (index 12): household
+  const hh = answers[12];
+  if (hh === 2) notes.push('You have young kids at home — durability and washable materials will matter as much as the aesthetic.');
+  else if (hh === 3) notes.push('With older kids or teens in the house, spaces need to flex between presentable and lived-in without effort.');
+  else if (hh === 4) notes.push('Multi-generational living means the home needs private retreats as much as shared gathering spaces.');
+
+  // Q13 (index 13): usage
+  const use = answers[13];
+  if (use === 2 || use === 3) notes.push('Frequent guests and gatherings are part of your life — flow, seating, and atmosphere will be designed with that front of mind.');
+  else if (use === 4) notes.push('Your home handles everything. The design will build in flexibility so it never looks like it\'s working too hard.');
+
+  // Q14 (index 14): pets
+  const pets = answers[14];
+  if (pets >= 2) notes.push('Pets are part of the picture — materials will be beautiful and actually built to live in.');
+
+  // Q15 (index 15): hosting
+  const host = answers[15];
+  if (host >= 3) notes.push('Hosting matters to you — gathering spaces will be designed to feel special and pull off effortlessly.');
+
+  if (notes.length === 0) {
+    return 'Your space is yours to shape. Quiet routines, a considered home, and an aesthetic that reflects exactly where you are right now.';
+  }
+  return notes.join(' ');
+}
+
+// ============================================================
+// SHOW RESULTS
+// ============================================================
+function showResults() {
+  const idx     = getProfile();
+  const profile = PROFILES[idx];
+  const life    = getLifestyleNote();
+  const hi      = userName ? `, ${userName}` : '';
+
+  // Italicize the adjective part of the name
+  const nameParts = profile.name.split(' ');
+  const nameHTML  = nameParts[0] + ' <em>' + nameParts.slice(1).join(' ') + '</em>';
+
+  document.getElementById('rName').innerHTML        = nameHTML;
+  document.getElementById('rTagline').textContent   = profile.tagline;
+  document.getElementById('rDescription').textContent = profile.description;
+  document.getElementById('rPalette').textContent   = profile.palette;
+  document.getElementById('rLifestyle').textContent = life;
+  document.getElementById('ctaLink').href           = BOOKING_URL;
+
+  // Traits
+  const traitsEl = document.getElementById('rTraits');
+  traitsEl.innerHTML = '';
+  profile.traits.forEach(t => {
+    const chip = document.createElement('span');
+    chip.className = 'trait-chip';
+    chip.textContent = t;
+    traitsEl.appendChild(chip);
+  });
+
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('resultsScreen').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+buildQuestions();
+</script>
+</body>
+</html>
