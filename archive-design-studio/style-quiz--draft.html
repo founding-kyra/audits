@@ -35,7 +35,7 @@
     .site-header {
       padding: 72px 24px 56px;
       text-align: center;
-      max-width: 540px;
+      max-width: 520px;
       margin: 0 auto;
     }
     .site-header .label {
@@ -77,13 +77,12 @@
 
     /* ── QUIZ WRAP ── */
     .quiz-wrap {
-      max-width: 600px;
+      max-width: 580px;
       margin: 0 auto;
       padding: 0 24px 120px;
-      position: relative;
     }
 
-    /* ── GENERIC SCREEN ── */
+    /* ── SCREENS ── */
     .screen { display: none; }
     .screen.active {
       display: block;
@@ -102,21 +101,30 @@
       font-family: inherit;
       font-size: 13px;
       font-weight: 500;
-      color: #bbb;
+      color: #ccc;
       cursor: pointer;
       padding: 0;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       transition: color 0.15s;
     }
-    .back-btn:hover { color: #555; }
-    .back-btn.visible { display: inline-flex; align-items: center; gap: 6px; }
+    .back-btn:hover { color: #666; }
+    .back-btn.visible { display: inline-flex; align-items: center; gap: 5px; }
 
-    /* ── QUESTION SCREEN ── */
+    /* ── QUESTION ── */
+    .section-eye {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ccc;
+      display: block;
+      margin-bottom: 8px;
+    }
     .q-count {
       font-size: 11px;
       font-weight: 500;
-      color: #ccc;
-      letter-spacing: 0.05em;
+      color: #ddd;
+      letter-spacing: 0.04em;
       margin-bottom: 12px;
     }
     .q-text {
@@ -125,15 +133,6 @@
       letter-spacing: -0.02em;
       line-height: 1.28;
       margin-bottom: 22px;
-    }
-    .section-eyebrow {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #ccc;
-      display: block;
-      margin-bottom: 8px;
     }
 
     /* ── OPTIONS ── */
@@ -160,10 +159,7 @@
       -webkit-tap-highlight-color: transparent;
     }
     .opt-item:hover { border-color: #bbb; background: #f8f8f8; }
-    .opt-item.selected {
-      border-color: #1a1a1a;
-      background: #f2f2f2;
-    }
+    .opt-item.selected { border-color: #1a1a1a; background: #f2f2f2; }
     .opt-radio {
       width: 16px; height: 16px;
       border-radius: 50%;
@@ -172,10 +168,7 @@
       position: relative;
       transition: border-color 0.12s, background 0.12s;
     }
-    .opt-item.selected .opt-radio {
-      border-color: #1a1a1a;
-      background: #1a1a1a;
-    }
+    .opt-item.selected .opt-radio { border-color: #1a1a1a; background: #1a1a1a; }
     .opt-item.selected .opt-radio::after {
       content: '';
       position: absolute;
@@ -187,63 +180,47 @@
     }
 
     /* ── TRANSITION SCREENS ── */
-    .trans-screen {
+    .trans-card {
       background: #1a1a1a;
       color: #fff;
       border-radius: 16px;
-      padding: 52px 44px;
+      padding: 48px 40px;
     }
-    .trans-screen .t-label {
+    .trans-card .t-label {
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 16px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
     }
-    .trans-screen h2 {
-      font-size: clamp(22px, 4vw, 32px);
+    .trans-card h2 {
+      font-size: clamp(20px, 4vw, 28px);
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.2;
       margin-bottom: 10px;
     }
-    .trans-screen p {
+    .trans-card p {
       font-size: 15px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.45);
       line-height: 1.7;
-      margin-bottom: 32px;
-      max-width: 360px;
+      margin-bottom: 28px;
+      max-width: 340px;
     }
-    .trans-actions {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .primary-btn {
+    .white-btn {
       background: #fff;
       color: #1a1a1a;
       border: none;
       border-radius: 10px;
-      padding: 13px 26px;
+      padding: 12px 24px;
       font-family: inherit;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: opacity 0.15s;
     }
-    .primary-btn:hover { opacity: 0.85; }
-    .skip-link {
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.35);
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-family: inherit;
-      transition: color 0.15s;
-    }
-    .skip-link:hover { color: rgba(255,255,255,0.65); }
+    .white-btn:hover { opacity: 0.85; }
 
     /* ── EMAIL GATE ── */
     .email-card {
@@ -252,16 +229,8 @@
       border-radius: 16px;
       padding: 48px 40px;
     }
-    .email-card .e-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 16px;
-    }
     .email-card h2 {
-      font-size: clamp(22px, 4vw, 32px);
+      font-size: clamp(20px, 4vw, 28px);
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.2;
@@ -269,36 +238,25 @@
     }
 
     /* Teaser */
-    .teaser-block {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 20px 22px;
+    .teaser {
       margin-bottom: 28px;
     }
-    .teaser-tag {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 10px;
-    }
     .teaser-name {
-      font-size: 22px;
+      font-size: clamp(28px, 5vw, 40px);
       font-weight: 600;
-      letter-spacing: -0.02em;
-      filter: blur(7px);
+      letter-spacing: -0.025em;
+      filter: blur(8px);
       user-select: none;
-      transition: filter 0.3s;
+      pointer-events: none;
       color: #fff;
+      line-height: 1.1;
+      margin-bottom: 6px;
     }
-    .teaser-block:hover .teaser-name { filter: blur(4px); }
-    .teaser-lock {
+    .teaser-hint {
       font-size: 12px;
       font-weight: 500;
-      color: rgba(255,255,255,0.35);
-      margin-top: 8px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
     }
 
     .email-form {
@@ -308,7 +266,7 @@
     }
     .email-form input {
       background: rgba(255,255,255,0.07);
-      border: 1.5px solid rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.1);
       border-radius: 10px;
       padding: 13px 16px;
       font-family: inherit;
@@ -317,22 +275,23 @@
       outline: none;
       transition: border-color 0.15s;
     }
-    .email-form input::placeholder { color: rgba(255,255,255,0.28); }
+    .email-form input::placeholder { color: rgba(255,255,255,0.25); }
     .email-form input:focus { border-color: rgba(255,255,255,0.35); }
-    .email-submit {
+    .show-btn {
       margin-top: 4px;
       background: #fff;
       color: #1a1a1a;
       border: none;
       border-radius: 10px;
-      padding: 14px 28px;
+      padding: 15px 28px;
       font-family: inherit;
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
       transition: opacity 0.15s;
+      letter-spacing: -0.01em;
     }
-    .email-submit:hover { opacity: 0.85; }
+    .show-btn:hover { opacity: 0.85; }
 
     /* ── RESULTS ── */
     .result-tag {
@@ -342,10 +301,10 @@
       text-transform: uppercase;
       color: #bbb;
       display: block;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .result-name {
-      font-size: clamp(36px, 7.5vw, 56px);
+      font-size: clamp(36px, 7.5vw, 54px);
       font-weight: 600;
       letter-spacing: -0.03em;
       line-height: 1.05;
@@ -356,46 +315,53 @@
       color: #888;
       font-style: italic;
       font-weight: 400;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
-    /* Blend badge */
+    /* Blend */
     .blend-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 28px;
+      gap: 8px;
+      margin-bottom: 24px;
       flex-wrap: wrap;
     }
     .blend-label {
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #ccc;
     }
-    .blend-primary, .blend-secondary {
+    .badge-primary {
       font-size: 12px;
       font-weight: 600;
+      background: #1a1a1a;
+      color: #fff;
       padding: 5px 12px;
       border-radius: 100px;
     }
-    .blend-primary { background: #1a1a1a; color: #fff; }
-    .blend-secondary { background: #eee; color: #555; }
-    .blend-slash { color: #ddd; font-size: 14px; }
+    .badge-secondary {
+      font-size: 12px;
+      font-weight: 600;
+      background: #eee;
+      color: #666;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
 
     .result-desc {
       font-size: 16px;
       line-height: 1.8;
       color: #333;
       max-width: 500px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
     .chip-row {
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
     .chip {
       font-size: 11px;
@@ -404,50 +370,45 @@
       text-transform: uppercase;
       background: #eee;
       color: #666;
-      padding: 6px 14px;
+      padding: 6px 13px;
       border-radius: 100px;
     }
     .res-divider {
       border: none;
       border-top: 1px solid #ebebeb;
-      margin: 32px 0;
+      margin: 28px 0;
     }
 
     /* Info cards */
     .info-card {
       border: 1.5px solid #eee;
       border-radius: 12px;
-      padding: 22px 24px;
-      margin-bottom: 14px;
+      padding: 20px 22px;
+      margin-bottom: 12px;
     }
-    .info-card .card-label {
+    .info-card .c-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #ccc;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
-    .info-card p {
-      font-size: 15px;
-      line-height: 1.72;
-      color: #444;
-    }
+    .info-card p { font-size: 15px; line-height: 1.72; color: #444; }
 
-    /* Room note */
     .room-card {
       background: #f5f5f5;
       border-radius: 12px;
-      padding: 22px 24px;
-      margin-bottom: 14px;
+      padding: 20px 22px;
+      margin-bottom: 12px;
     }
-    .room-card .card-label {
+    .room-card .c-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #bbb;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
     .room-card p { font-size: 15px; line-height: 1.72; color: #444; }
 
@@ -457,54 +418,56 @@
       color: #fff;
       border-radius: 16px;
       padding: 40px 36px;
-      margin-top: 32px;
+      margin-top: 28px;
     }
     .cta-card h3 {
-      font-size: clamp(20px, 3.5vw, 28px);
+      font-size: clamp(20px, 3.5vw, 26px);
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.2;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
-    .cta-card p {
+    .cta-card .cta-sub {
       font-size: 15px;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
       margin-bottom: 24px;
-      max-width: 360px;
     }
-    .cta-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .cta-link {
-      display: inline-block;
+    .cta-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-book {
       background: #fff;
       color: #1a1a1a;
       text-decoration: none;
       border-radius: 10px;
-      padding: 13px 24px;
+      padding: 13px 22px;
       font-size: 13px;
       font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
       transition: opacity 0.15s;
     }
-    .cta-link:hover { opacity: 0.85; }
-    .share-btn {
+    .btn-book:hover { opacity: 0.85; }
+    .btn-share {
       background: none;
-      border: 1.5px solid rgba(255,255,255,0.2);
+      border: 1.5px solid rgba(255,255,255,0.18);
       border-radius: 10px;
       padding: 12px 20px;
       font-family: inherit;
       font-size: 13px;
       font-weight: 500;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.5);
       cursor: pointer;
       transition: border-color 0.15s, color 0.15s;
     }
-    .share-btn:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.85); }
+    .btn-share:hover { border-color: rgba(255,255,255,0.38); color: rgba(255,255,255,0.85); }
 
     /* Retake */
-    .retake-wrap {
-      text-align: center;
-      margin-top: 32px;
-    }
+    .retake-wrap { text-align: center; margin-top: 28px; }
     .retake-btn {
       background: none;
       border: none;
@@ -521,12 +484,12 @@
     .toast {
       position: fixed;
       bottom: 32px; left: 50%;
-      transform: translateX(-50%) translateY(80px);
+      transform: translateX(-50%) translateY(60px);
       background: #1a1a1a;
       color: #fff;
       font-size: 13px;
       font-weight: 500;
-      padding: 12px 22px;
+      padding: 11px 20px;
       border-radius: 100px;
       opacity: 0;
       transition: transform 0.3s ease, opacity 0.3s ease;
@@ -539,18 +502,17 @@
       opacity: 1;
     }
 
-    /* ── FOOTER ── */
     footer {
       text-align: center;
-      padding: 32px;
+      padding: 28px;
       font-size: 12px;
       color: #ccc;
     }
 
-    @media (max-width: 600px) {
-      .site-header { padding: 56px 20px 44px; }
+    @media (max-width: 580px) {
+      .site-header { padding: 52px 20px 40px; }
       .quiz-wrap { padding: 0 16px 80px; }
-      .email-card, .trans-screen, .cta-card { padding: 32px 24px; }
+      .email-card, .trans-card, .cta-card { padding: 32px 22px; }
     }
   </style>
 </head>
@@ -561,104 +523,93 @@
 <header class="site-header">
   <p class="label">Style Discovery</p>
   <h1>Find Your Interior Style</h1>
-  <p>17 questions. Honest answers. A home that finally feels like you.</p>
+  <p>12 questions. Honest answers. A home that finally feels like you.</p>
   <div class="pills">
-    <span class="pill">17 questions</span>
-    <span class="pill">5 min</span>
+    <span class="pill">12 questions</span>
+    <span class="pill">3 min</span>
     <span class="pill">Free</span>
   </div>
 </header>
 
 <main class="quiz-wrap" id="quizWrap">
 
-  <!-- Back button (floats above all screens) -->
-  <button class="back-btn" id="backBtn" onclick="goBack()">← Previous</button>
+  <button class="back-btn" id="backBtn" onclick="goBack()">← Back</button>
 
   <!-- Questions injected by JS -->
 
-  <!-- TRANSITION A: Section 1 → 2 -->
+  <!-- TRANSITION A: Life → Space -->
   <div class="screen" id="screenTransA">
-    <div class="trans-screen">
-      <p class="t-label">Part 02 — Your Style</p>
-      <h2>Good. Now let's talk about your actual taste.</h2>
-      <p>5 questions about color, materials, and furniture. Go with your gut.</p>
-      <div class="trans-actions">
-        <button class="primary-btn" onclick="nextScreen()">Continue →</button>
-      </div>
+    <div class="trans-card">
+      <p class="t-label">Part 02 — Your Space</p>
+      <h2>Now let's look at your space.</h2>
+      <p>4 questions about what you crave and where you are right now.</p>
+      <button class="white-btn" onclick="nextScreen()">Continue →</button>
     </div>
   </div>
 
-  <!-- EMAIL GATE (after section 2) -->
+  <!-- TRANSITION B: Space → Style -->
+  <div class="screen" id="screenTransB">
+    <div class="trans-card">
+      <p class="t-label">Part 03 — Your Style</p>
+      <h2>Last section — your actual taste.</h2>
+      <p>4 questions about color, materials, and furniture. Go with your gut.</p>
+      <button class="white-btn" onclick="nextScreen()">Let's go →</button>
+    </div>
+  </div>
+
+  <!-- EMAIL GATE -->
   <div class="screen" id="screenEmail">
     <div class="email-card">
-      <p class="e-label">You're almost there</p>
-      <h2>Your style profile is ready.</h2>
-      <div class="teaser-block">
-        <p class="teaser-tag">Your result</p>
+      <h2>Your style profile is...</h2>
+      <div class="teaser">
         <p class="teaser-name" id="teaserName">The Warm Layer</p>
-        <p class="teaser-lock">🔒 Unlock to reveal</p>
+        <p class="teaser-hint">Enter your details to reveal</p>
       </div>
       <form class="email-form" id="emailForm" novalidate>
         <input type="text"  id="inputName"  placeholder="First name"    required autocomplete="given-name">
         <input type="email" id="inputEmail" placeholder="Email address"  required autocomplete="email">
-        <button type="submit" class="email-submit">Unlock My Result →</button>
+        <button type="submit" class="show-btn">Show me!</button>
       </form>
-    </div>
-  </div>
-
-  <!-- TRANSITION B: Section 2 → 3 (shown after email) -->
-  <div class="screen" id="screenTransB">
-    <div class="trans-screen">
-      <p class="t-label">Part 03 — Your Life</p>
-      <h2>One last thing.</h2>
-      <p>5 quick questions about how you actually live. This is what makes your result specific to you — not just a vibe.</p>
-      <div class="trans-actions">
-        <button class="primary-btn" onclick="nextScreen()">Let's go →</button>
-        <button class="skip-link" onclick="skipToResults()">Skip to results</button>
-      </div>
     </div>
   </div>
 
   <!-- RESULTS -->
   <div class="screen" id="screenResults">
     <span class="result-tag">Your Interior Style</span>
-
-    <!-- Blend row -->
-    <div class="blend-row">
-      <span class="blend-label">Your blend</span>
-      <span class="blend-primary" id="blendPrimary"></span>
-      <span class="blend-slash">+</span>
-      <span class="blend-secondary" id="blendSecondary"></span>
-    </div>
-
     <h2 class="result-name" id="rName"></h2>
     <p class="result-tagline" id="rTagline"></p>
+
+    <div class="blend-row">
+      <span class="blend-label">Your blend</span>
+      <span class="badge-primary"  id="blendPrimary"></span>
+      <span>+</span>
+      <span class="badge-secondary" id="blendSecondary"></span>
+    </div>
+
     <p class="result-desc" id="rDesc"></p>
     <div class="chip-row" id="rChips"></div>
 
     <hr class="res-divider">
 
     <div class="info-card">
-      <p class="card-label">Palette Direction</p>
+      <p class="c-label">Palette Direction</p>
       <p id="rPalette"></p>
     </div>
-
     <div class="room-card">
-      <p class="card-label">Where to Start</p>
+      <p class="c-label">Where to Start</p>
       <p id="rRoom"></p>
     </div>
-
     <div class="info-card">
-      <p class="card-label">Your Life Layer</p>
+      <p class="c-label">Your Life Layer</p>
       <p id="rLife"></p>
     </div>
 
     <div class="cta-card">
-      <h3>Ready to make it real?</h3>
-      <p>Let's build a home that looks exactly like you feel — without the years of trial and error.</p>
+      <h3>Create your dream space.</h3>
+      <p class="cta-sub">If you're ready to start — let's talk about your home.</p>
       <div class="cta-actions">
-        <a href="#" id="rCta" class="cta-link">Book a Consultation →</a>
-        <button class="share-btn" onclick="shareResult()">Share my result</button>
+        <a href="#" id="rBook" class="btn-book">Book a free consult</a>
+        <button class="btn-share" onclick="shareResult()">Share my result</button>
       </div>
     </div>
 
@@ -674,48 +625,52 @@
 
 <script>
 // ── CONFIG ────────────────────────────────────────────────
-const WEBHOOK     = null; // e.g. 'https://tally.so/r/XXXXX'
-const BOOKING_URL = 'mailto:hello@yourstudio.com';
+const WEBHOOK     = null;
+const BOOKING_URL = 'https://calendar.google.com/calendar/appointments/'; // replace with your link
 
-// ── DATA ──────────────────────────────────────────────────
+// ── QUESTIONS (12) ────────────────────────────────────────
 // Profile indices: 0=Quiet Edit, 1=Warm Layer, 2=Soulful Collector,
 //                 3=Bold Statement, 4=Elevated Function
+
 const QS = [
-  // SECTION 1 — Your Space ─────────────────────────────────
-  { section: 'Part 01 — Your Space', text: 'When your space feels off, what\'s usually wrong?', opts: [
-    { text: 'Too cluttered or chaotic',          p: 0 },
-    { text: 'Too empty or cold',                 p: 1 },
-    { text: 'Doesn\'t feel like "me"',           p: 2 },
-    { text: 'Feels outdated or disconnected',    p: 3 },
-    { text: 'It\'s not functioning well',        p: 4 },
+  // ── PART 01: YOUR LIFE (lifestyle context, Q0–3) ─────────
+  // These don't score profiles — they feed the Life Layer note
+  { section: 'Part 01 — Your Life', text: 'Who lives in your home day-to-day?', lifestyle: true, opts: [
+    { text: 'Just me',                                              life: 0 },
+    { text: 'Me and a partner',                                     life: 1 },
+    { text: 'Family with young kids',                               life: 2 },
+    { text: 'Family with older kids or teens',                      life: 3 },
+    { text: 'Multi-generational — parents or guests often staying', life: 4 },
   ]},
-  { text: 'What do you crave more of at home?', opts: [
+  { text: 'Your home needs to handle:', lifestyle: true, opts: [
+    { text: 'Quiet, personal routines',      life: 0 },
+    { text: 'Everyday family life',          life: 1 },
+    { text: 'Frequent guests or sleepovers', life: 2 },
+    { text: 'Hosting gatherings or dinners', life: 3 },
+    { text: 'A little bit of everything',    life: 4 },
+  ]},
+  { text: 'Pets in your world:', lifestyle: true, opts: [
+    { text: 'No pets',                               life: 0 },
+    { text: 'One easygoing pet',                     life: 1 },
+    { text: 'Multiple pets',                         life: 2 },
+    { text: 'Pets are basically the main characters',life: 3 },
+    { text: 'I design around my pets',               life: 4 },
+  ]},
+  { text: 'What matters most when people come over?', lifestyle: true, opts: [
+    { text: 'It feels calm and comfortable',     life: 0 },
+    { text: 'It feels warm and welcoming',       life: 1 },
+    { text: 'It feels interesting and personal', life: 2 },
+    { text: 'It makes an impression',            life: 3 },
+    { text: 'It feels effortless but elevated',  life: 4 },
+  ]},
+
+  // ── PART 02: YOUR SPACE (style scoring, Q4–7) ────────────
+  { section: 'Part 02 — Your Space', text: 'What do you crave more of at home?', opts: [
     { text: 'Calm and quiet',         p: 0 },
     { text: 'Warmth and comfort',     p: 1 },
     { text: 'Beauty and inspiration', p: 2 },
     { text: 'Order and clarity',      p: 3 },
     { text: 'Ease and flow',          p: 4 },
-  ]},
-  { text: 'Which decision feels hardest?', opts: [
-    { text: 'Letting go of things',          p: 0 },
-    { text: 'Choosing colors and materials', p: 1 },
-    { text: 'Pulling everything together',   p: 2 },
-    { text: 'Making it feel elevated',       p: 3 },
-    { text: 'Knowing where to start',        p: 4 },
-  ]},
-  { text: 'What do you notice first in a space?', opts: [
-    { text: 'How it feels',  p: 0 },
-    { text: 'The lighting',  p: 1 },
-    { text: 'The details',   p: 2 },
-    { text: 'The furniture', p: 3 },
-    { text: 'The layout',    p: 4 },
-  ]},
-  { text: 'Be honest — your current space is:', opts: [
-    { text: 'Overwhelming',                p: 0 },
-    { text: 'Underwhelming',               p: 1 },
-    { text: 'Almost there, but not quite', p: 2 },
-    { text: 'Inconsistent',                p: 3 },
-    { text: 'Not working for my life',     p: 4 },
   ]},
   { text: 'Your dream home feels:', opts: [
     { text: 'Minimal and grounded',    p: 0 },
@@ -724,6 +679,13 @@ const QS = [
     { text: 'Bold and expressive',     p: 3 },
     { text: 'Elevated and effortless', p: 4 },
   ]},
+  { text: 'Be honest — your current space is:', opts: [
+    { text: 'Overwhelming',                p: 0 },
+    { text: 'Underwhelming',               p: 1 },
+    { text: 'Almost there, but not quite', p: 2 },
+    { text: 'Inconsistent',               p: 3 },
+    { text: 'Not working for my life',    p: 4 },
+  ]},
   { text: 'What matters most to you long-term?', opts: [
     { text: 'Peace',    p: 0 },
     { text: 'Comfort',  p: 1 },
@@ -731,20 +693,14 @@ const QS = [
     { text: 'Beauty',   p: 3 },
     { text: 'Function', p: 4 },
   ]},
-  // SECTION 2 — Your Style ──────────────────────────────────
-  { section: 'Part 02 — Your Style', text: 'Your instinct with color is:', opts: [
+
+  // ── PART 03: YOUR STYLE (style scoring, Q8–11) ───────────
+  { section: 'Part 03 — Your Style', text: 'Your instinct with color is:', opts: [
     { text: 'Keep it neutral',             p: 0 },
     { text: 'Warm it up with earth tones', p: 1 },
     { text: 'Mix and layer tones',         p: 2 },
     { text: 'Go bold or go home',          p: 3 },
     { text: 'Minimal but intentional',     p: 4 },
-  ]},
-  { text: 'When everything matches, you feel:', opts: [
-    { text: 'Calm',                  p: 0 },
-    { text: 'Bored',                 p: 1 },
-    { text: 'Safe',                  p: 2 },
-    { text: 'Uninspired',            p: 3 },
-    { text: 'Like it needs contrast',p: 4 },
   ]},
   { text: 'Your ideal materials:', opts: [
     { text: 'Light woods, linen, stone',     p: 0 },
@@ -766,42 +722,6 @@ const QS = [
     { text: 'More personality',  p: 2 },
     { text: 'More impact',       p: 3 },
     { text: 'More cohesion',     p: 4 },
-  ]},
-  // SECTION 3 — Your Life ───────────────────────────────────
-  { section: 'Part 03 — Your Life', text: 'Who lives in your home day-to-day?', opts: [
-    { text: 'Just me',                                              p: 0 },
-    { text: 'Me and a partner',                                     p: 1 },
-    { text: 'Family with young kids',                               p: 2 },
-    { text: 'Family with older kids or teens',                      p: 3 },
-    { text: 'Multi-generational — parents or guests often staying', p: 4 },
-  ]},
-  { text: 'Your home needs to handle:', opts: [
-    { text: 'Quiet, personal routines',      p: 0 },
-    { text: 'Everyday family life',          p: 1 },
-    { text: 'Frequent guests or sleepovers', p: 2 },
-    { text: 'Hosting gatherings or dinners', p: 3 },
-    { text: 'A little bit of everything',    p: 4 },
-  ]},
-  { text: 'Pets in your world:', opts: [
-    { text: 'No pets',                               p: 0 },
-    { text: 'One easygoing pet',                     p: 1 },
-    { text: 'Multiple pets',                         p: 2 },
-    { text: 'Pets are basically the main characters',p: 3 },
-    { text: 'I design around my pets',               p: 4 },
-  ]},
-  { text: 'Hosting style:', opts: [
-    { text: 'Rarely host',                              p: 0 },
-    { text: 'Small, cozy hangs',                        p: 1 },
-    { text: 'Casual drop-ins',                          p: 2 },
-    { text: 'Planned dinners or gatherings',            p: 3 },
-    { text: 'I love hosting and want it to feel special',p: 4 },
-  ]},
-  { text: 'What matters most when people come over?', opts: [
-    { text: 'It feels calm and comfortable',     p: 0 },
-    { text: 'It feels warm and welcoming',       p: 1 },
-    { text: 'It feels interesting and personal', p: 2 },
-    { text: 'It makes an impression',            p: 3 },
-    { text: 'It feels effortless but elevated',  p: 4 },
   ]},
 ];
 
@@ -849,26 +769,25 @@ const PROFILES = [
 ];
 
 // ── SEQUENCE ──────────────────────────────────────────────
-// Build the ordered list of screens
-// q0–q6 → transA → q7–q11 → email → transB → q12–q16 → results
+// Q0–3 (life) → transA → Q4–7 (space) → transB → Q8–11 (style) → email → results
 const SEQ = [];
-for (let i = 0;  i < 7;  i++) SEQ.push({ type: 'q', i });
+for (let i = 0; i < 4;  i++) SEQ.push({ type: 'q', i });
 SEQ.push({ type: 'transA' });
-for (let i = 7;  i < 12; i++) SEQ.push({ type: 'q', i });
-SEQ.push({ type: 'email' });
+for (let i = 4; i < 8;  i++) SEQ.push({ type: 'q', i });
 SEQ.push({ type: 'transB' });
-for (let i = 12; i < 17; i++) SEQ.push({ type: 'q', i });
+for (let i = 8; i < 12; i++) SEQ.push({ type: 'q', i });
+SEQ.push({ type: 'email' });
 SEQ.push({ type: 'results' });
 
 // ── STATE ─────────────────────────────────────────────────
-let seqIdx   = 0;
-let answers  = new Array(QS.length).fill(null);
-let userName = '';
+let seqIdx  = 0;
+let answers = new Array(QS.length).fill(null);
+let userEmail = '';
 let autoTimer = null;
 
-// ── BUILD DOM ─────────────────────────────────────────────
+// ── BUILD ─────────────────────────────────────────────────
 function build() {
-  const wrap = document.getElementById('quizWrap');
+  const wrap  = document.getElementById('quizWrap');
   const transA = document.getElementById('screenTransA');
 
   QS.forEach((q, i) => {
@@ -876,30 +795,27 @@ function build() {
     screen.className = 'screen' + (i === 0 ? ' active' : '');
     screen.id = `q${i}`;
 
-    // Section eyebrow (first Q of each section)
     if (q.section) {
       const ey = document.createElement('span');
-      ey.className = 'section-eyebrow';
+      ey.className = 'section-eye';
       ey.textContent = q.section;
       screen.appendChild(ey);
     }
 
-    // Counter
     const count = document.createElement('p');
     count.className = 'q-count';
     count.textContent = `${i + 1} / ${QS.length}`;
     screen.appendChild(count);
 
-    // Question text
     const txt = document.createElement('h2');
     txt.className = 'q-text';
     txt.textContent = q.text;
     screen.appendChild(txt);
 
-    // Options
     const ul = document.createElement('ul');
     ul.className = 'opt-list';
-    q.opts.forEach((opt, j) => {
+    const opts = q.opts;
+    opts.forEach((opt, j) => {
       const li = document.createElement('li');
       li.className = 'opt-item';
       li.dataset.q = i;
@@ -913,207 +829,185 @@ function build() {
     wrap.insertBefore(screen, transA);
   });
 
-  // Email form listener
   document.getElementById('emailForm').addEventListener('submit', onEmail);
-
+  document.getElementById('rBook').href = BOOKING_URL;
   updateBar();
   updateBack();
 }
 
-// ── PICK ANSWER (auto-advance) ────────────────────────────
+// ── PICK ──────────────────────────────────────────────────
 function pick(qi, oi, el) {
-  // Clear existing selection
   document.querySelectorAll(`[data-q="${qi}"]`).forEach(x => x.classList.remove('selected'));
   el.classList.add('selected');
   answers[qi] = oi;
-
-  // Debounce: cancel any pending auto-advance
   if (autoTimer) clearTimeout(autoTimer);
-
-  // Auto-advance after short delay so selection is visible
   autoTimer = setTimeout(() => nextScreen(), 360);
 }
 
 // ── NAVIGATION ────────────────────────────────────────────
-function getScreenId(step) {
-  const s = SEQ[step];
+function getScreenId(idx) {
+  const s = SEQ[idx];
   if (s.type === 'q')       return `q${s.i}`;
   if (s.type === 'transA')  return 'screenTransA';
-  if (s.type === 'email')   return 'screenEmail';
   if (s.type === 'transB')  return 'screenTransB';
+  if (s.type === 'email')   return 'screenEmail';
   if (s.type === 'results') return 'screenResults';
 }
 
 function showScreen(idx) {
-  // Hide current
-  const cur = document.querySelector('.screen.active');
-  if (cur) cur.classList.remove('active');
-
+  document.querySelector('.screen.active')?.classList.remove('active');
   seqIdx = idx;
-  const next = document.getElementById(getScreenId(seqIdx));
-  if (next) next.classList.add('active');
-
+  document.getElementById(getScreenId(seqIdx)).classList.add('active');
   updateBar();
   updateBack();
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // If arriving at email gate, populate teaser
-  if (SEQ[seqIdx].type === 'email') populateTeaser();
-  // If arriving at results, populate them
+  if (SEQ[seqIdx].type === 'email')   populateTeaser();
   if (SEQ[seqIdx].type === 'results') populateResults();
 }
 
-function nextScreen() {
-  if (seqIdx < SEQ.length - 1) showScreen(seqIdx + 1);
-}
+function nextScreen() { if (seqIdx < SEQ.length - 1) showScreen(seqIdx + 1); }
+function goBack()     { if (seqIdx > 0) showScreen(seqIdx - 1); }
 
-function goBack() {
-  if (seqIdx > 0) showScreen(seqIdx - 1);
-}
-
-function skipToResults() {
-  showScreen(SEQ.length - 1);
-}
-
-// ── PROGRESS BAR ──────────────────────────────────────────
+// ── PROGRESS ──────────────────────────────────────────────
 function updateBar() {
-  // Count answered style questions (0–11) for the main arc
-  const styleAnswered = answers.slice(0, 12).filter(a => a !== null).length;
-  const lifeAnswered  = answers.slice(12).filter(a => a !== null).length;
-  const total = (styleAnswered / 12) * 80 + (lifeAnswered / 5) * 20;
-  document.getElementById('progressFill').style.width = total + '%';
+  const answered = answers.filter(a => a !== null).length;
+  document.getElementById('progressFill').style.width = (answered / QS.length * 100) + '%';
 }
 
-// ── BACK BUTTON ───────────────────────────────────────────
 function updateBack() {
-  const btn = document.getElementById('backBtn');
-  btn.classList.toggle('visible', seqIdx > 0);
+  document.getElementById('backBtn').classList.toggle('visible', seqIdx > 0);
 }
 
-// ── EMAIL GATE ────────────────────────────────────────────
+// ── EMAIL ─────────────────────────────────────────────────
 function populateTeaser() {
-  const idx = calcProfile(0, 12);
-  document.getElementById('teaserName').textContent = PROFILES[idx].name;
+  document.getElementById('teaserName').textContent = PROFILES[calcProfile()].name;
 }
 
 function onEmail(e) {
   e.preventDefault();
-  userName = document.getElementById('inputName').value.trim();
-  const email = document.getElementById('inputEmail').value.trim();
-  if (!email) return;
+  const name  = document.getElementById('inputName').value.trim();
+  userEmail   = document.getElementById('inputEmail').value.trim();
+  if (!userEmail) return;
 
   if (WEBHOOK) {
     fetch(WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: userName, email,
-        profile: PROFILES[calcProfile(0, 12)].name, answers })
+      body: JSON.stringify({ name, email: userEmail, profile: PROFILES[calcProfile()].name })
     }).catch(() => {});
   }
 
   nextScreen();
 }
 
-// ── PROFILE CALCULATION ───────────────────────────────────
-function calcProfile(from, to) {
+// ── PROFILE ───────────────────────────────────────────────
+function calcProfile() {
   const scores = [0,0,0,0,0];
-  for (let i = from; i < to; i++) {
+  // Only score Part 2 + Part 3 questions (Q4–11)
+  for (let i = 4; i < 12; i++) {
     if (answers[i] !== null) scores[QS[i].opts[answers[i]].p]++;
   }
   return scores.indexOf(Math.max(...scores));
 }
 
-function calcTopTwo(from, to) {
+function calcTopTwo() {
   const scores = [0,0,0,0,0];
-  for (let i = from; i < to; i++) {
+  for (let i = 4; i < 12; i++) {
     if (answers[i] !== null) scores[QS[i].opts[answers[i]].p]++;
   }
-  const first  = scores.indexOf(Math.max(...scores));
-  const tmp    = [...scores];
-  tmp[first]   = -1;
+  const first = scores.indexOf(Math.max(...scores));
+  const tmp = [...scores]; tmp[first] = -1;
   const second = tmp.indexOf(Math.max(...tmp));
   return { first, second };
 }
 
-// ── LIFE LAYER NOTE ───────────────────────────────────────
 function lifeNote() {
   const notes = [];
-  const hh   = answers[12];
-  const use  = answers[13];
-  const pets = answers[14];
-  const host = answers[15];
+  const hh   = answers[0]; // household
+  const use  = answers[1]; // usage
+  const pets = answers[2]; // pets
+  const host = answers[3]; // hosting vibe
 
-  if (hh === 2) notes.push('Young kids at home mean durability matters as much as the aesthetic.');
+  if      (hh === 2) notes.push('Young kids at home mean durability matters as much as the aesthetic.');
   else if (hh === 3) notes.push('With older kids or teens, spaces need to flex between presentable and lived-in without effort.');
   else if (hh === 4) notes.push('Multi-generational living means private retreats matter as much as shared gathering spaces.');
 
-  if (use === 2 || use === 3) notes.push('Frequent guests are part of your life — flow, seating, and atmosphere will be front of mind.');
+  if      (use === 2 || use === 3) notes.push('Frequent guests are part of your life — flow, seating, and atmosphere will be front of mind.');
   else if (use === 4) notes.push('Your home handles everything — the design needs to flex without looking like it\'s working too hard.');
 
   if (pets >= 2) notes.push('Pets are in the picture — materials need to be beautiful and actually built to live in.');
-  if (host >= 3) notes.push('Hosting matters to you — gathering spaces should feel special and pull off effortlessly.');
+
+  if      (host === 3) notes.push('You want guests to feel the effort without seeing it.');
+  else if (host === 4) notes.push('Making an impression matters to you — gathering spaces should command attention effortlessly.');
 
   return notes.length
     ? notes.join(' ')
     : 'Your space is yours to shape — quiet routines, a considered home, and an aesthetic that\'s exactly right for where you are now.';
 }
 
-// ── POPULATE RESULTS ──────────────────────────────────────
+// ── RESULTS ───────────────────────────────────────────────
 function populateResults() {
-  const { first, second } = calcTopTwo(0, 12);
+  const { first, second } = calcTopTwo();
   const p = PROFILES[first];
 
-  document.getElementById('blendPrimary').textContent   = p.name;
-  document.getElementById('blendSecondary').textContent = PROFILES[second].name;
   document.getElementById('rName').textContent          = p.name;
   document.getElementById('rTagline').textContent       = p.tagline;
+  document.getElementById('blendPrimary').textContent   = p.name;
+  document.getElementById('blendSecondary').textContent = PROFILES[second].name;
   document.getElementById('rDesc').textContent          = p.desc;
   document.getElementById('rPalette').textContent       = p.palette;
   document.getElementById('rRoom').textContent          = p.room;
   document.getElementById('rLife').textContent          = lifeNote();
-  document.getElementById('rCta').href                  = BOOKING_URL;
 
   const chips = document.getElementById('rChips');
   chips.innerHTML = '';
   p.traits.forEach(t => {
-    const chip = document.createElement('span');
-    chip.className = 'chip';
-    chip.textContent = t;
-    chips.appendChild(chip);
+    const c = document.createElement('span');
+    c.className = 'chip';
+    c.textContent = t;
+    chips.appendChild(c);
   });
 
   document.getElementById('progressFill').style.width = '100%';
 }
 
-// ── SHARE ─────────────────────────────────────────────────
+// ── SHARE (emails the result to the quiz taker) ───────────
 function shareResult() {
-  const { first } = calcTopTwo(0, 12);
-  const text = `I got "${PROFILES[first].name}" on the Interior Style Discovery quiz. Find yours: ${window.location.href}`;
+  const { first, second } = calcTopTwo();
+  const p = PROFILES[first];
+  const s = PROFILES[second];
 
-  if (navigator.share) {
-    navigator.share({ text }).catch(() => {});
-  } else {
-    navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard ✓')).catch(() => {});
-  }
+  const subject = encodeURIComponent(`Your Interior Style: ${p.name}`);
+  const body = encodeURIComponent(
+`Your Interior Style Result
+──────────────────────────
+Primary Style: ${p.name}
+Secondary Style: ${s.name}
+
+"${p.tagline}"
+
+${p.desc}
+
+Palette Direction:
+${p.palette}
+
+Where to Start:
+${p.room}
+
+──────────────────────────
+Ready to make it real? Book a free consult: ${BOOKING_URL}`
+  );
+
+  window.location.href = `mailto:${userEmail}?subject=${subject}&body=${body}`;
 }
 
 // ── RETAKE ────────────────────────────────────────────────
 function retake() {
-  answers  = new Array(QS.length).fill(null);
-  userName = '';
-  // Clear all selections
+  answers   = new Array(QS.length).fill(null);
+  userEmail = '';
   document.querySelectorAll('.opt-item.selected').forEach(el => el.classList.remove('selected'));
-  // Reset email form
   document.getElementById('emailForm').reset();
   showScreen(0);
-}
-
-// ── TOAST ─────────────────────────────────────────────────
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
 }
 
 // ── INIT ──────────────────────────────────────────────────
