@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Randal Roberts — Founding Mothers Media</title>
+  <meta name="description" content="Brand Architecture · Digital Infrastructure · Revenue Strategy — Prepared by Founding Mothers Media">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap');
+
+    :root {
+      --mud:        #2c2416;
+      --moss:       #514619;
+      --orange:     #d4521e;
+      --rust:       #bf3c10;
+      --maroon:     #681704;
+      --rose:       #bc7e78;
+      --cream:      #efeae0;
+      --gray:       #e3ded8;
+      --white:      #f5f3ef;
+      --font-body:  'Atkinson Hyperlegible', sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono:  'Inconsolata', monospace;
+      --space-xs:   8px;
+      --space-sm:   16px;
+      --space-md:   32px;
+      --space-lg:   64px;
+      --space-xl:   120px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--mud);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--mud);
+      color: var(--cream);
+      padding: 40px 64px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-left {}
+    .fmm-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .client-name {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+    }
+    .client-name em {
+      font-style: italic;
+      color: var(--rose);
+    }
+    .header-right {
+      text-align: right;
+    }
+    .header-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      line-height: 2;
+    }
+    .doc-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--rose);
+      margin-top: 6px;
+    }
+
+    /* ── TAB NAV ── */
+    .tab-nav {
+      background: var(--cream);
+      border-bottom: 1px solid rgba(44,36,22,0.1);
+      display: flex;
+      padding: 0 64px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tab-nav::-webkit-scrollbar { height: 2px; }
+    .tab-nav::-webkit-scrollbar-track { background: var(--cream); }
+    .tab-nav::-webkit-scrollbar-thumb { background: rgba(44,36,22,0.15); }
+
+    .tab-btn {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mud);
+      opacity: 0.4;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 20px 20px 18px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s ease, border-color 0.15s ease;
+    }
+    .tab-btn:hover { opacity: 0.7; }
+    .tab-btn.active {
+      opacity: 1;
+      border-bottom-color: var(--orange);
+      color: var(--mud);
+    }
+
+    /* ── TAB PANELS ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── LAYOUT ── */
+    .section {
+      padding: 80px 64px;
+    }
+    .section.cream { background: var(--cream); }
+    .section.gray  { background: var(--gray); }
+    .section.dark  { background: var(--mud); color: var(--cream); }
+    .section.moss  { background: var(--moss); color: var(--cream); }
+
+    .constrained { max-width: 860px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .two-col.asym { grid-template-columns: 1.4fr 1fr; }
+    .rule { border: none; border-top: 1px solid rgba(44,36,22,0.1); margin: 40px 0; }
+    .dark .rule { border-top-color: rgba(239,234,224,0.1); }
+
+    /* ── TYPOGRAPHY ── */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .dark .eyebrow { opacity: 0.4; color: var(--cream); }
+    .t-h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .t-h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+    .t-h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .t-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.4;
+      opacity: 0.7;
+      margin-bottom: 28px;
+    }
+    .t-body { max-width: 620px; font-family: var(--font-body); }
+    p { font-family: var(--font-body); }
+    p + p { margin-top: 16px; }
+
+    .callout {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.55;
+      opacity: 0.65;
+      padding: 36px 0;
+      border-top: 1px solid rgba(44,36,22,0.1);
+      border-bottom: 1px solid rgba(44,36,22,0.1);
+      margin: 40px 0;
+      max-width: 620px;
+    }
+    .dark .callout {
+      border-color: rgba(239,234,224,0.12);
+      opacity: 0.75;
+      color: var(--cream);
+    }
+
+    /* ── STAT BLOCKS ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+      margin-top: 40px;
+    }
+    .stat-block {
+      background: var(--mud);
+      color: var(--cream);
+      padding: 36px 32px;
+    }
+    .stat-block.light {
+      background: var(--cream);
+      color: var(--mud);
+      border: 1px solid rgba(44,36,22,0.08);
+    }
+    .stat-num {
+      font-family: var(--font-mono);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .stat-body {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.65;
+      opacity: 0.8;
+    }
+    .stat-source {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 11px;
+      opacity: 0.4;
+      margin-top: 10px;
+      display: block;
+    }
+
+    /* ── CARDS ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; }
+    .card {
+      padding: 36px 32px;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card.dark  { background: var(--mud); color: var(--cream); }
+    .card.gray  { background: var(--gray); }
+    .card.moss  { background: var(--moss); color: var(--cream); }
+    .card.white { background: var(--white); border: 1px solid rgba(44,36,22,0.08); }
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      line-height: 1.05;
+    }
+    .card-body { font-family: var(--font-body); font-size: 14px; line-height: 1.65; opacity: 0.75; }
+
+    /* ── AUDIT ROWS ── */
+    .audit-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(44,36,22,0.08);
+      align-items: start;
+    }
+    .audit-row:first-of-type { border-top: 1px solid rgba(44,36,22,0.08); }
+    .audit-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding-top: 4px;
+      opacity: 0.6;
+    }
+    .audit-content { font-family: var(--font-body); font-size: 15px; line-height: 1.65; }
+    .tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+    .tag.pass   { background: rgba(81,70,25,0.12); color: var(--moss); }
+    .tag.warn   { background: rgba(212,82,30,0.12); color: var(--rust); }
+    .tag.fix    { background: var(--mud); color: var(--cream); }
+
+    /* ── TABLE ── */
+    .data-table { width: 100%; border-collapse: collapse; margin-top: 28px; font-size: 14px; }
+    .data-table th {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 10px 16px;
+      background: var(--mud);
+      color: var(--cream);
+      opacity: 1;
+    }
+    .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(44,36,22,0.08);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .data-table tr:nth-child(even) td { background: rgba(44,36,22,0.02); }
+    .pri-high { color: var(--orange); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; }
+    .pri-med  { color: var(--moss);   font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+    .pri-low  { opacity: 0.4;         font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* ── STEP LIST ── */
+    .step-list { list-style: none; margin-top: 28px; }
+    .step-list li {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(44,36,22,0.08);
+      align-items: start;
+    }
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+      padding-top: 3px;
+    }
+    .step-body strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    .step-body span { font-size: 15px; opacity: 0.75; line-height: 1.6; }
+
+    /* ── PHOTO PLACEHOLDER ── */
+    .photo-placeholder {
+      background: var(--gray);
+      border: 1.5px dashed rgba(44,36,22,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--mud);
+      text-align: center;
+    }
+    .photo-placeholder .ph-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+    .photo-placeholder .ph-icon {
+      font-size: 28px;
+      opacity: 0.2;
+    }
+    .photo-placeholder.tall  { min-height: 420px; }
+    .photo-placeholder.short { min-height: 280px; }
+    .photo-placeholder.wide  { min-height: 340px; width: 100%; }
+
+    /* ── REVENUE STREAM ── */
+    .stream {
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(44,36,22,0.08);
+    }
+    .stream:first-of-type { border-top: 1px solid rgba(44,36,22,0.08); }
+    .stream-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .stream-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.35;
+    }
+    .stream-title { font-family: var(--font-serif); font-size: 22px; }
+    .stream-body  { font-family: var(--font-body); font-size: 15px; line-height: 1.7; max-width: 680px; }
+    .stream-meta  {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: rgba(44,36,22,0.07);
+      border-radius: 3px;
+    }
+
+    /* ── PROJECTIONS ── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 32px;
+    }
+    .proj-col {
+      padding: 36px 32px;
+      background: var(--cream);
+      color: var(--mud); /* always explicit — never inherit from dark section */
+    }
+    .proj-col.mid  { background: var(--gray); color: var(--mud); }
+    .proj-col.best { background: var(--mud);  color: var(--cream); }
+    .proj-tier {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 16px;
+    }
+    .proj-col.best .proj-tier { opacity: 0.55; }
+    .proj-total {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.02em;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .proj-label { font-family: var(--font-body); font-size: 13px; opacity: 0.7; }
+
+    /* ── PHASE ROADMAP ── */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      margin-top: 32px;
+    }
+    .phase-block {
+      padding: 36px 28px;
+      background: var(--cream);
+    }
+    .phase-block:nth-child(2) { background: var(--gray); }
+    .phase-block:nth-child(3) { background: var(--mud); color: var(--cream); }
+    .phase-block:nth-child(4) { background: var(--moss); color: var(--cream); }
+    .phase-num {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .phase-name {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .phase-window {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+    .phase-items { font-family: var(--font-body); font-size: 14px; line-height: 1.8; opacity: 0.75; }
+
+    /* ── CONTENT FORMAT GRID ── */
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2px;
+      margin-top: 32px;
+    }
+    .format-block {
+      padding: 28px 24px;
+      background: var(--cream);
+    }
+    .format-block:nth-child(odd) { background: var(--white); border: 1px solid rgba(44,36,22,0.07); }
+    .format-day {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    .format-type { font-family: var(--font-serif); font-size: 18px; margin-bottom: 6px; }
+    .format-desc { font-family: var(--font-body); font-size: 13px; line-height: 1.6; opacity: 0.65; }
+
+    /* ── CAPTION FORMULA ── */
+    .formula-block {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(44,36,22,0.08);
+      align-items: start;
+    }
+    .formula-n {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .formula-title { font-family: var(--font-serif); font-size: 19px; margin-bottom: 6px; }
+    .formula-desc  { font-family: var(--font-body); font-size: 14px; opacity: 0.7; line-height: 1.6; }
+
+    /* ── SCOPE BLOCK ── */
+    .scope-section { margin-bottom: 40px; }
+    .scope-phase {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 13px 26px;
+      border-radius: 10px;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .btn:hover { opacity: 0.82; transform: translateY(-1px); }
+    .btn-primary { background: var(--orange); color: var(--white); }
+    .btn-dark    { background: var(--mud); color: var(--cream); }
+    .btn-outline { background: transparent; color: var(--mud); border: 2px solid rgba(44,36,22,0.25); padding: 11px 24px; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--mud);
+      color: var(--cream);
+      padding: 48px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.45;
+    }
+    .footer-url {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--rose);
+      text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .site-header { padding: 32px 24px 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .header-right { text-align: left; }
+      .tab-nav { padding: 0 24px; }
+      .section { padding: 56px 24px; }
+      .two-col, .two-col.asym { grid-template-columns: 1fr; gap: 32px; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .audit-row { grid-template-columns: 1fr; gap: 8px; }
+      .site-footer { flex-direction: column; align-items: flex-start; gap: 12px; padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-left">
+      <span class="fmm-label">Founding Mothers Media</span>
+      <h1 class="client-name"><em>Randal</em> Roberts</h1>
+    </div>
+    <div class="header-right">
+      <div class="header-meta">
+        allofthisisforyou.com<br>
+        Prepared March 2026<br>
+        Confidential
+      </div>
+      <p class="doc-title">Brand Architecture · Digital Infrastructure · Revenue Strategy</p>
+    </div>
+  </header>
+
+  <!-- TAB NAV -->
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" onclick="switchTab('proposal', this)" role="tab">Proposal</button>
+    <button class="tab-btn" onclick="switchTab('audit', this)" role="tab">Brand Audit</button>
+    <button class="tab-btn" onclick="switchTab('seo', this)" role="tab">Site + SEO</button>
+    <button class="tab-btn" onclick="switchTab('social', this)" role="tab">Social Strategy</button>
+    <button class="tab-btn" onclick="switchTab('growth', this)" role="tab">Growth Strategy</button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 1 — PROPOSAL
+  ═══════════════════════════════════════════════ -->
+  <div id="tab-proposal" class="tab-panel active">
+
+    <!-- Hero + photo -->
+    <div class="section" style="padding-bottom: 0;">
+      <div class="two-col asym" style="gap: 64px;">
+        <div>
+          <span class="eyebrow">01 — What We See</span>
+          <h2 class="t-h1">Fifteen years of real work.<br>The container hasn't caught up.</h2>
+          <p class="t-body" style="margin-bottom: 20px;">72,000 followers. 100+ festivals across four continents. A philosophy, a visual language, a community that trusts you. What's missing is the infrastructure that makes all of it compound.</p>
+          <p class="t-body" style="opacity: 0.75;">Your revenue still depends on Instagram showing your work to people. Your shop lives on a different domain from your main site. Your Patreon has 31 members. Your email list exists — but there's no welcome sequence, no print drop cadence, no collector pipeline, no owned community.</p>
+          <p class="t-body" style="margin-top: 16px; opacity: 0.75;">Every artist who has built what you're capable of — James Jean, Alex and Allyson Grey — did it by building structure first. The work didn't change. The container did.</p>
+        </div>
+        <div class="photo-placeholder tall" style="border-radius: 2px;">
+          <span class="ph-icon">🖼</span>
+          <span class="ph-label">Featured Painting<br>[ Add Randal's Art ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scope -->
+    <div class="section cream">
+      <span class="eyebrow">02 — Scope of Work</span>
+      <h2 class="t-h2">Two phases. One build. Then the architecture runs.</h2>
+      <div class="rule"></div>
+      <div class="two-col" style="margin-top: 0;">
+        <div class="scope-section">
+          <div class="scope-phase">Phase 1 — Foundation Build</div>
+          <div class="card white" style="gap: 14px;">
+            <div class="card-body" style="opacity: 1; font-size: 15px; line-height: 1.8;">
+              Site redesign + domain consolidation<br>
+              Email CRM setup + 3-part welcome sequence<br>
+              Patreon tier restructure<br>
+              Collector waitlist + inquiry pipeline<br>
+              SEO foundations: H1, meta, alt text, OG image<br>
+              Print drop framework + first drop setup
+            </div>
+          </div>
+        </div>
+        <div class="scope-section">
+          <div class="scope-phase">Phase 2 — Ongoing Architecture</div>
+          <div class="card white" style="gap: 14px;">
+            <div class="card-body" style="opacity: 1; font-size: 15px; line-height: 1.8;">
+              Monthly strategy check-ins<br>
+              Drop campaign planning + execution support<br>
+              Content calendar + social repurposing system<br>
+              Platform expansion (Pinterest, YouTube, Substack)<br>
+              Revenue stream activation by phase<br>
+              Analytics + conversion tracking
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deliverables -->
+    <div class="section">
+      <span class="eyebrow">03 — What You Walk Away With</span>
+      <h2 class="t-h2">Infrastructure that works while you paint.</h2>
+      <div class="card-grid" style="margin-top: 32px;">
+        <div class="card gray">
+          <span class="card-label">Website</span>
+          <div class="card-title">One consolidated domain</div>
+          <div class="card-body">Clean site + shop on one URL. Mobile-first. SEO-ready. Built so collectors can find you — and buy.</div>
+        </div>
+        <div class="card dark">
+          <span class="card-label">Email</span>
+          <div class="card-title">An owned audience</div>
+          <div class="card-body">CRM setup, welcome sequence, collector tagging. The list you build here is yours — no algorithm controls it.</div>
+        </div>
+        <div class="card gray">
+          <span class="card-label">Revenue</span>
+          <div class="card-title">7 active income streams</div>
+          <div class="card-body">Print drops, originals, restructured Patreon, workshops, licensing, podcast, art book — activated in phases.</div>
+        </div>
+        <div class="card white">
+          <span class="card-label">Content</span>
+          <div class="card-title">A system, not a schedule</div>
+          <div class="card-body">One painting generates a week of content. 1,956 existing posts become a content engine. Zero new production required in month 1.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Investment -->
+    <div class="section dark">
+      <span class="eyebrow" style="color: var(--cream);">04 — Investment</span>
+      <h2 class="t-h2" style="color: var(--cream);">Priced for where you are.<br><em>Built for where you're going.</em></h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; margin-top: 40px; max-width: 860px;">
+        <div style="background: var(--cream); color: var(--mud); padding: 36px 32px;">
+          <span style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; display: block; margin-bottom: 14px;">Phase 1 — Foundation Build</span>
+          <div style="font-family: var(--font-serif); font-size: 38px; color: var(--orange); line-height: 1; margin-bottom: 10px;">$3,500–$5,000</div>
+          <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.5; margin-bottom: 14px;">One-time · 6–8 weeks</div>
+          <div style="font-family: var(--font-body); font-size: 14px; color: var(--mud); opacity: 0.75; line-height: 1.7;">Site consolidation, homepage rewrite, Patreon restructure, email welcome sequence, first print drop plan, 30-day content calendar.</div>
+        </div>
+        <div style="background: var(--gray); color: var(--mud); padding: 36px 32px;">
+          <span style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; display: block; margin-bottom: 14px;">Phase 2 — Ongoing Retainer</span>
+          <div style="font-family: var(--font-serif); font-size: 38px; color: var(--orange); line-height: 1; margin-bottom: 10px;">$1,200–$2,000</div>
+          <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.5; margin-bottom: 14px;">Per month · 3-month minimum · cancel anytime</div>
+          <div style="font-family: var(--font-body); font-size: 14px; color: var(--mud); opacity: 0.75; line-height: 1.7;">Monthly strategy session, drop execution, email management, SEO updates, quarterly revenue review, direct Slack access.</div>
+        </div>
+        <div style="background: var(--moss); color: var(--cream); padding: 36px 32px;">
+          <span style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.55; display: block; margin-bottom: 14px;">Bundle — Best Value</span>
+          <div style="font-family: var(--font-serif); font-size: 38px; color: var(--orange); line-height: 1; margin-bottom: 10px;">$4,500 + $1,200/mo</div>
+          <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55; margin-bottom: 14px;">Phase 1 + Phase 2 · Month 1 included</div>
+          <div style="font-family: var(--font-body); font-size: 14px; color: var(--cream); opacity: 0.8; line-height: 1.7;">Everything in Phase 1 at a bundled rate, with continuity straight into execution. No handoff gap.</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px; max-width: 620px; padding: 36px 32px; background: rgba(239,234,224,0.06); border-left: 2px solid var(--orange);">
+        <span style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); display: block; margin-bottom: 14px;">A note on payment</span>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 19px; color: var(--cream); line-height: 1.55; margin-bottom: 14px;">These are my standard rates. But I believe in this enough to structure it around your results.</p>
+        <p style="font-family: var(--font-body); font-size: 15px; color: var(--cream); opacity: 0.8; line-height: 1.7;">I'm willing to work on a deferred basis — meaning you don't pay until the infrastructure starts generating measurable revenue. I want you to see the ROI before you see the invoice. We'll agree on a clear milestone together, and payment begins when you hit it. This isn't charity. It's confidence in the work.</p>
+      </div>
+
+      <div style="margin-top: 24px; font-family: var(--font-body); font-size: 13px; color: var(--cream); opacity: 0.45;">All pricing in USD. Valid for 30 days from date of this proposal.</div>
+    </div>
+
+    <!-- Next Step -->
+    <div class="section cream">
+      <span class="eyebrow">05 — Next Step</span>
+      <h2 class="t-h2">If this feels right, the next step is a call.</h2>
+      <p class="t-body" style="margin-bottom: 28px; opacity: 0.8;">45 minutes. We walk through the audit findings together, answer questions, and confirm scope before anything is signed.</p>
+      <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn btn-primary" target="_blank" rel="noopener">Schedule the Call</a>
+    </div>
+
+  </div><!-- /tab-proposal -->
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 2 — BRAND AUDIT
+  ═══════════════════════════════════════════════ -->
+  <div id="tab-audit" class="tab-panel">
+
+    <div class="section">
+      <span class="eyebrow">allofthisisforyou.com — Brand Architecture Audit</span>
+      <h2 class="t-h1">What's working. What isn't.<br><em>What to do first.</em></h2>
+      <p class="t-sub">Self-Taught Painter · Denver, CO · Internationally Recognized</p>
+    </div>
+
+    <!-- At a glance photo + stats -->
+    <div class="section cream" style="padding-top: 0;">
+      <div class="two-col asym">
+        <div>
+          <!-- Positioning -->
+          <span class="eyebrow">01 — Positioning Clarity</span>
+          <div class="audit-row">
+            <div class="audit-label"><span class="tag pass">✓ Pass</span></div>
+            <div class="audit-content">"All of this is for you" is memorable and emotionally resonant. Clear artistic identity: self-taught, spiritually grounded, internationally exhibited.</div>
+          </div>
+          <div class="audit-row">
+            <div class="audit-label"><span class="tag warn">⚠ Gap</span></div>
+            <div class="audit-content">Site header reads "art by Randal Roberts" — accurate, but generic. No positioning sentence anywhere. A first-time visitor can't understand the depth, context, or price point of the work.</div>
+          </div>
+          <div class="audit-row">
+            <div class="audit-label"><span class="tag fix">The Fix</span></div>
+            <div class="audit-content">Add a one-sentence positioning statement to the homepage hero. Something that names who Randal is, what he makes, and who it's for — without over-explaining it.</div>
+          </div>
+
+          <div class="rule"></div>
+
+          <!-- Brand Presence -->
+          <span class="eyebrow">02 — Brand Presence</span>
+          <div class="audit-row">
+            <div class="audit-label"><span class="tag pass">✓ Pass</span></div>
+            <div class="audit-content">The work itself carries brand identity. Consistent name presence across Instagram, Facebook, Patreon, and Shopify.</div>
+          </div>
+          <div class="audit-row">
+            <div class="audit-label"><span class="tag warn">⚠ Gap</span></div>
+            <div class="audit-content">WordPress site is running an outdated 2010 theme. No artist photo on the homepage — bio and face appear only on the Contact page. Main site and shop are on separate domains, splitting SEO authority.</div>
+          </div>
+          <div class="audit-row">
+            <div class="audit-label"><span class="tag fix">The Fix</span></div>
+            <div class="audit-content">Consolidate onto one domain. Rebuild on Squarespace Commerce or Shopify with a custom landing layer. Move artist photo to homepage hero.</div>
+          </div>
+        </div>
+        <div class="photo-placeholder tall">
+          <span class="ph-icon">🖼</span>
+          <span class="ph-label">Portrait + Studio Shot<br>[ Add Randal's Art ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copy, Offer, Back-end -->
+    <div class="section">
+      <!-- Copy + Voice -->
+      <span class="eyebrow">03 — Copy + Voice</span>
+      <div class="audit-row">
+        <div class="audit-label"><span class="tag pass">✓ Pass</span></div>
+        <div class="audit-content">Artist statement is personal, sincere, distinctive. The voice is there. Newsletter incentive copy (win a free poster pack + stickers) is direct and clear.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label"><span class="tag warn">⚠ Gap</span></div>
+        <div class="audit-content">Homepage has almost no copy. No "why this work matters" above the fold. Individual painting descriptions vary wildly — some rich, many blank. Inconsistent storytelling hurts SEO and conversion.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label"><span class="tag fix">The Fix</span></div>
+        <div class="audit-content">Add a 2–3 sentence intro paragraph to the homepage. Standardize each painting page: title, year, medium, size, story, CTA. One template. Apply across the archive.</div>
+      </div>
+
+      <div class="rule"></div>
+
+      <!-- Offer Architecture -->
+      <span class="eyebrow">04 — Offer Architecture</span>
+      <div class="audit-row">
+        <div class="audit-label"><span class="tag pass">✓ Pass</span></div>
+        <div class="audit-content">Shop is well-stocked: prints, originals, apparel, blotter art, tapestries, blankets, stickers. Patreon exists as a recurring layer.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label"><span class="tag warn">⚠ Gap</span></div>
+        <div class="audit-content">No visible pathway — originals sit next to $10 stickers with equal visual weight. Original art is one click from the Bargain Bin. No commissions offer visible anywhere on the site.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label"><span class="tag fix">The Fix — 3-Level Offer Suite</span></div>
+        <div class="audit-content">
+          <strong>Entry:</strong> Prints, stickers, apparel — $10–$75<br>
+          <strong>Mid:</strong> Limited edition signed prints, blotter art — $75–$300<br>
+          <strong>High:</strong> Originals, commissions, collector access — $500+
+        </div>
+      </div>
+
+      <div class="rule"></div>
+
+      <!-- Collector Journey -->
+      <span class="eyebrow">07 — Collector Journey</span>
+      <div class="audit-row">
+        <div class="audit-label"><span class="tag warn">Break Points</span></div>
+        <div class="audit-content">
+          No hook on homepage → cold visitors bounce<br>
+          Domain switch to shop creates friction and distrust<br>
+          No email capture at point of exit or purchase<br>
+          No post-purchase follow-up or collector nurture
+        </div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label"><span class="tag fix">The Fix</span></div>
+        <div class="audit-content">
+          Homepage intro + email capture above the fold<br>
+          Single domain for site + shop<br>
+          Exit-intent popup + post-purchase email sequence<br>
+          CRM tagging: casual fan vs. print buyer vs. original collector
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 Priority Fixes -->
+    <div class="section dark">
+      <span class="eyebrow" style="color: var(--cream);">Rx — Do These Five Things. In This Order.</span>
+      <h2 class="t-h2" style="color: var(--cream);">The five-move sequence.</h2>
+      <ul class="step-list" style="max-width: 720px; margin-top: 24px;">
+        <li style="border-bottom-color: rgba(239,234,224,0.1);">
+          <span class="step-num">01</span>
+          <div class="step-body">
+            <strong>Fix the homepage</strong>
+            <span>Rewrite H1. Add artist photo. Add intro paragraph. Move email CTA above the fold. This is the highest-leverage hour of work on the list.</span>
+          </div>
+        </li>
+        <li style="border-bottom-color: rgba(239,234,224,0.1);">
+          <span class="step-num">02</span>
+          <div class="step-body">
+            <strong>Consolidate the domains</strong>
+            <span>Merge WordPress + Shopify onto one URL. Single biggest SEO win possible.</span>
+          </div>
+        </li>
+        <li style="border-bottom-color: rgba(239,234,224,0.1);">
+          <span class="step-num">03</span>
+          <div class="step-body">
+            <strong>Add alt text to all painting images</strong>
+            <span>Fastest SEO task on the list. A few hours. Immediately indexes work in image search — a primary discovery channel for art buyers.</span>
+          </div>
+        </li>
+        <li style="border-bottom-color: rgba(239,234,224,0.1);">
+          <span class="step-num">04</span>
+          <div class="step-body">
+            <strong>Build a real About page</strong>
+            <span>Move bio out of Contact. Add exhibition history, press, and artist statement. This is where trust is built.</span>
+          </div>
+        </li>
+        <li style="border-bottom-color: rgba(239,234,224,0.1);">
+          <span class="step-num">05</span>
+          <div class="step-body">
+            <strong>Build the email welcome sequence</strong>
+            <span>3 emails. One-time build. Runs forever. This alone changes the value of every new subscriber.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div><!-- /tab-audit -->
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 3 — SITE + SEO
+  ═══════════════════════════════════════════════ -->
+  <div id="tab-seo" class="tab-panel">
+
+    <div class="section">
+      <span class="eyebrow">allofthisisforyou.com — Proposed Site Architecture + SEO Evidence Brief</span>
+      <h2 class="t-h1">The gap between attention<br>and revenue is infrastructure.</h2>
+      <p class="t-sub">72K followers. An active Shopify store. 15+ years of work. What's missing is the connective tissue.</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="section cream" style="padding-top: 0;">
+      <span class="eyebrow">01 — The Opportunity</span>
+      <div class="stat-grid">
+        <div class="stat-block">
+          <div class="stat-num">72K</div>
+          <div class="stat-body">Instagram followers. At 1% click-through to the site, that's 720 monthly visitors landing on a 2010 WordPress theme with no hook and no email capture.</div>
+          <span class="stat-source">Source: Instagram, March 2026</span>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">51%</div>
+          <div class="stat-body">Share of high-net-worth collectors who purchased directly via Instagram in 2025 — more than double prior years. The audience is already the buying channel. The site needs to close the loop.</div>
+          <span class="stat-source">Source: Art Basel & UBS Global Art Market Report 2026</span>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">94%</div>
+          <div class="stat-body">Percentage of all webpages that receive zero Google traffic. allofthisisforyou.com has one H1, no H2s, no meta description, no alt text on most images. It's almost certainly in this 94%.</div>
+          <span class="stat-source">Source: SE Ranking, 2025</span>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">$19.25B</div>
+          <div class="stat-body">Projected global online art market by 2033, growing at 6.3% CAGR. Paintings hold 33.8% segment share. The market is expanding. The digital infrastructure is not keeping pace.</div>
+          <span class="stat-source">Source: Grand View Research, 2024–2033</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Gaps -->
+    <div class="section">
+      <span class="eyebrow">02 — What Google Sees Right Now</span>
+      <h2 class="t-h2">Every item below is fixable.<br><em>Most take less than a day.</em></h2>
+      <div class="audit-row">
+        <div class="audit-label">Page Title</div>
+        <div class="audit-content">"all of this is for you" — the brand name, not a searchable phrase. Misses the most valuable 60 characters in SEO.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label">H1 Tag</div>
+        <div class="audit-content">Same issue. Google uses H1 to understand what a page is about. This tells it nothing about art, painting, or Denver.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label">H2 Tags</div>
+        <div class="audit-content">Zero on the homepage. No content hierarchy. No keyword signals. No structure for search engines to index.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label">Meta Description</div>
+        <div class="audit-content">Not set. The 155-character pitch to someone scanning search results is blank.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label">Alt Text</div>
+        <div class="audit-content">Missing on most painting thumbnails. Image search is a primary discovery channel for art buyers — currently invisible to it.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label">OG / Social Image</div>
+        <div class="audit-content">No Open Graph image set. When anyone shares the site via DM or social, there is no preview image.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label">Domain Split</div>
+        <div class="audit-content">WordPress site and Shopify shop are on different subdomains. SEO authority is split. Link equity doesn't consolidate.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label">Mobile</div>
+        <div class="audit-content">2010 Portfolio theme is not built for mobile-first indexing. Google has used mobile-first indexing for 100% of new sites since 2024.</div>
+      </div>
+      <div class="audit-row">
+        <div class="audit-label">Local SEO</div>
+        <div class="audit-content">Denver, CO does not appear on the homepage. Invisible to local collectors, galleries, and press searches.</div>
+      </div>
+    </div>
+
+    <!-- Keywords -->
+    <div class="section cream">
+      <span class="eyebrow">03 — Target Keywords</span>
+      <h2 class="t-h2">Low competition. High intent.<br><em>Randal should own these.</em></h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Intent</th>
+            <th>Target Page</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>visionary artist Denver Colorado</td><td>Buy / Commission</td><td>Homepage H1 + About</td></tr>
+          <tr><td>psychedelic original paintings for sale</td><td>Buy</td><td>Shop + Paintings page</td></tr>
+          <tr><td>Randal Roberts art</td><td>Branded</td><td>Homepage title + meta</td></tr>
+          <tr><td>visionary art prints buy online</td><td>Buy</td><td>Shop page</td></tr>
+          <tr><td>ayurvedic paintings</td><td>Discover</td><td>Individual painting pages</td></tr>
+          <tr><td>spiritual art original canvas</td><td>Buy</td><td>Paintings archive</td></tr>
+          <tr><td>blotter art for sale</td><td>Buy</td><td>Shop / blotter collection</td></tr>
+          <tr><td>live performance painter</td><td>Commission / Book</td><td>About + Events page</td></tr>
+          <tr><td>visionary painter Colorado</td><td>Local / Commission</td><td>Homepage + Contact</td></tr>
+          <tr><td>art by Randal Roberts</td><td>Branded</td><td>Meta title + OG tags</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Site Architecture -->
+    <div class="section">
+      <span class="eyebrow">04 — Proposed Site Architecture</span>
+      <h2 class="t-h2">One domain. Every page with a job.</h2>
+      <p style="max-width: 620px; opacity: 0.75; margin-bottom: 4px;">SEO signal, trust building, or conversion — prioritized in build order.</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>URL</th>
+            <th>H1</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Home</strong></td><td>/</td><td>Visionary Painter | Original Art, Prints & More | Randal Roberts</td><td><span class="pri-high">High</span></td></tr>
+          <tr><td><strong>About</strong></td><td>/about</td><td>Randal Roberts — Self-Taught Visionary Painter, Denver CO</td><td><span class="pri-high">High</span></td></tr>
+          <tr><td><strong>Paintings</strong></td><td>/paintings</td><td>Original Paintings by Randal Roberts</td><td><span class="pri-high">High</span></td></tr>
+          <tr><td><strong>Shop</strong></td><td>/shop</td><td>Art Prints, Apparel & More | Randal Roberts Shop</td><td><span class="pri-high">High</span></td></tr>
+          <tr><td><strong>Newsletter</strong></td><td>/newsletter</td><td>Join the List — Win a Poster Pack + Stickers</td><td><span class="pri-high">High</span></td></tr>
+          <tr><td><strong>Support</strong></td><td>/support</td><td>Support the Work — Patreon & Collector Access</td><td><span class="pri-med">Med</span></td></tr>
+          <tr><td><strong>Events</strong></td><td>/events</td><td>Upcoming Events & Live Painting | Randal Roberts</td><td><span class="pri-med">Med</span></td></tr>
+          <tr><td><strong>Contact</strong></td><td>/contact</td><td>Commission, Collaborate, or Just Say Hello</td><td><span class="pri-med">Med</span></td></tr>
+          <tr><td>Sketchbook</td><td>/sketchbook</td><td>Sketchbook — Works in Progress by Randal Roberts</td><td><span class="pri-low">Low</span></td></tr>
+          <tr><td>Collabs</td><td>/collabs</td><td>Collaborative Works | Randal Roberts + Artists</td><td><span class="pri-low">Low</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Email -->
+    <div class="section dark">
+      <span class="eyebrow" style="color: var(--cream);">05 — The Email List Case</span>
+      <h2 class="t-h2" style="color: var(--cream);">72K followers you don't own.<br><em>vs. an email list you do.</em></h2>
+      <div class="stat-grid" style="margin-top: 32px;">
+        <div class="stat-block" style="background: rgba(239,234,224,0.06);">
+          <div class="stat-num">40×</div>
+          <div class="stat-body">Email marketing ROI vs. social media. $1 invested → $40 returned. No other channel comes close for direct-to-collector sales.</div>
+          <span class="stat-source">Source: Campaign Monitor / DMA</span>
+        </div>
+        <div class="stat-block" style="background: rgba(239,234,224,0.06);">
+          <div class="stat-num">1% → 3%</div>
+          <div class="stat-body">Instagram-to-purchase vs. email-to-purchase conversion rate. Email converts 2–3× better because the relationship is warmer and the audience opted in.</div>
+          <span class="stat-source">Source: HubSpot / eCommerce benchmarks, 2025</span>
+        </div>
+        <div class="stat-block" style="background: rgba(239,234,224,0.06);">
+          <div class="stat-num">66%</div>
+          <div class="stat-body">Share of high-net-worth collectors in 2025 who bought work by artists they newly discovered — up from 43% in 2022. Email is how you keep them.</div>
+          <span class="stat-source">Source: Art Basel & UBS Global Art Market Report 2026</span>
+        </div>
+      </div>
+      <div class="callout" style="margin-top: 40px;">With 72K followers, a newsletter giveaway, and a Patreon audience, Randal likely has the raw material for a 2,000–5,000 person email list. At $1/subscriber/month (industry average), that's $2K–5K in attributable monthly email revenue — on top of existing channels.</div>
+    </div>
+
+    <!-- Action Order -->
+    <div class="section">
+      <span class="eyebrow">06 — Do This in Order</span>
+      <h2 class="t-h2">Seven moves. Sequenced by impact.</h2>
+      <ul class="step-list" style="max-width: 720px;">
+        <li><span class="step-num">01</span><div class="step-body"><strong>Fix the homepage</strong><span>Rewrite H1. Add H2s. Write meta description. Add OG image. Add intro paragraph + artist photo. Move newsletter CTA above fold.</span></div></li>
+        <li><span class="step-num">02</span><div class="step-body"><strong>Consolidate the domains</strong><span>Merge WordPress + Shopify onto one URL. This single move improves search authority across every page.</span></div></li>
+        <li><span class="step-num">03</span><div class="step-body"><strong>Add alt text to all images</strong><span>Every painting thumbnail needs descriptive alt text. Fastest SEO win on the site — a few hours, immediate impact.</span></div></li>
+        <li><span class="step-num">04</span><div class="step-body"><strong>Build the About page</strong><span>Move bio out of Contact. Add exhibition history, press, artist statement. Trust + SEO.</span></div></li>
+        <li><span class="step-num">05</span><div class="step-body"><strong>Build the Events page</strong><span>Replace the Facebook nav link with an owned events page. Feed from Facebook, but own the URL and data.</span></div></li>
+        <li><span class="step-num">06</span><div class="step-body"><strong>Set up the welcome sequence</strong><span>3-email post-signup sequence. Klaviyo or Mailchimp. One-time build, runs forever.</span></div></li>
+        <li><span class="step-num">07</span><div class="step-body"><strong>Standardize painting pages</strong><span>Title, year, medium, size, story, CTA. Huge SEO and conversion impact compounded over time.</span></div></li>
+      </ul>
+    </div>
+
+  </div><!-- /tab-seo -->
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 4 — SOCIAL STRATEGY
+  ═══════════════════════════════════════════════ -->
+  <div id="tab-social" class="tab-panel">
+
+    <div class="section">
+      <span class="eyebrow">Social Content Strategy — 1,956 Posts · 72K Followers · Instagram Only</span>
+      <h2 class="t-h1">Instagram is the funnel.<br><em>Not the destination.</em></h2>
+    </div>
+
+    <!-- The problem -->
+    <div class="section dark">
+      <span class="eyebrow" style="color: var(--cream);">01 — The Core Problem</span>
+      <div class="callout">1,956 posts. 72,000 followers. 15 years of work. All of it sitting on a platform you don't own, controlled by an algorithm that decides who sees it and when.</div>
+      <p style="max-width: 620px; opacity: 0.75;">Instagram is excellent for discovery. It is terrible for conversion, retention, and revenue. When Randal posts a finished painting, Meta decides whether 3% or 30% of his audience sees it. No email list backup. No SEO value. No long-term asset being built.</p>
+      <p style="max-width: 620px; opacity: 0.75; margin-top: 16px;">The strategy is not to leave Instagram. It's to stop treating it as the destination and start using it as the funnel.</p>
+    </div>
+
+    <!-- Content library -->
+    <div class="section cream">
+      <span class="eyebrow">02 — 1,956 Posts as Fuel</span>
+      <h2 class="t-h2">The archive isn't nostalgia.<br><em>It's a content engine.</em></h2>
+      <div class="two-col" style="margin-top: 32px;">
+        <div>
+          <p style="opacity: 0.8; margin-bottom: 20px;">15 years of documentation is waiting to be activated. Zero new production required in month 1.</p>
+          <div class="card white" style="gap: 14px; margin-bottom: 12px;">
+            <div class="card-label">Throwback series</div>
+            <div class="card-body" style="opacity: 1;">Pull a painting from 5+ years ago. Add current context: what changed, what it taught you. 2× per week.</div>
+          </div>
+          <div class="card white" style="gap: 14px; margin-bottom: 12px;">
+            <div class="card-label">Before + After</div>
+            <div class="card-body" style="opacity: 1;">Same composition, different year. Show the evolution of a visual theme or technique.</div>
+          </div>
+          <div class="card white" style="gap: 14px;">
+            <div class="card-label">Collector Stories</div>
+            <div class="card-body" style="opacity: 1;">Pull sold paintings. Tell the story of where they went. Social proof + emotional resonance.</div>
+          </div>
+        </div>
+        <div class="photo-placeholder wide">
+          <span class="ph-icon">🖼</span>
+          <span class="ph-label">Archive Painting<br>[ Add Randal's Art ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7-Post System -->
+    <div class="section">
+      <span class="eyebrow">03 — One Painting, Seven Posts</span>
+      <h2 class="t-h2">Every finished painting is a week of content.<br><em>No additional production.</em></h2>
+      <div class="format-grid" style="margin-top: 32px;">
+        <div class="format-block">
+          <div class="format-day">Day 1</div>
+          <div class="format-type">The Reveal</div>
+          <div class="format-desc">Finished piece. Full image. Story in the caption — what this painting is about, not just what it shows.</div>
+        </div>
+        <div class="format-block">
+          <div class="format-day">Day 2</div>
+          <div class="format-type">Process Reel</div>
+          <div class="format-desc">Time-lapse or clip from during the painting. Patreon exclusive → teased on Instagram with CTA to join.</div>
+        </div>
+        <div class="format-block">
+          <div class="format-day">Day 3</div>
+          <div class="format-type">Detail Carousel</div>
+          <div class="format-desc">5–8 close-up crops. The texture, the linework, the layering. What photography misses in the full shot.</div>
+        </div>
+        <div class="format-block">
+          <div class="format-day">Day 4</div>
+          <div class="format-type">The Sketchbook</div>
+          <div class="format-desc">The initial sketch or reference notes. "This started as—" is one of the most-engaged caption formats for visual artists.</div>
+        </div>
+        <div class="format-block">
+          <div class="format-day">Day 5</div>
+          <div class="format-type">Print Drop Tease</div>
+          <div class="format-desc">"This painting becomes a print on [date]. Email list gets 48-hour early access." Direct email list builder.</div>
+        </div>
+        <div class="format-block">
+          <div class="format-day">Day 6</div>
+          <div class="format-type">Pinterest Pin</div>
+          <div class="format-desc">Full resolution image with keyword-rich description. Pinterest drives long-tail art buyer traffic for years.</div>
+        </div>
+        <div class="format-block">
+          <div class="format-day">Day 7</div>
+          <div class="format-type">Story Series</div>
+          <div class="format-desc">3–5 slides: the idea, the studio moment, the finished piece, the offer. Closes with link to shop or email signup.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Platform Expansion -->
+    <div class="section cream">
+      <span class="eyebrow">04 — Platform Expansion</span>
+      <h2 class="t-h2">Instagram stays. These are additive.</h2>
+      <div class="card-grid" style="margin-top: 28px;">
+        <div class="card dark">
+          <span class="card-label">Priority 1</span>
+          <div class="card-title">Pinterest</div>
+          <div class="card-body">Evergreen traffic. Art buyers actively search here. One pin can drive traffic for 3+ years. No algorithm pressure — just good keywords.</div>
+        </div>
+        <div class="card gray">
+          <span class="card-label">Priority 2</span>
+          <div class="card-title">Email / Substack</div>
+          <div class="card-body">The owned channel. Monthly studio dispatch — new work, upcoming drops, behind-the-painting. The relationship Instagram can't provide.</div>
+        </div>
+        <div class="card dark">
+          <span class="card-label">Priority 3</span>
+          <div class="card-title">YouTube</div>
+          <div class="card-body">Longer-form process videos. Festival live-painting footage. SEO value compounds over time. Feeds the podcast and Patreon.</div>
+        </div>
+        <div class="card gray">
+          <span class="card-label">Priority 4</span>
+          <div class="card-title">Podcast</div>
+          <div class="card-body">"All of This Is For You" — conversations with artists, mystics, creators. Audience extension, Patreon upsell, brand gravity. Start with 2 mics and Riverside.fm.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Caption Formula -->
+    <div class="section">
+      <span class="eyebrow">06 — Caption Framework</span>
+      <h2 class="t-h2">The 4-part formula.<br><em>Works for any post format.</em></h2>
+      <p style="max-width: 620px; opacity: 0.75; margin-bottom: 8px;">Most artist captions are either pure description ("new painting, link in bio") or wall-of-text philosophy. Neither converts. This structure does.</p>
+      <div style="max-width: 680px;">
+        <div class="formula-block">
+          <div class="formula-n">1</div>
+          <div>
+            <div class="formula-title">The Hook</div>
+            <div class="formula-desc">First line. Stops the scroll. Named emotion, unexpected observation, or a direct question. Never "New work:" or "Excited to share."</div>
+          </div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-n">2</div>
+          <div>
+            <div class="formula-title">The Story</div>
+            <div class="formula-desc">2–4 sentences. The idea behind the piece, the moment it came from, or the question it's asking. Not a description of what's in the image.</div>
+          </div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-n">3</div>
+          <div>
+            <div class="formula-title">The Bridge</div>
+            <div class="formula-desc">Connect the painting to the person reading. "If you've felt this—" or "This one's for anyone who—" is the move from art to relationship.</div>
+          </div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-n">4</div>
+          <div>
+            <div class="formula-title">The CTA</div>
+            <div class="formula-desc">One clear next step. Never two. Drop link, email signup, Patreon, or simply "Let me know what you feel." Rotate based on what's active.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What to Measure -->
+    <div class="section dark">
+      <span class="eyebrow" style="color: var(--cream);">07 — What to Measure</span>
+      <h2 class="t-h2" style="color: var(--cream);">Likes don't pay rent.</h2>
+      <div class="two-col" style="margin-top: 32px; max-width: 800px;">
+        <div>
+          <span class="eyebrow" style="color: var(--rose);">Track These</span>
+          <div style="font-size: 15px; line-height: 2; opacity: 0.85; margin-top: 12px;">
+            Email list growth (weekly)<br>
+            Email open + click rate<br>
+            Patreon member count (monthly)<br>
+            Print drop revenue per drop<br>
+            Website sessions from social<br>
+            Shop conversion rate
+          </div>
+        </div>
+        <div>
+          <span class="eyebrow" style="color: var(--rose);">Ignore These</span>
+          <div style="font-family: var(--font-body); font-size: 15px; line-height: 2; color: var(--cream); opacity: 0.65; margin-top: 12px;">
+            Follower count<br>
+            Likes per post<br>
+            Reach / impressions<br>
+            Story views<br>
+            Comments (unless from collectors)<br>
+            Saves (unless correlated with drops)
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-social -->
+
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 5 — GROWTH STRATEGY
+  ═══════════════════════════════════════════════ -->
+  <div id="tab-growth" class="tab-panel">
+
+    <div class="section">
+      <span class="eyebrow">Growth Strategy & Revenue Architecture</span>
+      <h2 class="t-h1">Modeled on James Jean<br>and Alex & Allyson Grey.</h2>
+      <p class="t-sub">Built for Randal's actual assets. Activated in phases.</p>
+    </div>
+
+    <!-- Benchmarks -->
+    <div class="section cream">
+      <span class="eyebrow">01 — The Benchmark</span>
+      <h2 class="t-h2">What they built. Where Randal maps.</h2>
+      <div class="two-col" style="margin-top: 32px;">
+        <div class="card white" style="padding: 36px 32px; gap: 16px;">
+          <div class="card-label">James Jean — The Drop Model</div>
+          <div class="card-title" style="font-size: 24px;">Scarcity by design.</div>
+          <div class="card-body" style="font-size: 15px; opacity: 0.8; line-height: 1.75;">24-hour timed release windows. Edition sizes of 900–1,700 signed prints at $500–525 each. Single drop revenue: $450K–875K gross. One print every 6–8 weeks = $3M–4M+ annual print revenue at scale. Clean owned website. No algorithm dependency. Layered with gallery originals, brand licensing (Prada, BTS, A24), sculpture, and art books.</div>
+        </div>
+        <div class="card dark" style="padding: 36px 32px; gap: 16px;">
+          <div class="card-label">Alex & Allyson Grey — The Community Model</div>
+          <div class="card-title" style="font-size: 24px;">The sanctuary, not the gallery.</div>
+          <div class="card-body" style="font-size: 15px; opacity: 0.8; line-height: 1.75;">Monthly CoSM ceremonies — ticketed, unbroken chain since 2003. Workshops, guesthouse rentals, art sales, podcast (2020). Donation model as 501(c)3 — community funds the mission. Brand gravity: Tool, Beastie Boys, Nirvana album art. Randal painted at CoSM. He has the depth, the community, and the visual language.</div>
+        </div>
+      </div>
+      <div class="photo-placeholder wide" style="margin-top: 2px; min-height: 220px;">
+        <span class="ph-icon">🖼</span>
+        <span class="ph-label">Festival / CoSM Work<br>[ Add Randal's Art ]</span>
+      </div>
+    </div>
+
+    <!-- 7 Streams -->
+    <div class="section">
+      <span class="eyebrow">03 — Revenue Architecture</span>
+      <h2 class="t-h2">7 streams. Built from what Randal already has.</h2>
+      <p style="max-width: 620px; opacity: 0.75; margin-bottom: 8px;">No new platforms. No significant ad spend. Activated in phases against existing infrastructure.</p>
+
+      <div class="stream">
+        <div class="stream-header">
+          <span class="stream-num">Stream 01</span>
+          <div class="stream-title">Limited Edition Print Drops</div>
+        </div>
+        <div class="stream-body">4–6 timed drops per year, 24–48 hour release windows. Edition sizes of 50–200 (appropriate for current list size). Each drop has a name, a story, a painting context — not just "new print available." Email list gets 48-hour early access.</div>
+        <div class="stream-meta">
+          <span class="pill">$75–$200 per print</span>
+          <span class="pill">4–6 drops/year</span>
+          <span class="pill">Jean Model</span>
+        </div>
+      </div>
+
+      <div class="stream">
+        <div class="stream-header">
+          <span class="stream-num">Stream 02</span>
+          <div class="stream-title">Original Paintings — Direct Collector Sales</div>
+        </div>
+        <div class="stream-body">Currently happening but not systematized. Build a collector waitlist for originals via the website and email list. Each painting page gets a story + inquiry CTA. "First Access" tier via Patreon or email for new originals before public listing.</div>
+        <div class="stream-meta">
+          <span class="pill">Collector Waitlist</span>
+          <span class="pill">CRM Pipeline</span>
+          <span class="pill">First Access Tier</span>
+        </div>
+      </div>
+
+      <div class="stream">
+        <div class="stream-header">
+          <span class="stream-num">Stream 03</span>
+          <div class="stream-title">Patreon — Restructured</div>
+        </div>
+        <div class="stream-body">31 members at $1/month = ~$372/year. The most underperforming asset relative to audience size. Four meaningful tiers replace the current flat structure.</div>
+        <div class="stream-meta">
+          <span class="pill">$5/mo — Process + sketchbook access</span>
+          <span class="pill">$15/mo — Early drop access + discounts</span>
+          <span class="pill">$50/mo — Collector tier + first access to originals</span>
+          <span class="pill">$150/mo — Private studio (10–20 max)</span>
+        </div>
+        <div style="margin-top: 14px; font-size: 14px; opacity: 0.65; font-family: var(--font-serif); font-style: italic;">Target: 500 members at average $12/mo = $6,000/mo recurring.</div>
+      </div>
+
+      <div class="stream">
+        <div class="stream-header">
+          <span class="stream-num">Stream 04</span>
+          <div class="stream-title">Teaching & Workshops</div>
+        </div>
+        <div class="stream-body">Randal already teaches. CoSM October 2026 is booked. ArtUs Co intensive ran. The infrastructure exists — the gap is that workshops are one-off, not systematized. Annual signature intensive: "Making Meaningful Art" — 2–3 days, $300–600/person, 15–30 attendees. Online version: $97–197, runs 2× per year.</div>
+        <div class="stream-meta">
+          <span class="pill">$300–600/person</span>
+          <span class="pill">Grey Model</span>
+          <span class="pill">CoSM Oct 2026</span>
+        </div>
+      </div>
+
+      <div class="stream">
+        <div class="stream-header">
+          <span class="stream-num">Stream 05</span>
+          <div class="stream-title">Brand Licensing</div>
+        </div>
+        <div class="stream-body">Jean licenses to Prada, BTS, A24, Disney. Randal's audience overlaps with conscious lifestyle brands, festival apparel, wellness, and independent music. Medium-term play — starts now with the right positioning. Build a licensing page: "Commission & License" with a clear process and inquiry form. Start with musician/band poster commissions — lower barrier, strong community fit.</div>
+        <div class="stream-meta">
+          <span class="pill">$3K–8K per deal</span>
+          <span class="pill">Festival Apparel</span>
+          <span class="pill">Conscious Lifestyle</span>
+          <span class="pill">Music / Band Posters</span>
+        </div>
+      </div>
+
+      <div class="stream">
+        <div class="stream-header">
+          <span class="stream-num">Stream 06</span>
+          <div class="stream-title">Art Book / Monograph</div>
+        </div>
+        <div class="stream-body">15+ years of paintings with a coherent philosophical thread — strong candidate for a monograph. Self-published or Kickstarter-funded. 50–80 pages, hardcover, edition of 300–500. Crowdfunding doubles as marketing — the campaign itself builds the collector list.</div>
+        <div class="stream-meta">
+          <span class="pill">$60–120/book</span>
+          <span class="pill">Edition of 300–500</span>
+          <span class="pill">12–18 months</span>
+          <span class="pill">Bundled Collector Editions</span>
+        </div>
+      </div>
+
+      <div class="stream">
+        <div class="stream-header">
+          <span class="stream-num">Stream 07</span>
+          <div class="stream-title">Podcast / Long-Form Content</div>
+        </div>
+        <div class="stream-body">Randal appeared on "We Are Artists" and is clearly comfortable speaking. The Greys launched a podcast in 2020 and have built consistent audience extension with it. Format: "All of This Is For You" — conversations with artists, mystics, creators, healers. Low barrier to start: 2 mics, Riverside.fm, Spotify/Apple. Feeds Patreon, email list, and brand gravity.</div>
+        <div class="stream-meta">
+          <span class="pill">Patreon Exclusive Episodes</span>
+          <span class="pill">Sponsor Revenue</span>
+          <span class="pill">Course Upsells</span>
+          <span class="pill">Grey Model</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projections -->
+    <div class="section dark">
+      <span class="eyebrow" style="color: var(--cream);">04 — Revenue Projections</span>
+      <h2 class="t-h2" style="color: var(--cream);">Annual figures. Three scenarios.</h2>
+      <div class="proj-grid">
+        <div class="proj-col">
+          <div class="proj-tier">Conservative — Year 1</div>
+          <div class="proj-total">$42K–60K</div>
+          <div class="proj-label">Website consolidation, Patreon restructure, one print drop series. No new platforms. No significant ad spend.</div>
+        </div>
+        <div class="proj-col mid">
+          <div class="proj-tier">Realistic — Year 2</div>
+          <div class="proj-total">$85K–130K</div>
+          <div class="proj-label">Drops running, Patreon 200+ members, one workshop, email list actively converting, licensing beginning.</div>
+        </div>
+        <div class="proj-col best">
+          <div class="proj-tier">Optimistic — Year 3</div>
+          <div class="proj-total">$180K–280K</div>
+          <div class="proj-label">Licensing deals active, book/monograph shipped, podcast building authority, Patreon 500+ members, drop cadence established.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roadmap -->
+    <div class="section">
+      <span class="eyebrow">05 — Phase Roadmap</span>
+      <h2 class="t-h2">36 months. Four phases.</h2>
+      <div class="phase-grid">
+        <div class="phase-block">
+          <span class="phase-num">Phase 1</span>
+          <div class="phase-name">Own the Foundation</div>
+          <div class="phase-window">Months 1–3</div>
+          <div class="phase-items">
+            Domain consolidation<br>
+            Site rebuild<br>
+            Email CRM + welcome sequence<br>
+            Patreon tier restructure<br>
+            First print drop
+          </div>
+        </div>
+        <div class="phase-block">
+          <span class="phase-num">Phase 2</span>
+          <div class="phase-name">Build the Engine</div>
+          <div class="phase-window">Months 4–9</div>
+          <div class="phase-items">
+            Print drop cadence (4–6/year)<br>
+            Collector pipeline live<br>
+            Pinterest + email expansion<br>
+            Licensing page + outreach<br>
+            Workshop structured + announced
+          </div>
+        </div>
+        <div class="phase-block">
+          <span class="phase-num">Phase 3</span>
+          <div class="phase-name">Grow Authority</div>
+          <div class="phase-window">Months 10–18</div>
+          <div class="phase-items">
+            Podcast launched<br>
+            First workshop delivered<br>
+            First licensing deal<br>
+            Art book Kickstarter<br>
+            Patreon 200+ members
+          </div>
+        </div>
+        <div class="phase-block">
+          <span class="phase-num">Phase 4</span>
+          <div class="phase-name">The Compound</div>
+          <div class="phase-window">Months 19–36</div>
+          <div class="phase-items">
+            All 7 streams active<br>
+            Patreon 500+ members<br>
+            Book shipped<br>
+            Podcast monetized<br>
+            Revenue compounds
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing -->
+    <div class="section moss">
+      <div class="constrained">
+        <span class="eyebrow" style="color: var(--cream);">06 — The Real Opportunity</span>
+        <h2 class="t-h2" style="color: var(--cream);">The work is already there.<br><em>So is the audience.</em></h2>
+        <p style="color: var(--cream); opacity: 0.8; max-width: 580px; margin-top: 8px;">The benchmarks are not aspirational. They are architectural. Randal has already done the hardest part — built a body of work and a community that trusts it. What's missing is the container. That's what we build.</p>
+      </div>
+    </div>
+
+  </div><!-- /tab-growth -->
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>
+      <div class="footer-brand">Founding Mothers Media</div>
+      <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.4; margin-top: 6px;">Holistic Brand & Operations Architecture</div>
+    </div>
+    <a href="https://foundingmothersmedia.com" class="footer-url" target="_blank">foundingmothersmedia.com</a>
+  </footer>
+
+  <script>
+    function switchTab(name, btn) {
+      // Hide all panels
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      // Remove active from all buttons
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      // Show selected
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+      // Scroll to top of content
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
