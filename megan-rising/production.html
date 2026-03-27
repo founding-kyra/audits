@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Megan Rising — Production · Founding Mothers Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --mud:#2c2416;--moss:#514619;--orange:#d4521e;--rust:#bf3c10;--maroon:#681704;
+      --rose:#bc7e78;--cream:#efeae0;--gray:#e3ded8;--white:#f5f3ef;
+      --font-serif:'Instrument Serif',Georgia,serif;
+      --font-sans:'Atkinson Hyperlegible',system-ui,sans-serif;
+      --font-mono:'Inconsolata',monospace;
+      --space-xs:8px;--space-sm:16px;--space-md:32px;--space-lg:64px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--white);color:var(--mud);font-family:var(--font-sans);font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased;}
+    h1{font-family:var(--font-serif);font-size:clamp(48px,7vw,72px);line-height:1.05;font-weight:400;margin-bottom:var(--space-sm);}
+    h2{font-family:var(--font-serif);font-size:clamp(32px,5vw,48px);font-weight:400;line-height:1.15;margin-bottom:var(--space-sm);}
+    h3{font-family:var(--font-serif);font-size:26px;font-weight:400;line-height:1.25;margin-bottom:var(--space-xs);}
+    h4{font-family:var(--font-serif);font-size:20px;font-weight:400;font-style:italic;margin-bottom:var(--space-xs);color:var(--moss);}
+    p{margin-bottom:var(--space-sm);}p:last-child{margin-bottom:0;}em{font-style:italic;}strong{font-weight:700;}
+    .eyebrow{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.2em;font-size:11px;opacity:0.4;display:block;margin-bottom:var(--space-sm);}
+    hr{border:none;border-top:1px solid rgba(44,36,22,0.1);margin:var(--space-md) 0;}
+    .master-header{background:var(--mud);color:var(--cream);padding:28px 64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-sm);}
+    @media(max-width:700px){.master-header{padding:var(--space-md) var(--space-sm);}}
+    .master-header .brand{font-family:var(--font-mono);font-stretch:expanded;font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--cream);opacity:0.5;}
+    .master-header .client{font-family:var(--font-serif);font-size:clamp(22px,3vw,32px);color:var(--cream);}
+    .master-header .meta{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--cream);opacity:0.4;text-align:right;}
+    .tab-nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid rgba(44,36,22,0.12);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .tab-nav::-webkit-scrollbar{display:none;}
+    .tab-btn{flex-shrink:0;padding:16px 24px;border:none;background:transparent;cursor:pointer;font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--mud);opacity:0.4;border-bottom:2px solid transparent;transition:opacity 0.2s,border-color 0.2s;white-space:nowrap;}
+    .tab-btn:hover{opacity:0.7;}.tab-btn.active{opacity:1;border-bottom-color:var(--orange);}
+    .tab-panel{display:none;}.tab-panel.active{display:block;}
+    .container{max-width:860px;margin:0 auto;padding:0 var(--space-md);}
+    .section{padding:72px 64px;}
+    .section--dark{background:var(--mud);color:var(--cream);}
+    .section--dark h2,.section--dark h3,.section--dark h4{color:var(--cream);}
+    .section--dark p{color:var(--cream);}
+    .section--dark .eyebrow{color:var(--cream);opacity:0.4;}
+    .section--dark hr{border-top-color:rgba(239,234,224,0.1);}
+    .section--cream{background:var(--cream);}.section--gray{background:var(--gray);}.section--white{background:var(--white);}
+    @media(max-width:700px){.section{padding:48px var(--space-md);}}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-sm);margin-top:var(--space-md);}
+    .card{padding:36px 32px;}
+    .card--cream{background:var(--cream);}.card--gray{background:var(--gray);color:var(--mud);}.card--dark{background:var(--mud);color:var(--cream);}.card--moss{background:var(--moss);color:var(--cream);}.card--rose{background:var(--rose);color:var(--mud);}
+    .card--dark .eyebrow,.card--moss .eyebrow{color:var(--cream);}.card--gray .eyebrow{color:var(--mud);}
+    .card h3,.card h4{margin-bottom:8px;}.card p{font-size:15px;line-height:1.65;font-family:var(--font-sans);}.card p:last-child{margin-bottom:0;}
+    blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,3vw,28px);line-height:1.5;border-left:3px solid var(--orange);padding-left:var(--space-md);margin:var(--space-md) 0;color:var(--mud);}
+    .section--dark blockquote{color:var(--cream);border-left-color:var(--rose);}
+    .pull-quote{font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,3vw,28px);color:var(--rose);line-height:1.5;padding-left:var(--space-md);border-left:2px solid var(--rose);margin:var(--space-md) 0;}
+    .gap-table{width:100%;border-collapse:collapse;margin-top:var(--space-md);font-size:15px;}
+    .gap-table th{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.14em;font-size:10px;text-align:left;padding:12px 16px;background:var(--mud);color:var(--cream);}
+    .gap-table td{padding:16px;vertical-align:top;border-bottom:1px solid rgba(44,36,22,0.1);font-family:var(--font-sans);line-height:1.6;font-size:15px;}
+    .gap-table tr:nth-child(even) td{background:var(--cream);}.gap-table tr:nth-child(odd) td{background:var(--gray);}
+    @media(max-width:600px){.gap-table,.gap-table thead,.gap-table tbody,.gap-table th,.gap-table td,.gap-table tr{display:block;}.gap-table thead{display:none;}}
+    .voice-attrs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-sm);margin-top:var(--space-md);}
+    .voice-attr{padding:28px 24px;text-align:center;}
+    .voice-attr .attr-word{font-family:var(--font-serif);font-size:32px;display:block;margin-bottom:6px;}
+    .voice-attr .attr-def{font-size:14px;font-family:var(--font-sans);line-height:1.55;opacity:0.8;}
+    .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:var(--space-md);}
+    @media(max-width:600px){.do-dont{grid-template-columns:1fr;}}
+    .do-col,.dont-col{padding:28px 28px;}
+    .do-col{background:var(--cream);}.dont-col{background:var(--mud);color:var(--cream);}
+    .do-col h4,.dont-col h4{font-family:var(--font-mono);font-stretch:expanded;text-transform:uppercase;letter-spacing:0.18em;font-size:11px;margin-bottom:var(--space-sm);font-style:normal;}
+    .do-col h4{color:var(--moss);opacity:1;}.dont-col h4{color:var(--rose);opacity:1;}
+    .do-col ul,.dont-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+    .do-col li,.dont-col li{font-size:15px;font-family:var(--font-sans);line-height:1.55;padding-left:18px;position:relative;}
+    .do-col li::before{content:"→";position:absolute;left:0;color:var(--moss);}
+    .dont-col li::before{content:"×";position:absolute;left:0;color:var(--rose);}
+    .rewrite-pair{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:var(--space-sm) 0;}
+    @media(max-width:600px){.rewrite-pair{grid-template-columns:1fr;}}
+    .rewrite-before{padding:22px 24px;background:var(--gray);}
+    .rewrite-after{padding:22px 24px;background:var(--moss);color:var(--cream);}
+    .rewrite-before .label,.rewrite-after .label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;display:block;margin-bottom:8px;}
+    .rewrite-before .label{opacity:0.5;}.rewrite-after .label{color:var(--cream);opacity:0.6;}
+    .rewrite-before p,.rewrite-after p{font-size:15px;line-height:1.6;font-family:var(--font-sans);margin:0;font-style:italic;}
+    /* ── COPY SKELETON ── */
+    .copy-page{margin-bottom:var(--space-lg);border-top:2px solid var(--mud);padding-top:var(--space-md);}
+    .copy-page:first-child{border-top:none;padding-top:0;}
+    .copy-section{margin:var(--space-md) 0;}
+    .copy-label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.2em;color:var(--orange);opacity:1;display:block;margin-bottom:6px;}
+    .copy-block{background:var(--cream);padding:24px 28px;margin-top:8px;}
+    .copy-block p{font-family:var(--font-sans);font-size:16px;line-height:1.7;margin-bottom:10px;}
+    .copy-block p:last-child{margin-bottom:0;}
+    .seo-tag{display:inline-block;font-family:var(--font-mono);font-stretch:expanded;font-size:9px;text-transform:uppercase;letter-spacing:0.14em;padding:3px 8px;background:var(--moss);color:var(--cream);margin:2px;}
+    .copy-note{font-family:var(--font-sans);font-size:13px;color:var(--rose);font-style:italic;margin-top:8px;display:block;}
+    .meta-box{background:var(--mud);color:var(--cream);padding:16px 20px;margin-top:8px;}
+    .meta-box p{font-family:var(--font-sans);font-size:14px;line-height:1.6;color:var(--cream);margin:0;}
+    .meta-box .meta-label{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:var(--rose);opacity:1;display:block;margin-bottom:4px;}
+    .copy-scaffold{background:var(--gray);padding:20px 24px;margin-top:8px;border-left:3px solid var(--orange);}
+    .copy-scaffold p{font-family:var(--font-sans);font-size:14px;line-height:1.65;color:var(--mud);margin-bottom:6px;}
+    .copy-scaffold p:last-child{margin-bottom:0;}
+    .copy-scaffold .scaffold-label{font-family:var(--font-mono);font-stretch:expanded;font-size:9px;text-transform:uppercase;letter-spacing:0.16em;color:var(--orange);display:block;margin-bottom:6px;}
+    footer{background:var(--cream);padding:var(--space-md) var(--space-lg);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-sm);border-top:1px solid rgba(44,36,22,0.1);}
+    footer p{font-family:var(--font-mono);font-stretch:expanded;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;opacity:0.4;margin:0;}
+    @media(max-width:700px){footer{padding:var(--space-md) var(--space-sm);flex-direction:column;}}
+  </style>
+</head>
+<body>
+
+<header class="master-header">
+  <div>
+    <div class="brand">Founding Mothers Media</div>
+    <div class="client">Megan Rising — Production</div>
+  </div>
+  <div class="meta">March 2026<br>Confidential &middot; Client Use Only</div>
+</header>
+
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" onclick="switchTab('voice',this)" role="tab">05 &middot; Voice Guide</button>
+  <button class="tab-btn" onclick="switchTab('copy',this)" role="tab">06 &middot; Site Copy</button>
+</nav>
+
+<!-- TAB 05: VOICE GUIDE -->
+<div id="tab-voice" class="tab-panel active">
+
+  <!-- Hero Section -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Brand Voice Guide</span>
+      <h1>The brand should sound like <em>she actually talks.</em></h1>
+      <p>This guide was built from three sources: the March 2026 meeting transcript, the live meganrising.com site, and the complete Notion sitemap &amp; copy doc. The goal is to close the gap between Megan in conversation — warm, irreverent, direct — and the website copy, which sometimes reads more polished than she actually sounds.</p>
+    </div>
+  </section>
+
+  <!-- Voice Character -->
+  <section class="section section--white">
+    <div class="container">
+      <h2>Five words that define how Megan sounds</h2>
+      <div class="voice-attrs">
+        <div class="voice-attr" style="background:var(--cream);">
+          <span class="attr-word">Earthy</span>
+          <span class="attr-def">This isn't a metaphor. She lives on 27 acres in Floyd, VA — spring water, creek bathing, garden fencing. The land is the product. Copy should feel like it has soil under its fingernails.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--gray);">
+          <span class="attr-word">Feral</span>
+          <span class="attr-def">Not wild in a Disney-princess way. Wild like she moved onto raw land with a camper and a vision. The women she calls to are ready to shed the performance — not polish it.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--cream);">
+          <span class="attr-word">Cosmic</span>
+          <span class="attr-def">Stars, charts, transits, natal maps. But always embodied — felt in the body, not just understood in the head. "The entire universe is inside of you and your natal chart is a map of that universe."</span>
+        </div>
+        <div class="voice-attr" style="background:var(--gray);">
+          <span class="attr-word">Pleasure-positive</span>
+          <span class="attr-def">Pole dancing at Beltane. Flower crowns at golden hour. Indian dinner by firelight. "Let's put the glamour in glamping." The sacred and the sensual are not opposites here — they're the same thing.</span>
+        </div>
+        <div class="voice-attr" style="background:var(--cream);">
+          <span class="attr-word">Direct</span>
+          <span class="attr-def">No Instagram wellness. No spiritual bypassing. "A little crunchy, a lot glam, all truth." When she means something, she says it. The copy earns every word or cuts it.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grammar + Cadence -->
+  <section class="section section--cream">
+    <div class="container">
+      <h2>How she builds a sentence</h2>
+      <div class="card-grid">
+        <div class="card card--gray">
+          <span class="eyebrow">Short declarative → opens into body</span>
+          <p>Hits you with a short punch, then the explanation flows out. Often with an em dash. The rhythm is conversational, not stiff. She earns the longer sentence by landing the short one first.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"No Instagram wellness. No spiritual bypassing. Just earth, fire, stars, and the freedom to be exactly who you are."</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Both/and framing</span>
+          <p>"A little crunchy, a lot glam." "Sweetness, and a little bit of spice." She doesn't flatten complexity — contradiction is the brand. The tension between opposites is where she lives.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"Bring your best energy, your wildest self — the version of you that's ready to be fully seen."</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">"Remember" as verb and homecoming</span>
+          <p>Women come to The Meadow to <em>remember</em> who they are. The word is a recurring motion in her copy. It signals reclamation without blame — you didn't lose yourself, you just forgot.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"Where women gather to shed the performance and remember their truth."</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Cosmic + body, always together</span>
+          <p>She never does just stars, and she never does just body. The translation always goes both directions: the chart into the lived experience, the body back into the cosmos. Separate them and it's not her.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"Feel it in your bones — not just understand in your head. That's what embodied astrology means."</p>
+        </div>
+        <div class="card card--gray">
+          <span class="eyebrow">Invitation, not command</span>
+          <p>"Come ready to work, play, and build something beautiful together." "Bring your best energy." She invites — she doesn't push. Consent is the operating system of everything she does, and the copy reflects that.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"If this offends you, reach out to discuss — or this may not be an aligned match."</p>
+        </div>
+        <div class="card card--cream">
+          <span class="eyebrow">Place as a character</span>
+          <p>"27 acres in the Blue Ridge Mountains." "Floyd, VA." "The creek." "The yurt." The geography is grounding and specific — it's never generic "nature" or "land." The Meadow is a named, living thing.</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:16px;color:var(--mud);margin-top:var(--space-sm);">"Nestled on 27 acres of quiet meadowland in Floyd, VA — return to what's wild and natural."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Do / Don't Word List -->
+  <section class="section section--white">
+    <div class="container">
+      <h2>The language map</h2>
+      <div class="do-dont">
+        <div class="do-col">
+          <h4>✓ Say this</h4>
+          <ul>
+            <li>"Remember" — the brand's core motion; women come to reclaim what they forgot</li>
+            <li>"Wild women / feral women" — her exact audience language; own it</li>
+            <li>"The Meadow" — always a proper noun; the land is a named character</li>
+            <li>"Embodied" — grounded in what it means: felt in the body, not just understood in the head</li>
+            <li>"Shed the performance" — the transformation mechanism, say it this way</li>
+            <li>"Cosmic blueprint" — her signature astrology frame; use it consistently</li>
+            <li>"Wheel of the year / seasonal" — Beltane, solstice, equinox are the rhythm</li>
+            <li>"Both/and" contrast pairs — "a little crunchy, a lot glam"; "sweetness, and a little spice"</li>
+            <li>Em dashes — she thinks in dashes; the copy should too</li>
+            <li>"Earth, fire, stars" — the sensory brand trinity</li>
+          </ul>
+        </div>
+        <div class="dont-col">
+          <h4>× Avoid this</h4>
+          <ul>
+            <li>"Manifest / manifestation" — too Instagram, no texture for her brand</li>
+            <li>"Sacred container / hold space" — she does this, but the phrases are done</li>
+            <li>"Healing journey" — say what the journey actually is; specificity is everything</li>
+            <li>"Women's empowerment" — not her lane, too polished and institutional</li>
+            <li>"Your highest / best self" — generic, not her voice</li>
+            <li>"Transform your life" — too vague, no felt sense</li>
+            <li>"Ancient wisdom" — say which tradition, which practice specifically</li>
+            <li>"It's time to..." — every wellness brand on Instagram uses this</li>
+            <li>"Spiritual journey" — cliché; say what the path actually looks like</li>
+            <li>Distance-creating polish — this brand lives close; the copy should too</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before + After Rewrites -->
+  <section class="section section--cream">
+    <div class="container">
+      <h2>From the site today → to Megan's actual voice</h2>
+
+      <div style="margin-top:var(--space-md);">
+        <span class="eyebrow">Homepage hero intro</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Current copy</span>
+            <p>"My mission is to support your personal evolution by tapping into the innate wisdom of your body and the harmonious connections woven through all aspects of life."</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">In Megan's voice</span>
+            <p>"You've been searching for something you can't quite name. Not another wellness weekend. Not another self-improvement program. You're craving permission to stop performing — and space to remember the woman you were before the world told you who to be."</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-md);">
+        <span class="eyebrow">Astrology section intro</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Current copy</span>
+            <p>"I'll walk you through your chart, translating the deeper meaning and context. Afterwards, you get a recording to reference later."</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">In Megan's voice</span>
+            <p>"I pull your chart live and channel what wants to come through. No pre-reading. No scripts. Just real-time cosmic translation — from the stars into the life you're actually living right now."</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-md);">
+        <span class="eyebrow">Bio opening</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Current copy</span>
+            <p>"I'm an independent astrologer, certified yoga instructor (RYT 500), pole dancer, gardener, and self-made wild woman."</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">In Megan's voice</span>
+            <p>"I moved onto raw land in Floyd, Virginia in 2021 with a camper and a vision. Years later, this big dream has turned into a reality I get to share with you. A little crunchy. A lot glam. Deeply committed to living with loving kindness while refusing to play small."</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-md);">
+        <span class="eyebrow">Work with Me CTA</span>
+        <div class="rewrite-pair">
+          <div class="rewrite-before">
+            <span class="label">Current (404 page)</span>
+            <p>"→ work with me" (homepage link — leads nowhere)</p>
+          </div>
+          <div class="rewrite-after">
+            <span class="label">In Megan's voice</span>
+            <p>"Not sure where to start? Send me a message and we'll figure out what's right for you." &middot; "Book a Reading" &middot; "Explore The Meadow Retreats"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tone Spectrum Reference -->
+  <section class="section section--white">
+    <div class="container">
+      <h2>Where to land by context</h2>
+      <table class="gap-table">
+        <thead>
+          <tr>
+            <th>Context</th>
+            <th>Tone Target</th>
+            <th>Example phrase</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Homepage hero</td>
+            <td>Mythic &middot; Grounded &middot; Seeker-coded</td>
+            <td>"Where land meets liberation, stars meet skin, and women remember who they are."</td>
+          </tr>
+          <tr>
+            <td>Retreat pages</td>
+            <td>Sensory &middot; Excited &middot; Specific details</td>
+            <td>"Flower crowns, fire circles, catered Indian dinner at golden hour. Bring your wildest self."</td>
+          </tr>
+          <tr>
+            <td>Astrology pages</td>
+            <td>Direct &middot; Educational &middot; No jargon walls</td>
+            <td>"I pull your chart live and channel what wants to come through. No pre-reading. No scripts."</td>
+          </tr>
+          <tr>
+            <td>FAQs</td>
+            <td>Warm &middot; Practical &middot; A little irreverent</td>
+            <td>"Bathroom: yes, we have one. It's a very fancy composting situation. Indoor shower coming soon."</td>
+          </tr>
+          <tr>
+            <td>About / bio</td>
+            <td>Personal &middot; Grounded &middot; Refuses to shrink</td>
+            <td>"A little crunchy. A lot glam. Deeply committed to living with loving kindness while refusing to play small."</td>
+          </tr>
+          <tr>
+            <td>Contact / CTA</td>
+            <td>Personal &middot; No pressure &middot; Warm</td>
+            <td>"Send me a message and we'll figure out what's right for you."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<!-- TAB 06: SITE COPY -->
+<div id="tab-copy" class="tab-panel">
+
+  <!-- Copy Hero Section -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Site Copy &middot; Reference Skeleton</span>
+      <h1>Structure first. Voice second. Keywords third — all at once.</h1>
+      <p>This skeleton maps every page section by section. Each block shows what goes here, what keyword it targets, and a voice-matched draft to write from. Two pages (Work With Me, 2026 Retreat Calendar) are live in the nav but returning 404 — full copy builds are included below. Cross-reference Tab 05 Voice Guide throughout.</p>
+    </div>
+  </section>
+
+  <!-- Copy Pages Container -->
+  <section class="section section--white">
+    <div class="container">
+
+      <!-- PAGE 01: HOMEPAGE -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 01 &middot; Live</span>
+        <h2>Homepage — meganrising.com</h2>
+        <p style="font-family:var(--font-mono);font-stretch:expanded;font-size:12px;text-transform:uppercase;letter-spacing:0.16em;opacity:0.5;margin-top:var(--space-sm);">meganrising.com / (live)</p>
+
+          <span class="copy-label">Meta Title (50–60 chars)</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Megan Rising | Embodied Astrology &amp; Retreats for Wild Women — Floyd, VA</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Description (150–160 chars)</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Astrology readings that decode your cosmic blueprint. Land-based women's retreats on 27 acres in Floyd, Virginia. Where wild women come home to themselves.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">H1 — Hero Headline</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: First impression. Speaks to the seeker — the woman who can't name what she's looking for. Must create instant recognition. Currently live but can be sharpened.</span>
+            <p style="margin-top:var(--space-sm);">Target keywords: women's retreats Floyd Virginia, embodied astrology, wild feminine</p>
+          </div>
+          <div class="copy-block">
+            <p><strong>Current H1 (live):</strong> "Welcome, I'm Megan Magdalena Rising."</p>
+            <p><strong>Recommended H1:</strong> Where land meets liberation, stars meet skin, and women remember who they are.</p>
+            <p>You've been searching for something you can't quite name. Not another wellness weekend. Not another self-improvement program. You're craving permission to stop performing — and space to remember the woman you were before the world told you who to be.</p>
+          </div>
+          <span class="seo-tag">women's retreats Floyd VA</span>
+          <span class="seo-tag">embodied astrology</span>
+          <span class="seo-tag">wild feminine</span>
+          <span class="copy-note">→ Primary CTA: 'Explore The Meadow Retreats' / Secondary CTA: 'Book an Astrology Reading'</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — Quick Intro</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Bio anchor. Establishes who Megan is in a few punchy lines. The contradiction ("crunchy / glam") IS the brand. Don't smooth it out.</span>
+            <p style="margin-top:var(--space-sm);">Target keywords: astrologer Floyd Virginia, yoga instructor, women's retreat facilitator</p>
+          </div>
+          <div class="copy-block">
+            <p><strong>A little crunchy. A lot glam. All truth.</strong></p>
+            <p>I'm Megan Magdalene Rising — astrologer, retreat facilitator, pole dancer, RYT 500 yoga instructor, gardener, and rewilding woman. I moved onto raw land in Floyd, Virginia in 2021 with a camper and a vision. Years later, this dream is real — and I get to share it with you.</p>
+            <p>I help women decode their cosmic blueprints and remember their body's wisdom. Whether you're seeking clarity through the stars or transformation on the land, there's a way to work together.</p>
+          </div>
+          <span class="seo-tag">astrologer Floyd Virginia</span>
+          <span class="seo-tag">women's retreat facilitator</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — Two Offerings Snapshot</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">What this section does: Routes visitors to their path — astrology or retreats. Currently a 2-card layout. Keep the directness; add a third card for the Honey Pot membership if/when relevant.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>2 offerings. 1 mission: embodied connection to the feminine.</strong></p>
+            <p><strong>Embodied Astrology —</strong> Your natal chart is a map of where the sun, moon, and planets were the moment you were born. I walk you through it live — no scripts, no pre-reading. Real-time cosmic translation you can feel in your bones.</p>
+            <p><strong>The Meadow Retreats —</strong> Off-grid women's retreats on 27 acres in Floyd, VA. Seasonal gatherings following the wheel of the year. Beltane pole dancing. Summer solstice medicine circles. Community work weekends. This is where wild women come home.</p>
+          </div>
+          <span class="seo-tag">natal chart reading</span>
+          <span class="seo-tag">women's retreat southwest Virginia</span>
+          <span class="copy-note">→ Keep "Not sure where to start? Send me a message" section — it's warm and functional. Make sure the contact link works.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Footer Tagline (live)</span>
+          <div class="copy-block">
+            <p><strong>OFF-GRID RETREATS FOR THE WILD FEMININE | SOUTHWEST VIRGINIA</strong></p>
+            <p>Nestled on 27 acres of quiet meadowland in Floyd, VA — this cozy, light-filled retreat venue offers a safe space for the feminine to unplug, breathe deeply, and return to what's wild and natural.</p>
+            <p><em>SMALL GROUPS · INTIMATE GATHERINGS · SOLITUDE</em></p>
+          </div>
+          <span class="copy-note">→ Footer tagline is already strong. Keep it exactly as-is.</span>
+        </div>
+      </div>
+
+      <!-- PAGE 02: THE MEADOW -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 02 &middot; Live</span>
+        <h2>The Meadow — meganrising.com/the-meadow</h2>
+        <p style="font-family:var(--font-mono);font-stretch:expanded;font-size:12px;text-transform:uppercase;letter-spacing:0.16em;opacity:0.5;margin-top:var(--space-sm);">/the-meadow (live — minimal copy)</p>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Title</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>The Meadow | Off-Grid Retreats for the Wild Feminine — Floyd, Virginia</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Description</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>27 acres in Floyd, VA. Seasonal women's retreats, yurt stays, waterfall day trips, and work trade. Unplug, breathe, and return to what's wild and natural.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">H1 — Hero</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">Current page is minimal — likely image-heavy with thin text. The page needs a proper intro section that explains what The Meadow is before routing to retreats, yurt, and work trade.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>Recommended H1:</strong> Where wild women gather to shed the performance and remember their truth.</p>
+            <p>The Meadow is raw land — 27 acres in the Blue Ridge Mountains of Floyd, VA. A peaceful, natural sanctuary where women come to work, to move, to rest, and to remember what it feels like to be held by community and earth.</p>
+            <p><strong>No Instagram wellness. No spiritual bypassing.</strong> Just people, land, fire, and space to be exactly who you are.</p>
+          </div>
+          <span class="seo-tag">women's retreat Floyd Virginia</span>
+          <span class="seo-tag">off-grid retreat Virginia</span>
+          <span class="seo-tag">Blue Ridge Mountains women's retreat</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Card — Yurt Rental</span>
+          <div class="copy-block">
+            <p><strong>YURT RENTAL</strong></p>
+            <p>Your experience can look like peace &amp; solitude — or a deliciously lavish, natural self-care getaway. Choose from a menu of healing offerings: massage, private yoga, astrology reading, tarot. Perfect for couples or individuals craving connection.</p>
+            <p>Powered by the sun. Fresh spring water. 27 acres to roam.</p>
+          </div>
+          <span class="seo-tag">yurt rental Floyd Virginia</span>
+          <span class="copy-note">→ CTA: '→ Experience the Yurt' — keep the arrow formatting, it's distinctive.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Card — Retreats</span>
+          <div class="copy-block">
+            <p><strong>RETREATS</strong></p>
+            <p>Womxn-only, curated small-group retreats celebrating the turning of the wheel. Expect sweetness — and a little bit of spice. Waterfall Day. Beltane Pole Retreat. Medicine Women. And more coming.</p>
+            <p>Limited to 10. Intimate, embodied, unapologetically real.</p>
+          </div>
+          <span class="seo-tag">women's retreat Virginia 2026</span>
+          <span class="seo-tag">Beltane retreat</span>
+          <span class="copy-note">→ CTA links to 2026 Retreat Calendar — that page is currently 404. Priority fix.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Card — Work Trade</span>
+          <div class="copy-block">
+            <p><strong>WORK TRADE</strong></p>
+            <p>My list of projects — big and small — is long. I'm asking for volunteers to help with small jobs in exchange for a free night's stay in the yurt. Guaranteed great vibes, good music, and plenty of fun as we tend to this temple. I can put you up if you're coming from out of town. Grateful for any and all support.</p>
+          </div>
+          <span class="copy-note">→ CTA: '→ Help Tend the Meadow' — links to a contact form. Verify this is working post-launch.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Section — Accommodations</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">Add this section to the Meadow page if not already there. Answers the #1 practical question before visitors have to ask. Tone: warm + frank.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>Where you'll sleep:</strong> Yurt (sleepover style, sisterhood vibes) · Tent camping (bring your own, unlimited spots) · Tiny Home (facilitators only for now)</p>
+            <p><strong>What to expect:</strong> Composting outhouse (it's nicer than it sounds). Fresh spring water. Creek bathing — wild woman style. Indoor shower being built. Outlets in the yurt powered by solar. Designated smoking areas.</p>
+            <p><em>"Let's put the glamour in glamping — but be real about what 'glamping' means here."</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 03: WORK WITH ME -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 03 &middot; ⚠ 404 — Full Copy Build Needed</span>
+        <h2>Work With Me — Embodied Astrology</h2>
+        <p style="font-family:var(--font-mono);font-stretch:expanded;font-size:12px;text-transform:uppercase;letter-spacing:0.16em;color:var(--rust);margin-top:var(--space-sm);">/work-with-me — currently returning 404. This is a main nav link. Fix is critical path.</p>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Title</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Work With Megan Rising | Embodied Astrology Readings — Natal Chart, Transits &amp; More</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Description</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Natal chart readings, transit sessions, blended astrology + tarot, and cosmic classes. Real-time cosmic translation — no scripts, no jargon. Floyd, VA &amp; online.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">H1 — Hero</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">Sets the framing for her entire astrology practice. Should distinguish her from app-astrology and generic chart readers. Lead with what makes her different: live, embodied, no scripts.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>Your birth chart isn't just pretty planets on paper — it's a roadmap to your truth.</strong></p>
+            <p>Embodied astrology means translating your cosmic blueprint into your lived experience. I don't just tell you what your chart says — I help you feel what it means, in your body, in your actual life.</p>
+            <p>Before every reading, I ask two questions: Have you had your chart read before? And what are you looking to get out of this? Then I pull your chart live and channel what wants to come through. No pre-reading. No scripts. Just real-time cosmic translation.</p>
+          </div>
+          <span class="seo-tag">natal chart reading</span>
+          <span class="seo-tag">embodied astrology</span>
+          <span class="seo-tag">astrology reading online</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Offer 01 — Self-Reclamation (Natal Chart)</span>
+          <div class="copy-block">
+            <p><strong>SELF-RECLAMATION | Natal Chart Reading</strong></p>
+            <p>For the woman ready to meet herself — fully, honestly, without apology. Your natal chart is as unique as your fingerprint. It maps where the sun, moon, and planets were positioned the moment you entered this world — revealing your natural gifts, your shadow teachers, and the lessons your soul signed up for.</p>
+            <p>This isn't fluffy astrology. This is deep excavation work.</p>
+            <p>I'll walk you through your chart, translating the cosmic language into real-world wisdom you can use. You'll understand why you move through the world the way you do — and what you're being called to embody.</p>
+            <p><em>60 min: $100 &middot; 120 min: $175 &middot; Zoom, recorded</em></p>
+          </div>
+          <span class="seo-tag">natal chart reading</span>
+          <span class="seo-tag">birth chart reading</span>
+          <span class="copy-note">→ Perfect for: women new to astrology or wanting a comprehensive overview.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Offer 02 — Practical Guidance (Transit Chart)</span>
+          <div class="copy-block">
+            <p><strong>PRACTICAL GUIDANCE | Transit Chart Reading</strong></p>
+            <p>For the woman who knows her chart and is ready to work with it in real time. The planets never stop moving — they're always activating different parts of your chart, asking you to step up, shed old skin, or embody something new.</p>
+            <p>Think of it as your cosmic weather report. Except instead of rain or shine, we're talking transformation, challenge, growth, and initiation.</p>
+            <p><em>60 min: $100 &middot; 120 min: $175 &middot; Zoom, recorded</em></p>
+          </div>
+          <span class="seo-tag">transit chart reading</span>
+          <span class="seo-tag">astrology transit reading</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Offer 03 — Blended Insights (Astrology + Tarot)</span>
+          <div class="copy-block">
+            <p><strong>BLENDED INSIGHTS | Astrology + Tarot + Oracle</strong></p>
+            <p>For the woman seeking clarity on a specific situation, relationship, or crossroads. Sometimes you need more than astrology. You need the cards to speak the unspeakable — multiple divination tools working together to illuminate what you can't see clearly.</p>
+            <p>What you get: recorded session, notes throughout, photos of all cards pulled, multi-layered insight that goes beyond surface-level answers.</p>
+            <p><em>60 min: $100 &middot; 120 min: $175 &middot; Zoom, recorded</em></p>
+          </div>
+          <span class="seo-tag">astrology tarot reading</span>
+          <span class="seo-tag">tarot and astrology</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Offer 04 — Cosmic Compatibility (Partner Charts)</span>
+          <div class="copy-block">
+            <p><strong>COSMIC COMPATIBILITY | Partner Chart Reading</strong></p>
+            <p>For the woman who wants to understand the deeper dynamics in her relationships. Your charts reveal everything — where you harmonize, where you challenge each other, and what you're here to learn together.</p>
+            <p>Bring your person. This is most powerful when you're both present.</p>
+            <p><em>60 min: $100 &middot; 120 min: $175 &middot; Zoom, recorded</em></p>
+          </div>
+          <span class="seo-tag">synastry reading</span>
+          <span class="seo-tag">compatibility astrology</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Offer 05 — New Mama Birth Portal</span>
+          <div class="copy-block">
+            <p><strong>NEW MAMA BIRTH PORTAL | Mother + Baby Reading</strong></p>
+            <p>When your baby was born, the stars were aligned in a specific way — creating their birth chart and marking your own initiation into motherhood. I'll read your baby's chart to give you insight into who they came here to be, and I'll look at what <em>you</em> were initiated into during the birth portal. Because your baby's birth is also your cosmic rebirth.</p>
+            <p>A beautiful gift for new mamas or to give a friend who just gave birth.</p>
+            <p><em>60 min: $100 &middot; 120 min: $175 &middot; Zoom, recorded</em></p>
+          </div>
+          <span class="seo-tag">birth chart baby</span>
+          <span class="seo-tag">new mama astrology</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Cosmic Classes — 3-Part Series</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">Add this as a section lower on the Work With Me page, or as its own page (/cosmic-classes). This is the education tier — lower barrier, high repeat value.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>Stop relying on apps. Learn to read your own chart.</strong></p>
+            <p>This 3-part series takes you from astrology newbie to confident chart reader. Live via Zoom. $125 per class, or $300 for all three.</p>
+            <p><strong>Class 1: Mapping Your Inner Cosmology</strong> — Planets, signs, houses. Your "big three" and why they matter. For beginners.</p>
+            <p><strong>Class 2: Weaving the Cosmic Tapestry</strong> — Aspects, transits, houses in depth. For women who know their chart and want to go deeper.</p>
+            <p><strong>Class 3: Cosmic Compatibility &amp; Contracts</strong> — Synastry charts, soul contracts, relationship dynamics. Reading two charts together.</p>
+          </div>
+          <span class="seo-tag">astrology class online</span>
+          <span class="seo-tag">learn to read birth chart</span>
+          <span class="copy-note">→ CTA: 'Book a Free 15-Minute Consultation' — add this if no consultation is currently available.</span>
+        </div>
+      </div>
+
+      <!-- PAGE 04: 2026 RETREAT CALENDAR -->
+      <div class="copy-page">
+        <span class="eyebrow">Page 04 &middot; ⚠ 404 — Full Copy Build Needed</span>
+        <h2>2026 Retreat Calendar — Beltane &amp; Beyond</h2>
+        <p style="font-family:var(--font-mono);font-stretch:expanded;font-size:12px;text-transform:uppercase;letter-spacing:0.16em;color:var(--rust);margin-top:var(--space-sm);">/2026-retreat-calendar — currently returning 404. This is a main nav link. Fix is critical path.</p>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Title</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>2026 Retreat Calendar | The Meadow — Seasonal Gatherings for Wild Women, Floyd VA</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Meta Description</span>
+          <div class="meta-box">
+            <span class="meta-label">SEO Target</span>
+            <p>Beltane pole retreat. Medicine Woman Solstice. Community work weekends. 2026 seasonal gatherings at The Meadow in Floyd, Virginia. Limited to 10 women.</p>
+          </div>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">H1 — Hero</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">Sets the seasonal rhythm of the whole page. Should feel like an invitation to enter the wheel of the year, not a list of events. Lead with the mood, not the logistics.</span>
+          </div>
+          <div class="copy-block">
+            <p><strong>Land-based retreats following the wheel of the year. 2026 gatherings at The Meadow.</strong></p>
+            <p>Each retreat honors a turning of the wheel — Beltane, solstice, Lammas, equinox. Some are for working the land. Some are for dancing on it. All of them are for coming home to yourself.</p>
+            <p>Small groups. Intimate gatherings. Limited to 10 women per retreat.</p>
+          </div>
+          <span class="seo-tag">women's retreat 2026</span>
+          <span class="seo-tag">Beltane retreat Virginia</span>
+          <span class="seo-tag">seasonal women's retreat</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Retreat 01 — Community Work Weekend</span>
+          <div class="copy-block">
+            <p><strong>COMMUNITY WORK WEEKEND</strong><br>April 17–20, 2026 &middot; $50/night suggested donation</p>
+            <p>Four days of tending the land and each other. Mornings: working — trail development, creek clearing, garden projects. Evenings: bonfire, music, dancing, the kind of conversation that only happens when you put your phone down.</p>
+            <p>Family-style meals (we all contribute). Continental breakfast + made-to-order eggs. Tent or yurt, sleepover style.</p>
+            <p>This is how I give back to the community that shows up for this land. Come ready to work, play, and build something beautiful together.</p>
+          </div>
+          <span class="seo-tag">community retreat Virginia</span>
+          <span class="seo-tag">volunteer retreat Floyd VA</span>
+          <span class="copy-note">→ CTA: 'Apply Now' → Tally registration form (verify form is live before publishing this page)</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Retreat 02 — Beltane Pole Retreat ⭐ Featured</span>
+          <div class="copy-block">
+            <p><strong>BELTANE POLE RETREAT</strong><br>May 2–4, 2026 &middot; $333/person &middot; Limited to 10 women</p>
+            <p>Celebrate spring's peak and the feminine in full bloom. Movement. Pleasure. Reclamation. We'll dance in circles, on poles, in the air — honoring our bodies and the ancient rhythms of the season. We'll make flower crowns and dance around the maypole, offering gratitude for fertility, growth, and all that's coming to life.</p>
+            <p><strong>Bring your best energy, your wildest self — the version of you that's ready to be fully seen.</strong></p>
+            <p>What's included: fire circles + opening ceremony &middot; sensual somatic alchemy workshop &middot; Covencraft ceremony with Amber (Cherry) &middot; flower crown making &middot; traditional maypole dance &middot; sunset photo sessions at golden hour with Kristen &middot; catered Indian dinner Friday through Sunday lunch &middot; yurt or tent accommodations</p>
+            <p>Check-in after 4pm for overnight guests. Optional breakfast 8–10am Saturday.</p>
+          </div>
+          <span class="seo-tag">Beltane retreat 2026</span>
+          <span class="seo-tag">pole dance retreat women</span>
+          <span class="seo-tag">women's retreat Blue Ridge Mountains</span>
+          <span class="copy-note">→ CTA: 'Apply Now' → Tally registration form with conditional retreat selector. This is the flagship event — feature it first and biggest.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Retreat 03 — Medicine Woman Retreat (Summer Solstice)</span>
+          <div class="copy-block">
+            <p><strong>MEDICINE WOMAN RETREAT</strong><br>June 20–22, 2026 (Summer Solstice Weekend) &middot; $950 &middot; Limited to 10 women</p>
+            <p>For the healers, the artists, the movers and the shakers. If you're out there doing the healing work for others — massage therapist, teacher, healer, creative, artist — this is your weekend to receive.</p>
+            <p>Sunbathing on the deck like lizards. Cold plunges + warm herbal baths. Bodywork sessions (reflexology, Thai-style massage). Sound healing journey. Medicine circle with optional mushroom ceremony. Dance circles. Personal astrology sessions. Oracle readings + writing exercises. Catered meals. Yurt or tent.</p>
+            <p>This retreat honors the women who hold space for others. Come be held.</p>
+          </div>
+          <span class="seo-tag">women's solstice retreat</span>
+          <span class="seo-tag">medicine woman retreat</span>
+          <span class="copy-note">→ CTA: 'Apply Now' → same Tally form. Note: mushroom ceremony is optional. Be mindful of how this is described publicly.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Retreat 04 — Lammas Creative Retreat</span>
+          <div class="copy-block">
+            <p><strong>LAMMAS CREATIVE RETREAT</strong><br>August 1–3, 2026 &middot; Details coming soon</p>
+            <p>The neglected sabbat between Beltane and Fall Equinox gets its moment. Art, creativity, embodied expression. Full details coming soon.</p>
+          </div>
+          <span class="seo-tag">Lammas retreat</span>
+          <span class="copy-note">→ CTA: 'Join Waitlist' until details are confirmed.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Personalized Private Retreats</span>
+          <div class="copy-block">
+            <p><strong>PERSONALIZED PRIVATE RETREATS</strong><br>Available year-round &middot; Solo or small group &middot; Custom pricing</p>
+            <p>Want The Meadow experience on your own terms? We'll design your retreat around what your soul is calling for: astrology deep-dives, yoga on the deck, oracle readings, bodywork, solo time in nature, fire ceremonies, medicine journeys — or any combination of the above.</p>
+            <p>Reach out for a discovery call. We'll co-create it.</p>
+          </div>
+          <span class="seo-tag">private retreat Virginia</span>
+          <span class="seo-tag">custom women's retreat</span>
+          <span class="copy-note">→ CTA: 'Book a Discovery Call' → contact form or TidyCal link</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">What Women Are Saying</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">3–5 testimonials pulled from past retreat guests. Currently Megan is collecting handwritten testimonials to photograph and add. Placeholder copy below — replace with real quotes as soon as available.</span>
+          </div>
+          <div class="copy-block">
+            <p><em>"The most recalibrating experience I've had in years. I found parts of myself I thought I'd lost forever."</em> — Winter Retreat Guest</p>
+            <p><em>"Megan holds space for the wild, the real, the raw — and it's life-changing."</em></p>
+            <p><em>"This land holds great energy. I left feeling magical."</em></p>
+          </div>
+          <span class="copy-note">→ Replace placeholder quotes with handwritten testimonial photos as Megan collects them. Testimonials are a critical trust-builder for the retreat purchase decision.</span>
+        </div>
+
+        <div class="copy-section">
+          <span class="copy-label">Additions Recommended</span>
+          <div class="copy-scaffold">
+            <span class="scaffold-label">Add after initial launch: (1) FAQ section with logistics — bathroom, shower, food restrictions, what to bring, cancellation policy. (2) Packing list download (PDF or linked page). (3) "What Makes The Meadow Different" section to address objections before they form. (4) Photo gallery from past retreats once available.</span>
+          </div>
+          <span class="copy-note">→ Consent, participation policy, and inclusion statement are already strong in Megan's FAQs doc. Add these clearly to this page before Beltane opens for registration.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- Note Before Footer -->
+<div style="background:var(--cream);padding:32px 64px;border-top:1px solid rgba(44,36,22,0.1);">
+  <div class="container">
+    <span class="eyebrow">A note on this document</span>
+    <p style="font-size:15px;max-width:640px;">All copy in Tab 06 is a working draft built from the March 2026 meeting transcript, live site research, and the complete Notion sitemap &amp; copy doc. It represents Megan's voice as I hear it — not a final product. Review every section with Megan before anything goes live. Adjust for accuracy, add confirmed testimonials, and fill in any details only she would know.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Founding Mothers Media &middot; Megan Rising Production &middot; March 2026</p>
+  <p>Confidential — For client use only</p>
+</footer>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
