@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand + Site Audit — Taproot Botanical Alliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --mud:     #2c2416;
+      --moss:    #514619;
+      --orange:  #d4521e;
+      --rust:    #bf3c10;
+      --maroon:  #681704;
+      --rose:    #bc7e78;
+      --cream:   #efeae0;
+      --gray:    #e3ded8;
+      --white:   #f5f3ef;
+
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono:  'Inconsolata', monospace;
+      --font-body:  'Atkinson Hyperlegible', sans-serif;
+
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 32px;
+      --space-lg: 64px;
+      --space-xl: 120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--white);
+      color: var(--mud);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    section { padding: 80px 64px; }
+    @media (max-width: 640px) {
+      section { padding: 48px var(--space-sm); }
+      .container { padding: 0 var(--space-sm); }
+    }
+
+    /* ── DIVIDERS ── */
+    hr {
+      border: none;
+      border-top: 1px solid rgba(44,36,22,0.1);
+      margin: var(--space-md) 0;
+    }
+    .hr-dark {
+      border-top-color: rgba(239,234,224,0.1);
+    }
+
+    /* ── EYEBROWS / LABELS ── */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      font-size: 11px;
+      opacity: 0.4;
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+    .eyebrow-light { color: var(--cream); opacity: 0.5; }
+
+    /* ── TYPE ── */
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 7vw, 72px);
+      line-height: 1.05;
+      font-weight: 400;
+      margin-bottom: var(--space-sm);
+    }
+    h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: var(--space-sm);
+    }
+    h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 2.5vw, 28px);
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: var(--space-xs);
+    }
+    h4 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    p { margin-bottom: var(--space-sm); }
+    p:last-child { margin-bottom: 0; }
+    em { font-style: italic; }
+    em.rose { color: var(--rose); }
+    strong { font-weight: 700; }
+
+    /* ── SITE HEADER ── */
+    .site-header {
+      background: var(--mud);
+      color: var(--cream);
+      padding: var(--space-xl) var(--space-md);
+      text-align: center;
+    }
+    .site-header h1 { color: var(--cream); }
+    .site-header .subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(18px, 2.5vw, 24px);
+      color: var(--rose);
+      margin-top: var(--space-xs);
+    }
+    .meta-row {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+    .meta-item {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--cream);
+      opacity: 0.45;
+    }
+
+    /* ── SCORECARD ── */
+    .scorecard { background: var(--cream); }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .score-card {
+      background: var(--white);
+      padding: 28px 24px;
+    }
+    .score-card .label {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 10px;
+      opacity: 0.4;
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+    .score-number {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      line-height: 1;
+    }
+    .score-sub { font-size: 22px; }
+    .good { color: var(--moss); }
+    .mid  { color: var(--rust); }
+    .low  { color: var(--orange); }
+    .score-desc {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      opacity: 0.5;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ── FINDING CARDS ── */
+    .findings-section { background: var(--white); }
+    .finding-card {
+      background: var(--gray);
+      padding: 36px 32px;
+      margin-bottom: var(--space-sm);
+    }
+    .finding-card:last-child { margin-bottom: 0; }
+    .finding-header {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 4px 12px;
+      border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .tag-strength { background: var(--moss); color: var(--cream); }
+    .tag-gap      { background: var(--rust); color: var(--cream); }
+    .tag-opp      { background: var(--orange); color: var(--white); }
+    .tag-warn     { background: var(--maroon); color: var(--cream); }
+
+    /* ── COPY SPOTLIGHT ── */
+    .copy-section { background: var(--cream); }
+    .copy-block {
+      border-left: 3px solid rgba(44,36,22,0.2);
+      padding: var(--space-sm) var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    .copy-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--moss);
+      line-height: 1.5;
+    }
+    .copy-note {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--mud);
+      opacity: 0.65;
+      margin-top: 10px;
+    }
+    .copy-note::before { content: "→ "; }
+
+    /* ── LINK AUDIT ── */
+    .link-section { background: var(--mud); color: var(--cream); }
+    .link-section h2 { color: var(--cream); }
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .link-card {
+      padding: 28px 24px;
+      border: 1px solid rgba(239,234,224,0.12);
+    }
+    .link-card .link-type {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .link-label { font-family: var(--font-mono); font-stretch: expanded; font-size: 13px; color: var(--cream); margin-bottom: 6px; letter-spacing: 0.06em; }
+    .link-dest { font-size: 13px; color: var(--cream); opacity: 0.5; margin-bottom: 10px; font-family: var(--font-body); }
+    .link-issue { font-size: 14px; color: var(--rose); line-height: 1.5; font-family: var(--font-body); }
+    .link-ok    { font-size: 14px; color: var(--cream); opacity: 0.6; line-height: 1.5; font-family: var(--font-body); }
+
+    .cta-alert {
+      background: var(--maroon);
+      padding: 32px;
+      margin-top: var(--space-md);
+    }
+    .cta-alert h4 { font-family: var(--font-serif); font-size: 26px; color: var(--cream); margin-bottom: var(--space-xs); }
+    .cta-alert p  { color: var(--cream); opacity: 0.85; font-size: 16px; font-family: var(--font-body); }
+
+    /* ── CANVA / SEO ── */
+    .canva-section { background: var(--gray); }
+    .canva-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .canva-card {
+      background: var(--white);
+      padding: 32px 28px;
+    }
+    .canva-card h4 { margin-bottom: var(--space-sm); }
+    .canva-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .canva-card ul li {
+      font-size: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(44,36,22,0.08);
+      font-family: var(--font-body);
+      line-height: 1.5;
+    }
+    .canva-card ul li:last-child { border-bottom: none; }
+    .canva-card ul li::before { content: "— "; opacity: 0.35; }
+
+    /* ── INDUSTRY SECTION ── */
+    .industry-section { background: var(--white); }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-sm);
+      margin: var(--space-md) 0;
+    }
+    .stat-box {
+      background: var(--cream);
+      padding: 28px 24px;
+    }
+    .stat-big {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      line-height: 1;
+      color: var(--moss);
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.5;
+      margin-top: 8px;
+      display: block;
+    }
+    .gap-card {
+      background: var(--gray);
+      padding: 32px 28px;
+      margin-bottom: var(--space-sm);
+    }
+    .gap-card:last-child { margin-bottom: 0; }
+    .gap-card h4 { margin-bottom: 8px; }
+    .gap-card p { font-size: 15px; font-family: var(--font-body); margin-bottom: 0; opacity: 0.85; }
+    .competitor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .competitor-card {
+      background: var(--cream);
+      padding: 28px 24px;
+    }
+    .competitor-card h4 { font-size: 18px; margin-bottom: 6px; }
+    .competitor-card .org-model {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      opacity: 0.45;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .competitor-card p { font-size: 14px; font-family: var(--font-body); opacity: 0.8; margin-bottom: 0; }
+
+    /* ── FUNDING SECTION ── */
+    .funding-section { background: var(--mud); color: var(--cream); }
+    .funding-section h2 { color: var(--cream); }
+    .funding-section h3 { color: var(--cream); }
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .phase-header:first-of-type { margin-top: var(--space-md); }
+    .phase-label {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      color: var(--cream);
+      opacity: 0.45;
+      background: rgba(239,234,224,0.08);
+      padding: 4px 12px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+    .phase-title {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 2.5vw, 30px);
+      color: var(--cream);
+      font-weight: 400;
+    }
+    .funding-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-sm);
+    }
+    .funding-card {
+      background: rgba(239,234,224,0.06);
+      border: 1px solid rgba(239,234,224,0.1);
+      padding: 28px 24px;
+    }
+    .funding-card .f-type {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--rose);
+      opacity: 1;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .funding-card h4 { font-size: 20px; color: var(--cream); margin-bottom: 6px; }
+    .funding-card .f-amount {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--cream);
+      opacity: 0.55;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .funding-card p { font-size: 14px; color: var(--cream); opacity: 0.75; line-height: 1.65; font-family: var(--font-body); margin-bottom: 0; }
+
+    .revenue-section-inner {
+      background: rgba(239,234,224,0.05);
+      border: 1px solid rgba(239,234,224,0.1);
+      padding: 36px 32px;
+      margin-top: var(--space-lg);
+    }
+    .revenue-section-inner h3 { color: var(--cream); margin-bottom: var(--space-md); }
+    .rev-row {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid rgba(239,234,224,0.08);
+      flex-wrap: wrap;
+    }
+    .rev-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .rev-label { font-family: var(--font-body); font-size: 15px; color: var(--cream); min-width: 200px; flex: 1; }
+    .rev-amount { font-family: var(--font-mono); font-stretch: expanded; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cream); opacity: 0.55; white-space: nowrap; padding-top: 2px; }
+
+    .org-box {
+      background: rgba(239,234,224,0.06);
+      border: 1px solid rgba(239,234,224,0.1);
+      padding: 32px;
+      margin-top: var(--space-md);
+    }
+    .org-box h3 { color: var(--cream); font-size: clamp(22px, 2.5vw, 28px); margin-bottom: var(--space-sm); }
+    .org-box p { font-size: 15px; color: var(--cream); opacity: 0.8; font-family: var(--font-body); }
+    .org-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .org-option {
+      background: rgba(239,234,224,0.07);
+      border: 1px solid rgba(239,234,224,0.1);
+      padding: 24px 20px;
+    }
+    .org-option.recommended {
+      border-color: var(--rose);
+      background: rgba(188,126,120,0.08);
+    }
+    .org-option h4 { font-size: 17px; color: var(--cream); margin-bottom: 6px; }
+    .org-option p { font-size: 13px; color: var(--cream); opacity: 0.6; font-family: var(--font-body); margin-bottom: 0; line-height: 1.55; }
+    .rec-badge {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--rose);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* ── RECOMMENDATIONS ── */
+    .recs-section { background: var(--cream); }
+    .rec-item {
+      padding: 36px 32px;
+      background: var(--white);
+      margin-bottom: var(--space-sm);
+    }
+    .rec-item:last-child { margin-bottom: 0; }
+    .rec-num {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      opacity: 0.4;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .rec-title { font-family: var(--font-serif); font-size: clamp(22px, 2.5vw, 28px); margin-bottom: 10px; }
+    .rec-body { font-size: 15px; font-family: var(--font-body); opacity: 0.85; line-height: 1.7; }
+    .rec-body em { font-style: italic; color: var(--rust); }
+
+    /* ── PRIORITY TABLE ── */
+    .priority-section { background: var(--gray); }
+    .priority-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-md);
+      font-size: 14px;
+    }
+    .priority-table th {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 10px;
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(44,36,22,0.15);
+      opacity: 0.5;
+    }
+    .priority-table td {
+      padding: 14px 16px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(44,36,22,0.07);
+      font-family: var(--font-body);
+    }
+    .priority-table tr:last-child td { border-bottom: none; }
+    .pill {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 3px 8px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    .pill-high   { background: var(--rust);  color: var(--white); }
+    .pill-medium { background: var(--moss);  color: var(--cream); }
+    .pill-low    { background: var(--gray);  color: var(--mud); border: 1px solid rgba(44,36,22,0.15); }
+
+    /* ── OFFERS SECTION ── */
+    .offers-section { background: var(--cream); }
+
+    .offers-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+      margin-bottom: var(--space-lg);
+    }
+    @media (max-width: 700px) {
+      .offers-hero { grid-template-columns: 1fr; gap: var(--space-md); }
+    }
+    .offers-hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 6vw, 68px);
+      line-height: 1.05;
+      font-weight: 400;
+    }
+    .offers-hero-headline em { font-style: italic; color: var(--rose); }
+    .offers-hero-side p {
+      font-size: 16px;
+      font-family: var(--font-body);
+      opacity: 0.8;
+      margin-bottom: var(--space-md);
+      line-height: 1.75;
+    }
+    .btn-audit {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+
+    /* package grid */
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .pkg-card {
+      background: var(--white);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .pkg-card.featured {
+      background: var(--mud);
+    }
+    .pkg-num {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      opacity: 0.35;
+      margin-bottom: 10px;
+    }
+    .pkg-card.featured .pkg-num { color: var(--cream); }
+    .pkg-name {
+      font-family: var(--font-serif);
+      font-size: clamp(42px, 6vw, 60px);
+      line-height: 1;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .pkg-card.featured .pkg-name { color: var(--cream); }
+    .pkg-type {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.4;
+      margin-bottom: var(--space-sm);
+    }
+    .pkg-card.featured .pkg-type { color: var(--cream); }
+    .pkg-rec {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 4px 10px;
+      border-radius: 10px;
+      margin-bottom: var(--space-sm);
+    }
+    .pkg-rule {
+      border: none;
+      border-top: 1px solid rgba(44,36,22,0.1);
+      margin: var(--space-sm) 0;
+    }
+    .pkg-card.featured .pkg-rule { border-top-color: rgba(239,234,224,0.12); }
+    .pkg-desc {
+      font-size: 15px;
+      font-family: var(--font-body);
+      line-height: 1.7;
+      opacity: 0.8;
+      margin-bottom: var(--space-sm);
+    }
+    .pkg-card.featured .pkg-desc { color: var(--cream); opacity: 0.75; }
+    .pkg-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: var(--space-md);
+      flex: 1;
+    }
+    .pkg-includes span {
+      font-size: 14px;
+      font-family: var(--font-body);
+      opacity: 0.7;
+      padding-left: 16px;
+      position: relative;
+    }
+    .pkg-card.featured .pkg-includes span { color: var(--cream); }
+    .pkg-includes span::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      opacity: 0.4;
+      font-style: normal;
+    }
+    .pkg-price-block {
+      border-top: 1px solid rgba(44,36,22,0.08);
+      padding-top: var(--space-sm);
+      margin-top: auto;
+    }
+    .pkg-card.featured .pkg-price-block { border-top-color: rgba(239,234,224,0.1); }
+    .pkg-price {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .pkg-card.featured .pkg-price { color: var(--cream); }
+    .pkg-price-note {
+      font-size: 13px;
+      font-family: var(--font-body);
+      opacity: 0.5;
+      margin-bottom: var(--space-sm);
+      line-height: 1.5;
+    }
+    .pkg-card.featured .pkg-price-note { color: var(--cream); }
+    .btn-apply-dark {
+      display: inline-block;
+      background: var(--mud);
+      color: var(--cream);
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+    .btn-apply-orange {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+
+    /* retainer tiers */
+    .retainer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .retainer-card {
+      background: var(--gray);
+      padding: 36px 28px;
+    }
+    .retainer-card.featured {
+      background: var(--moss);
+    }
+    .retainer-tag {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.4;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .retainer-card.featured .retainer-tag { color: var(--cream); opacity: 0.55; }
+    .retainer-name {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 4px;
+    }
+    .retainer-card.featured .retainer-name { color: var(--cream); }
+    .retainer-sub {
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.4;
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+    .retainer-card.featured .retainer-sub { color: var(--cream); }
+    .retainer-rec {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 4px 10px;
+      border-radius: 10px;
+      margin-bottom: var(--space-sm);
+    }
+    .retainer-hr {
+      border: none;
+      border-top: 1px solid rgba(44,36,22,0.1);
+      margin: var(--space-sm) 0;
+    }
+    .retainer-card.featured .retainer-hr { border-top-color: rgba(239,234,224,0.12); }
+    .retainer-desc {
+      font-size: 15px;
+      font-family: var(--font-body);
+      line-height: 1.7;
+      opacity: 0.8;
+      margin-bottom: var(--space-sm);
+    }
+    .retainer-card.featured .retainer-desc { color: var(--cream); opacity: 0.8; }
+    .retainer-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: var(--space-md);
+    }
+    .retainer-includes span {
+      font-size: 14px;
+      font-family: var(--font-body);
+      opacity: 0.65;
+      padding-left: 16px;
+      position: relative;
+    }
+    .retainer-card.featured .retainer-includes span { color: var(--cream); }
+    .retainer-includes span::before { content: "→"; position: absolute; left: 0; opacity: 0.4; }
+    .retainer-price {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .retainer-card.featured .retainer-price { color: var(--cream); }
+    .retainer-price-note {
+      font-size: 13px;
+      font-family: var(--font-body);
+      opacity: 0.5;
+      margin-bottom: var(--space-sm);
+      line-height: 1.5;
+    }
+    .retainer-card.featured .retainer-price-note { color: var(--cream); }
+
+    /* steps */
+    .steps-block {
+      background: var(--white);
+      padding: 48px;
+      margin-bottom: var(--space-lg);
+    }
+    @media (max-width: 640px) { .steps-block { padding: 32px var(--space-sm); } }
+    .steps-block h3 { margin-bottom: var(--space-md); }
+    .step-row {
+      display: flex;
+      gap: var(--space-md);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid rgba(44,36,22,0.08);
+      align-items: flex-start;
+    }
+    .step-row:last-child { border-bottom: none; }
+    .step-n {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      line-height: 1;
+      color: var(--mud);
+      opacity: 0.1;
+      min-width: 44px;
+      padding-top: 2px;
+    }
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+    .step-body {
+      font-size: 15px;
+      font-family: var(--font-body);
+      opacity: 0.7;
+      line-height: 1.65;
+    }
+
+    /* audit CTA bar */
+    .audit-cta-bar {
+      background: var(--mud);
+      padding: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    @media (max-width: 640px) { .audit-cta-bar { padding: 48px var(--space-sm); flex-direction: column; align-items: flex-start; } }
+    .audit-cta-text {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    .audit-cta-text em { font-style: italic; color: var(--rose); }
+    .btn-audit-rose {
+      display: inline-block;
+      background: var(--rose);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-stretch: expanded;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 16px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--mud);
+      color: var(--cream);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+    }
+    .site-footer p { font-size: 14px; opacity: 0.45; color: var(--cream); font-family: var(--font-body); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="container">
+    <span class="eyebrow eyebrow-light">Brand + Site Audit</span>
+    <h1>Taproot Botanical Alliance</h1>
+    <p class="subtitle">"Helping Farmers, Healing Communities"</p>
+    <div class="meta-row">
+      <span class="meta-item">taprootbotanicalalliance.org</span>
+      <span class="meta-item">Audited March 2026</span>
+      <span class="meta-item">Founding Mothers Media</span>
+    </div>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════
+     SCORECARD
+════════════════════════════════════════════════ -->
+<section class="scorecard">
+  <div class="container">
+    <span class="eyebrow">At a Glance</span>
+    <h2>Where the brand stands today</h2>
+    <p>Taproot Botanical Alliance is doing something genuinely important — and the seeds of a strong, differentiated brand are already here. The mission is clear, the founder's credibility is real, and the regional story is rich. What follows is a snapshot of the current state across five core brand dimensions, followed by detailed findings, a link audit, Canva/SEO realities, industry research, and a funding roadmap.</p>
+    <div class="score-grid">
+      <div class="score-card">
+        <span class="label">Mission Clarity</span>
+        <div class="score-number good">8<span class="score-sub">/10</span></div>
+        <span class="score-desc">Strong & specific</span>
+      </div>
+      <div class="score-card">
+        <span class="label">Audience Focus</span>
+        <div class="score-number mid">5<span class="score-sub">/10</span></div>
+        <span class="score-desc">Two personas, no fork</span>
+      </div>
+      <div class="score-card">
+        <span class="label">Visual Brand</span>
+        <div class="score-number low">3<span class="score-sub">/10</span></div>
+        <span class="score-desc">Underdeveloped</span>
+      </div>
+      <div class="score-card">
+        <span class="label">Trust Signals</span>
+        <div class="score-number mid">6<span class="score-sub">/10</span></div>
+        <span class="score-desc">Founder credibility strong</span>
+      </div>
+      <div class="score-card">
+        <span class="label">Conversion Path</span>
+        <div class="score-number low">2<span class="score-sub">/10</span></div>
+        <span class="score-desc">Zero email capture</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BRAND FINDINGS
+════════════════════════════════════════════════ -->
+<section class="findings-section">
+  <div class="container">
+    <span class="eyebrow">Brand Findings</span>
+    <h2>What's working — and what's holding this back</h2>
+    <p style="margin-bottom: var(--space-md);">I'm looking at brand architecture across identity, messaging, audience, and site structure.</p>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="tag tag-strength">Strength</span>
+        <h3>The mission is genuinely differentiated</h3>
+      </div>
+      <p>"Helping Farmers, Healing Communities" does real work — it carries both the economic and social value in six words. The positioning against imported herbs (contamination, traceability, quality) is defensible and increasingly urgent given 2025 tariff pressure on Chinese and Indian botanical imports.</p>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="tag tag-strength">Strength</span>
+        <h3>David's founder story is the brand's strongest asset</h3>
+      </div>
+      <p>20+ years of hands-on experience. Founder of the Appalachian Herb Growers Consortium in 2014. Creator of Swallowtail Tea (now Red Rooster Tea). Studies in Evolutionary Herbalism. Community organizing roots in resilience and disaster relief. This is a founder story that carries real weight — and it's currently buried at the bottom of the homepage.</p>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="tag tag-strength">Strength</span>
+        <h3>The Appalachian regional story is underused gold</h3>
+      </div>
+      <p>The site draws a direct parallel between Middle Appalachia's ecosystems and premier Chinese growing regions — backed by press coverage from NPR and WVTF. This is a credible, compelling claim that could power an entire content strategy. It's currently a single sentence buried in the body copy.</p>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="tag tag-gap">Gap</span>
+        <h3>Two audiences, one page, no clear hierarchy</h3>
+      </div>
+      <p>The site serves both growers (farmers seeking new income) and buyers (practitioners and distributors seeking domestic herbs). These are completely different people with different fears, goals, and decision timelines. They arrive at the same homepage and have to self-sort. A clear two-path fork at the hero level would dramatically improve both comprehension and conversion.</p>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="tag tag-gap">Gap</span>
+        <h3>The visual identity doesn't match the brand's depth</h3>
+      </div>
+      <p>The current site uses a minimal layout with no developed visual identity — no color system, no strong typographic hierarchy, no imagery that communicates the richness of the Appalachian botanical world. For a brand with this much story, the visual experience should be doing heavy lifting. Right now, it's leaving credibility on the table.</p>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="tag tag-gap">Gap</span>
+        <h3>"The Community Medicine Chest" has no definition</h3>
+      </div>
+      <p>This is the most emotionally resonant phrase on the site — and it links out to a Google Drive PDF with no preview or framing. A community-owned, regionally-rooted supply of medicine is a genuinely powerful vision. Give it a section, a story, a picture of what it looks like when it works.</p>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="tag tag-gap">Gap</span>
+        <h3>No social proof or outcomes data anywhere</h3>
+      </div>
+      <p>How many growers are in the network? Which herbs are being grown? Any buyer testimonials? Even one grower story — how many acres, which herbs, what the income shift looked like — would do more for conversion than any amount of positioning copy.</p>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="tag tag-opp">Opportunity</span>
+        <h3>The Solidarity Economy framing is a real differentiator</h3>
+      </div>
+      <p>This concept appears only as a footer link — but it's actually a values-level differentiator that distinguishes Taproot from a purely commercial supply chain operation. Buyers and growers who align with cooperative economics and equitable trade are more loyal when they understand this is the foundation of the organization.</p>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="tag tag-opp">Opportunity</span>
+        <h3>The consulting offer is invisible</h3>
+      </div>
+      <p>Consulting appears as a single nav link that opens a Google Drive PDF. Given David's 20+ years of experience, consulting could be both a revenue stream and a brand-building channel. A dedicated page with clear positioning — who it's for, what transformation it delivers, how to hire him — would make this offer real and purchasable.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     COPY SPOTLIGHT
+════════════════════════════════════════════════ -->
+<section class="copy-section">
+  <div class="container">
+    <span class="eyebrow">Copy Analysis</span>
+    <h2>Lines worth keeping — and why</h2>
+    <p style="margin-bottom:var(--space-md);">Good copy is already living on this site. Here's what to preserve, amplify, and build around.</p>
+
+    <div class="copy-block">
+      <div class="copy-quote">"Helping Farmers, Healing Communities"</div>
+      <p class="copy-note">Keep exactly as-is. Hero-level positioning that carries the economic + social mission simultaneously. This is the tagline.</p>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-quote">"Welcome to the Herbal Revolution!"</div>
+      <p class="copy-note">Big energy. This wants to be a movement, not just a business — that's the right instinct. But the rest of the page needs to live up to it.</p>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-quote">"Middle Appalachia's botanical diversity… ecosystems similar to premier Chinese growing regions"</div>
+      <p class="copy-note">A credibility bomb. Belongs much earlier in the story, with more specificity about which herbs thrive here. Backed by NPR coverage.</p>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-quote">"The Community Medicine Chest"</div>
+      <p class="copy-note">The most emotionally resonant phrase on the site. Define it. Tell the story of what it means for a community to have this. Make it a vision, not a footnote link.</p>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-quote">"Herbs on the International Market" — quality concerns with imported herbs</div>
+      <p class="copy-note">The competitive positioning is real. But the framing skews fear-based. Reframe as a positive: "Why domestic matters" rather than "why imports are dangerous."</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     LINK AUDIT
+════════════════════════════════════════════════ -->
+<section class="link-section">
+  <div class="container">
+    <span class="eyebrow eyebrow-light">Link Audit</span>
+    <h2>Where every link actually goes</h2>
+    <p style="color:var(--cream); opacity:0.75; margin-bottom:var(--space-sm);">I followed every link on the site. The pattern is consistent — and consistently problematic. Every key action sends the visitor off the site, into Google's infrastructure, with no way to capture their information, retarget them, or know if they completed the action.</p>
+
+    <div class="link-grid">
+      <div class="link-card">
+        <span class="link-type" style="color:var(--rose);">Application</span>
+        <div class="link-label">Grower Application</div>
+        <div class="link-dest">→ Google Form (off-site)</div>
+        <div class="link-issue">Sends visitors to Google Forms. No email is captured before they leave the site. No confirmation on-site. No follow-up sequence triggered. Submissions land in a spreadsheet, not a CRM.</div>
+      </div>
+
+      <div class="link-card">
+        <span class="link-type" style="color:var(--rose);">Application</span>
+        <div class="link-label">Buyer Application</div>
+        <div class="link-dest">→ Google Form (off-site)</div>
+        <div class="link-issue">Same issue as grower application. Two completely different audiences, same destination format. No on-site confirmation, no nurture, no follow-up.</div>
+      </div>
+
+      <div class="link-card">
+        <span class="link-type" style="color:var(--rose);">Nav Link</span>
+        <div class="link-label">Consulting</div>
+        <div class="link-dest">→ Google Drive PDF (off-site)</div>
+        <div class="link-issue">A navigational item that opens a PDF. There is no consulting page, no offer description, no pricing, and no way to hire David from this link.</div>
+      </div>
+
+      <div class="link-card">
+        <span class="link-type" style="color:var(--rose);">Resource</span>
+        <div class="link-label">Grower Guidelines</div>
+        <div class="link-dest">→ Google Drive PDF (off-site)</div>
+        <div class="link-issue">Valuable content sent off-site with no email gate. This is a lead magnet being given away with zero capture. A grower downloading guidelines is a warm lead.</div>
+      </div>
+
+      <div class="link-card">
+        <span class="link-type" style="color:var(--rose);">Concept Page</span>
+        <div class="link-label">Community Medicine Chest</div>
+        <div class="link-dest">→ Google Drive PDF (off-site)</div>
+        <div class="link-issue">The brand's most emotionally compelling concept is hidden in a Drive PDF. No one will share this. No one will remember where they found it. It needs a real page.</div>
+      </div>
+
+      <div class="link-card">
+        <span class="link-type" style="color:var(--rose);">Resource</span>
+        <div class="link-label">Solidarity Economy</div>
+        <div class="link-dest">→ Google Drive PDF (off-site)</div>
+        <div class="link-issue">The values foundation of the organization is a PDF footnote. This needs to be woven into the main messaging, not tucked away.</div>
+      </div>
+
+      <div class="link-card">
+        <span class="link-type" style="color:var(--rose);">Resource</span>
+        <div class="link-label">Regenerative Agriculture</div>
+        <div class="link-dest">→ Google Drive PDF (off-site)</div>
+        <div class="link-issue">Educational content that could drive SEO and build authority is living in Google Drive where it will never be indexed.</div>
+      </div>
+
+      <div class="link-card">
+        <span class="link-type" style="color:var(--rose);">Resource</span>
+        <div class="link-label">Good Agricultural Practices</div>
+        <div class="link-dest">→ Google Drive PDF (off-site)</div>
+        <div class="link-issue">Same. Indexed content that could rank for grower-focused search terms is completely invisible to search engines in its current location.</div>
+      </div>
+
+      <div class="link-card">
+        <span class="link-type" style="color:var(--cream); opacity:0.5;">Social</span>
+        <div class="link-label">Facebook</div>
+        <div class="link-dest">→ Facebook page (off-site)</div>
+        <div class="link-ok">Only social channel linked. No Instagram, no email list, no newsletter sign-up anywhere on the site.</div>
+      </div>
+
+      <div class="link-card">
+        <span class="link-type" style="color:var(--cream); opacity:0.5;">Press</span>
+        <div class="link-label">NPR / WVTF Articles</div>
+        <div class="link-dest">→ NPR + WVTF (off-site)</div>
+        <div class="link-ok">Legitimate press citations from 2014-2016. Good credibility signals — though they're 10+ years old. Fresh press or updated media coverage would strengthen this.</div>
+      </div>
+    </div>
+
+    <div class="cta-alert">
+      <h4>Critical: Zero email capture anywhere on this site</h4>
+      <p>There is no newsletter sign-up, no lead magnet gate, no opt-in form, and no way to know who visited. Every visitor — grower or buyer — who leaves this site is gone forever. The Google Forms collect names, but those submissions are not automatically connected to any email marketing system. The most urgent single fix on this site is adding an email capture mechanism. Even a simple "Join our grower network" form embedded directly on the page would change this completely.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CANVA + SEO
+════════════════════════════════════════════════ -->
+<section class="canva-section">
+  <div class="container">
+    <span class="eyebrow">Platform Reality</span>
+    <h2>Canva Sites and the SEO problem</h2>
+    <p style="margin-bottom:var(--space-md);">Canva Sites is a genuinely good tool for getting a beautiful site up quickly — and for a small operation, that tradeoff makes sense. But it comes with hard limitations that are worth naming clearly, especially as Taproot grows and search visibility becomes more important.</p>
+
+    <div class="canva-grid">
+      <div class="canva-card">
+        <h4>What Canva Sites cannot do</h4>
+        <ul>
+          <li>Add custom meta titles or descriptions per page — every page uses the same generic metadata</li>
+          <li>Create a sitemap.xml file — search engines have difficulty crawling and indexing the site</li>
+          <li>Add alt text to images — invisible to screen readers and to Google Image Search</li>
+          <li>Install Google Analytics, Search Console, or any tracking pixel without a paid plan</li>
+          <li>Add schema markup (structured data) for local business, products, or events</li>
+          <li>Control page load speed or Core Web Vitals — performance is dictated by Canva's infrastructure</li>
+          <li>Add blog posts or long-form content natively — the content that drives organic search traffic</li>
+          <li>Integrate directly with any email marketing platform (Mailchimp, Flodesk, ConvertKit)</li>
+          <li>Gate content behind an email opt-in form</li>
+          <li>Create separate landing pages for growers vs. buyers with tracked conversion paths</li>
+        </ul>
+      </div>
+
+      <div class="canva-card">
+        <h4>What this means practically</h4>
+        <ul>
+          <li><strong>Search ranking:</strong> The site is essentially invisible to Google for any keyword someone might search — "Appalachian medicinal herbs," "buy domestic goldenseal," "herb grower cooperative Virginia." None of these will surface this site in its current form.</li>
+          <li><strong>Lead capture:</strong> Without embedding a third-party form tool (Tally, Typeform, or similar), there is no way to capture visitor information on-site.</li>
+          <li><strong>Content strategy:</strong> Educational PDFs on Google Drive — Solidarity Economy, Regenerative Ag, GAPs — contain the kind of content that would rank well if published as web pages. In Drive, they generate zero search traffic.</li>
+          <li><strong>Press credibility:</strong> There's NPR coverage from 2014. For a website to convert a skeptical buyer or grower, having findable, indexable credibility signals matters.</li>
+        </ul>
+      </div>
+
+      <div class="canva-card">
+        <h4>Platform options when ready to migrate</h4>
+        <ul>
+          <li><strong>Squarespace</strong> — Best balance of design control + SEO tools for non-developers. Native email campaigns. Good for a site this size.</li>
+          <li><strong>Showit</strong> — Full visual control; connects to WordPress blog for SEO. Higher learning curve but exceptional design freedom.</li>
+          <li><strong>Webflow</strong> — Best-in-class SEO control and CMS capabilities. Steeper learning curve. Worth it if content strategy is a priority.</li>
+          <li><strong>WordPress + Kadence/Divi</strong> — Full control, most customizable. Requires more maintenance but unlimited SEO capability.</li>
+          <li><strong>Near-term workaround:</strong> Keep Canva for now, but move all PDFs to dedicated pages on a free Notion site or a linked WordPress subdomain to capture search traffic and email leads.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     INDUSTRY RESEARCH
+════════════════════════════════════════════════ -->
+<section class="industry-section">
+  <div class="container">
+    <span class="eyebrow">Industry Research</span>
+    <h2>The market Taproot is operating in</h2>
+    <p style="margin-bottom:0;">The opportunity is real and growing fast. Here's what the numbers say — and where the gaps are.</p>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-big">$21B</div>
+        <span class="stat-label">US herbal medicine market, 2024</span>
+      </div>
+      <div class="stat-box">
+        <div class="stat-big">$58B</div>
+        <span class="stat-label">Projected market size by 2030</span>
+      </div>
+      <div class="stat-box">
+        <div class="stat-big">89%</div>
+        <span class="stat-label">Of clinical practitioners prefer domestic herbs over imported</span>
+      </div>
+      <div class="stat-box">
+        <div class="stat-big">$555M</div>
+        <span class="stat-label">US herb imports in 2024 — up 9% from 2023</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:var(--space-lg); margin-bottom:var(--space-sm);">Where the market gaps are — and where Taproot fits</h3>
+
+    <div class="gap-card">
+      <h4>Gap 1 — Processing infrastructure is the bottleneck</h4>
+      <p>Most post-harvest processing happens on the West Coast or Northeast, with profits leaving Appalachia. Wild harvesters and small farmers are "paid pennies on the dollar compared with what processing companies earn." The shared mobile processing facility Taproot is planning directly addresses this — it's not a nice-to-have, it's the economic heart of the model.</p>
+    </div>
+
+    <div class="gap-card">
+      <h4>Gap 2 — Aggregation is what buyers actually need</h4>
+      <p>Buyers struggle to find reliable domestic sources that can meet volume requirements. "Only a handful of commercial medicinal herb farms scattered throughout the US" exist, and they don't produce enough to meet commercial demand consistently. Taproot's aggregator model is exactly the structure the market is missing in this region.</p>
+    </div>
+
+    <div class="gap-card">
+      <h4>Gap 3 — Quality, traceability, and certification are now prerequisites</h4>
+      <p>Contamination concerns (heavy metals, pesticides) are the #1 concern for buyers. Buyers now require seed-to-shelf traceability, GMP compliance, and species verification. Taproot's focus on GAPs and organic/biodynamic certification pathways is the right positioning — but it needs to be front and center in the buyer-facing messaging.</p>
+    </div>
+
+    <div class="gap-card">
+      <h4>Gap 4 — No pricing transparency for small growers</h4>
+      <p>Small farmers lack access to wholesale pricing data and market demand signals. There's no transparent mechanism between small farms and wholesale buyers. An organization that provides market intelligence — what's in demand, what prices are moving, which buyers are looking — would be enormously valuable to grower members.</p>
+    </div>
+
+    <div class="gap-card">
+      <h4>Gap 5 — The "food as medicine" trend is creating new buyer categories</h4>
+      <p>Integrative health centers held 38% of the herbal medicine market revenue in 2024. The food-as-medicine movement is creating institutional buyers — hospitals, community health centers, employer wellness programs — who didn't previously exist as herb buyers. The Community Medicine Chest concept speaks directly to this emerging market.</p>
+    </div>
+
+    <div class="gap-card">
+      <h4>Highest-value herbs for Appalachian growers</h4>
+      <p><strong>Tier 1 (highest demand + value):</strong> American Ginseng, Goldenseal ("demand probably currently exceeds supply"), Echinacea (extract market alone reached $1.81B in 2023, growing at 11.4% CAGR). <strong>Tier 2 (growing demand):</strong> Elderberry, Astragalus, Ashwagandha, Turmeric. <strong>Tier 3 (niche/Appalachian specialty):</strong> Black Cohosh, False Unicorn, Virginia Snakeroot, Blue Cohosh — high value, regionally specific, conservation-sensitive wild harvest opportunity.</p>
+    </div>
+
+    <hr style="margin: var(--space-lg) 0;" />
+
+    <h3 style="margin-bottom:var(--space-sm);">Who's already doing this — and how Taproot is different</h3>
+    <p style="margin-bottom:var(--space-md);">Taproot is not operating in a vacuum. Several organizations are doing adjacent work in Appalachia. Understanding the landscape is important for positioning and for identifying partnership opportunities.</p>
+
+    <div class="competitor-grid">
+      <div class="competitor-card">
+        <h4>Appalachian Harvest Herb Hub (ASD)</h4>
+        <span class="org-model">Aggregator / Hub — Virginia</span>
+        <p>The most direct comparable. Won NBJ Award 2023 for Stewardship & Sustainability. Expanding regional herb hub network across Central Appalachia. Has physical processing infrastructure. Taproot's differentiation: deeper grower-cooperative model, Community Medicine Chest vision, and Solidarity Economy values.</p>
+      </div>
+      <div class="competitor-card">
+        <h4>Rural Action Herb Hub (Ohio)</h4>
+        <span class="org-model">Aggregator — Appalachian Ohio</span>
+        <p>Located at Nelsonville ACEnet facility. Provides shared-use processing equipment. Part of "Appalachian RESILIENCY" coalition. Expanding 2023-24. Good potential coalition partner for Taproot.</p>
+      </div>
+      <div class="competitor-card">
+        <h4>Wild Stewards Alliance</h4>
+        <span class="org-model">Wild Harvest Network — Regional</span>
+        <p>Part of Appalachian Forest Farmer Coalition. 2022-24 results: trained 135 harvesters; sold 856 lbs of woodland roots, barks, and herbs; supplied 9 buyers across US and Canada. Certification-focused model.</p>
+      </div>
+      <div class="competitor-card">
+        <h4>Meeting House Farm</h4>
+        <span class="org-model">Buyer Aggregator — Multi-state</span>
+        <p>Collaborative connecting herbalists with herbs from 40+ farm partners across the US. Operates as a buyer-side aggregator, not a grower cooperative. Different value chain position from Taproot.</p>
+      </div>
+      <div class="competitor-card">
+        <h4>Appalachian Herb Growers Consortium</h4>
+        <span class="org-model">Predecessor — Founded by David</span>
+        <p>David founded this in 2014. Status: appears to have ceased operations due to financial constraints. Taproot Botanical Alliance is, in many ways, the next iteration — with a stronger financial model built in from the start.</p>
+      </div>
+      <div class="competitor-card">
+        <h4>United Plant Savers</h4>
+        <span class="org-model">Conservation + Education — National</span>
+        <p>Partnered with ASD and Rural Action since 1994. Goldenseal propagation focus. Good alignment with Taproot's conservation ethic. Potential co-branding or endorsement opportunity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FUNDING
+════════════════════════════════════════════════ -->
+<section class="funding-section">
+  <div class="container">
+    <span class="eyebrow eyebrow-light">Funding Research</span>
+    <h2>Creative funding — a 12-month roadmap</h2>
+    <p style="color:var(--cream); opacity:0.75; margin-bottom:0;">Money is a real constraint — and there are more paths forward than most small agricultural organizations realize. Here are the most viable options, organized by time horizon.</p>
+
+    <div class="phase-header">
+      <span class="phase-label">Phase 1 · Months 1–3</span>
+      <span class="phase-title">Planning &amp; organizational grants</span>
+    </div>
+    <div class="funding-grid">
+      <div class="funding-card">
+        <span class="f-type">USDA — Apply Now</span>
+        <h4>Value-Added Producer Grant (VAPG)</h4>
+        <span class="f-amount">Planning: up to $75,000 · Working Capital: up to $250,000</span>
+        <p>Medicinal herbs are eligible value-added products. The mobile processing facility and Community Medicine Chest product line both qualify. 1:1 match required (founder time and in-kind counts). The 2025 deadline passed April 17 — apply for the next cycle now. Contact Virginia VAFAIRS to get in the queue.</p>
+      </div>
+      <div class="funding-card">
+        <span class="f-type">USDA — Rolling Applications</span>
+        <h4>Rural Cooperative Development Grant (RCDG)</h4>
+        <span class="f-amount">Up to $75,000 · No match required</span>
+        <p>Funds cooperative governance, business planning, bylaws development, and member recruitment. Virginia VAFAIRS administers this in Virginia and can provide free technical assistance. This is the first call to make — it funds the planning that makes every other grant possible.</p>
+      </div>
+      <div class="funding-card">
+        <span class="f-type">USDA — Specialty Crops</span>
+        <h4>Specialty Crop Block Grant (SCBGP)</h4>
+        <span class="f-amount">$82.3M nationally in 2024 · State-administered</span>
+        <p>Medicinal herbs are explicitly defined as specialty crops. Funds market development, crop research, processing infrastructure, and sustainability initiatives. Administered by state departments of agriculture. Contact Virginia VDACS or your state's equivalent for the current application cycle.</p>
+      </div>
+    </div>
+
+    <div class="phase-header">
+      <span class="phase-label">Phase 2 · Months 4–6</span>
+      <span class="phase-title">First earned revenue — launch the CSA</span>
+    </div>
+    <div class="funding-grid">
+      <div class="funding-card">
+        <span class="f-type">Earned Revenue — Launch Ready</span>
+        <h4>Community-Supported Apothecary (CSA)</h4>
+        <span class="f-amount">50 members = $30,000–$50,000/year recurring</span>
+        <p>The Community Medicine Chest concept is a natural CSA product: quarterly shipments of Appalachian-grown herbal remedies + educational materials. Models like Appalachian Alchemy and Wild &amp; Wise Herbal CSA prove the model works. Remedies carry 300-400% markup over base herb cost. 50 founding members is a realistic first-year target. This is the fastest path to recurring revenue.</p>
+      </div>
+      <div class="funding-card">
+        <span class="f-type">Earned Revenue — Immediate</span>
+        <h4>Member Dues + Processing Fees</h4>
+        <span class="f-amount">$100–$500/member annually + per-pound processing</span>
+        <p>Grower members pay annual cooperative dues plus a per-pound fee for use of the mobile processing facility ($0.50–$2.00/lb depending on processing complexity). Predictable, scalable revenue that grows as the grower network grows. Creates member alignment: more they use it, more they contribute.</p>
+      </div>
+      <div class="funding-card">
+        <span class="f-type">Earned Revenue</span>
+        <h4>Consulting (Make it a real offer)</h4>
+        <span class="f-amount">Day rate: $500–$1,500 · Project: $3,000–$10,000+</span>
+        <p>David has 20+ years of experience and a track record of building the very type of organization other communities want to replicate. Farm consultation, cooperative development advising, curriculum design for herb growers — all are legitimate consulting verticals. Right now this offer is invisible. A landing page with clear positioning and a way to book would change that immediately.</p>
+      </div>
+    </div>
+
+    <div class="phase-header">
+      <span class="phase-label">Phase 3 · Months 7–12</span>
+      <span class="phase-title">Infrastructure capital</span>
+    </div>
+    <div class="funding-grid">
+      <div class="funding-card">
+        <span class="f-type">USDA — Annual Cycle</span>
+        <h4>Rural Business Development Grant (RBDG)</h4>
+        <span class="f-amount">$10,000–$500,000 · No cost-share required</span>
+        <p>Eligible uses include equipment acquisition for mobile processing, technical assistance, and job training. Deadline typically February. Cooperatives, nonprofits, and rural entities are all eligible. By month 7, having established cooperative governance and first revenue makes this application far stronger.</p>
+      </div>
+      <div class="funding-card">
+        <span class="f-type">Virginia State Grant</span>
+        <h4>Agriculture &amp; Forestry Industries Development (AFID)</h4>
+        <span class="f-amount">Planning: up to $35,000 · Infrastructure: additional tiers</span>
+        <p>Virginia-specific grant for agricultural business development. Planning grants fund feasibility studies and partnerships. Infrastructure grants fund facility and equipment. Mobile processing facility qualifies directly. Apply through Virginia VDACS. Spring and fall cycles.</p>
+      </div>
+      <div class="funding-card">
+        <span class="f-type">Appalachian Development</span>
+        <h4>Appalachian Regional Commission (ARC)</h4>
+        <span class="f-amount">$8–9M annually across Appalachia · Project-based</span>
+        <p>ARC funds infrastructure, workforce development, and economic development across 13 Appalachian states. In 2024, approved 583 projects. The herb hub aggregation model aligns with ARC's economic diversification priorities. Review approved projects database at arc.gov to find comparable precedents before applying.</p>
+      </div>
+      <div class="funding-card">
+        <span class="f-type">CDFI Lending</span>
+        <h4>Appalachian Community Capital</h4>
+        <span class="f-amount">Below-market loans · Mission-aligned lending</span>
+        <p>Nonprofit CDFI founded with ARC seed funding. Network of 20+ regional CDFIs specifically committed to rural Appalachian credit needs. Understands cooperative business models that conventional banks overlook. Make an introductory call in Month 1 — relationship-building now makes a loan application in Month 9 much stronger.</p>
+      </div>
+    </div>
+
+    <div class="phase-header">
+      <span class="phase-label">Phase 4 · Year 2+</span>
+      <span class="phase-title">Crowdfunding + broader capital</span>
+    </div>
+    <div class="funding-grid">
+      <div class="funding-card">
+        <span class="f-type">Crowdfunding</span>
+        <h4>Equity or Reward Crowdfunding</h4>
+        <span class="f-amount">Target: $50,000–$100,000</span>
+        <p>Platforms like Wefunder (equity) or Barnraiser (reward/agriculture-focused) are built for this kind of mission-aligned campaign. The Community Medicine Chest is a natural crowdfunding story: pre-orders, founding member tiers, early-adopter access to the apothecary. Run this after you have proven member traction and first CSA revenue — the story is much easier to tell.</p>
+      </div>
+      <div class="funding-card">
+        <span class="f-type">Cooperative Development</span>
+        <h4>Capital Impact Partners Co-op Innovation Awards</h4>
+        <span class="f-amount">$205,000 across awardees · Pre-seed focus</span>
+        <p>Administered by National Cooperative Bank and Capital Impact Partners. Since 2015, $1.23M awarded to 35 organizations — those awards leveraged $15.2M+ in follow-on funding. Next cycle: October 2026. Designed for early-stage cooperative ideas. Taproot is exactly the profile.</p>
+      </div>
+      <div class="funding-card">
+        <span class="f-type">Research Funding</span>
+        <h4>SARE Grants (Sustainable Agriculture Research &amp; Education)</h4>
+        <span class="f-amount">Variable · Project-based</span>
+        <p>Strong track record funding Appalachian medicinal herb cultivation research. Previous SARE-funded projects include "Appalachian Forest Farming Network for Native Medicinal Plant Production." Ideal if Taproot wants to document sustainable cultivation practices and build a research-backed grower training curriculum.</p>
+      </div>
+    </div>
+
+    <div class="revenue-section-inner">
+      <h3>Projected earned revenue summary</h3>
+      <div class="rev-row">
+        <div class="rev-label">Community-Supported Apothecary CSA (50 members)</div>
+        <div class="rev-amount">$30,000–$50,000 / year</div>
+      </div>
+      <div class="rev-row">
+        <div class="rev-label">Member cooperative dues (20 grower-members)</div>
+        <div class="rev-amount">$2,000–$10,000 / year</div>
+      </div>
+      <div class="rev-row">
+        <div class="rev-label">Mobile processing fees (per-pound)</div>
+        <div class="rev-amount">$5,000–$20,000 / year (scales with volume)</div>
+      </div>
+      <div class="rev-row">
+        <div class="rev-label">Consulting (David's expertise)</div>
+        <div class="rev-amount">$10,000–$30,000 / year</div>
+      </div>
+      <div class="rev-row">
+        <div class="rev-label">Herb aggregation margin (10–15% on wholesale volume)</div>
+        <div class="rev-amount">Scales with grower network size</div>
+      </div>
+    </div>
+
+    <div class="org-box">
+      <h3>What legal structure supports this best</h3>
+      <p style="margin-bottom:var(--space-md);">The structure you choose now determines which grants you can access, how you can distribute earnings to members, and whether donations are tax-deductible. Here are the four realistic options.</p>
+      <div class="org-options">
+        <div class="org-option recommended">
+          <span class="rec-badge">★ Recommended</span>
+          <h4>501(c)(5) Agricultural Org</h4>
+          <p>Tax-exempt status enables foundation grants + individual donations. Can own processing equipment and lease to members. Explicitly allows financial assistance to members for agricultural improvement. Best of both worlds: nonprofit fundraising + member-benefit operations.</p>
+        </div>
+        <div class="org-option">
+          <h4>Agricultural Cooperative</h4>
+          <p>Democratic governance, patronage-based profit distribution. Can access cooperative-specific USDA grants. Cannot receive tax-deductible donations. Best if primary goal is member-farmer service and the organization is self-sustaining on fees and margins.</p>
+        </div>
+        <div class="org-option">
+          <h4>501(c)(3) Nonprofit</h4>
+          <p>Strongest for grant fundraising and individual donations. Harder to distribute value to members. Best if Taproot's primary activities are education, community development, and conservation rather than commercial aggregation.</p>
+        </div>
+        <div class="org-option">
+          <h4>501(c)(5) + B Corp Spinoff</h4>
+          <p>Keep cooperative aggregation + processing as 501(c)(5). Spin off the Community Medicine Chest product line as a Certified B Corp. Maximizes both grant access and commercial scaling potential. More complexity — best for Year 2+.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     RECOMMENDATIONS
+════════════════════════════════════════════════ -->
+<section class="recs-section">
+  <div class="container">
+    <span class="eyebrow">Recommendations</span>
+    <h2>What to build next — in order</h2>
+    <p style="margin-bottom:var(--space-md);">These are sequenced by impact. Brand clarity first, then structure, then content depth, then capital.</p>
+
+    <div class="rec-item">
+      <span class="rec-num">01 — Immediate</span>
+      <div class="rec-title">Add email capture before anything else</div>
+      <div class="rec-body">This is the single highest-leverage change on the site. Embed a form directly on the homepage — two options: "I'm a grower" and "I'm a buyer." Even collecting 50 emails changes everything about how Taproot can communicate, nurture, and convert. <em>The Google Forms links mean visitors leave and are gone forever. That has to change now.</em></div>
+    </div>
+
+    <div class="rec-item">
+      <span class="rec-num">02 — Immediate</span>
+      <div class="rec-title">Move all PDFs to on-site pages</div>
+      <div class="rec-body">The Grower Guidelines, Community Medicine Chest, Solidarity Economy, Regenerative Ag, and GAPs documents are all valuable content that currently generates zero search traffic and zero email capture because they live in Google Drive. Move them to real pages. Gate the Grower Guidelines behind an email opt-in. <em>These documents are lead magnets being given away for nothing.</em></div>
+    </div>
+
+    <div class="rec-item">
+      <span class="rec-num">03 — This Quarter</span>
+      <div class="rec-title">Split the homepage into two clear audience paths</div>
+      <div class="rec-body">Hero-level fork: "For Growers" and "For Buyers." Each path leads to a dedicated section built around that person's specific questions, fears, and desired next steps. Growers need to know: what herbs, what contracts, what income, what support. Buyers need to know: what's available, how it's certified, how to source consistently. <em>Don't make them figure out which door is theirs.</em></div>
+    </div>
+
+    <div class="rec-item">
+      <span class="rec-num">04 — This Quarter</span>
+      <div class="rec-title">Elevate David's story to near-top placement</div>
+      <div class="rec-body">In a trust-based business like this — especially one asking farmers to commit crop acres and buyers to change their sourcing — the founder is the brand. A strong, first-person about section near the top of the page would dramatically increase credibility and connection. <em>20 years of experience deserves more than a paragraph at the bottom.</em></div>
+    </div>
+
+    <div class="rec-item">
+      <span class="rec-num">05 — This Quarter</span>
+      <div class="rec-title">Build a real Consulting page</div>
+      <div class="rec-body">Replace the PDF link with a page that clearly states: who consulting is for, what it includes, what outcomes to expect, and how to hire David. Include a contact form or booking link. This is potential revenue that exists right now, it just has nowhere to land. <em>The expertise is there. The offer just needs a door.</em></div>
+    </div>
+
+    <div class="rec-item">
+      <span class="rec-num">06 — Next Quarter</span>
+      <div class="rec-title">Launch the Community Medicine Chest CSA pilot</div>
+      <div class="rec-body">50 founding subscriber-members. Quarterly shipments of Appalachian-grown herbal remedies. This is both a revenue stream and a brand-building vehicle — every shipment tells the story of who grew it, where it came from, and why it matters. <em>Make the Community Medicine Chest real before it's perfectly scaled.</em></div>
+    </div>
+
+    <div class="rec-item">
+      <span class="rec-num">07 — Next Quarter</span>
+      <div class="rec-title">Contact Virginia VAFAIRS and begin cooperative formation</div>
+      <div class="rec-body">VAFAIRS provides free cooperative development technical assistance and administers the RCDG grant. This is the organizational foundation that unlocks VAPG, RBDG, AFID, and ARC funding. The cooperative structure also gives grower-members a formal stake in the organization's success. <em>The funding roadmap depends on the legal structure being in place.</em></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     PRIORITY TABLE
+════════════════════════════════════════════════ -->
+<section class="priority-section">
+  <div class="container">
+    <span class="eyebrow">Prioritized Roadmap</span>
+    <h2>Everything, in order</h2>
+    <table class="priority-table">
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>Category</th>
+          <th>Priority</th>
+          <th>Effort</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Add email capture (embedded form, two paths)</td><td>Conversion</td><td><span class="pill pill-high">High</span></td><td>Low</td></tr>
+        <tr><td>Move PDFs to on-site pages; gate Grower Guidelines</td><td>Lead Gen + SEO</td><td><span class="pill pill-high">High</span></td><td>Medium</td></tr>
+        <tr><td>Split homepage into Grower / Buyer paths</td><td>Structure</td><td><span class="pill pill-high">High</span></td><td>Medium</td></tr>
+        <tr><td>Build real Consulting page with booking link</td><td>Revenue</td><td><span class="pill pill-high">High</span></td><td>Low</td></tr>
+        <tr><td>Elevate founder bio near top of homepage</td><td>Trust</td><td><span class="pill pill-high">High</span></td><td>Low</td></tr>
+        <tr><td>Contact Virginia VAFAIRS — cooperative formation</td><td>Legal / Funding</td><td><span class="pill pill-high">High</span></td><td>Low</td></tr>
+        <tr><td>Apply for RCDG planning grant (USDA)</td><td>Funding</td><td><span class="pill pill-high">High</span></td><td>Medium</td></tr>
+        <tr><td>Build Community Medicine Chest dedicated section</td><td>Content</td><td><span class="pill pill-medium">Medium</span></td><td>Medium</td></tr>
+        <tr><td>Launch Community-Supported Apothecary CSA pilot (50 members)</td><td>Revenue</td><td><span class="pill pill-medium">Medium</span></td><td>High</td></tr>
+        <tr><td>Add one grower story / testimonial</td><td>Social Proof</td><td><span class="pill pill-medium">Medium</span></td><td>Low</td></tr>
+        <tr><td>Apply for VAPG planning grant (USDA — next cycle)</td><td>Funding</td><td><span class="pill pill-medium">Medium</span></td><td>Medium</td></tr>
+        <tr><td>Apply for Virginia AFID Infrastructure Grant</td><td>Funding</td><td><span class="pill pill-medium">Medium</span></td><td>Medium</td></tr>
+        <tr><td>Reframe imported herb copy as positive domestic story</td><td>Copy</td><td><span class="pill pill-medium">Medium</span></td><td>Low</td></tr>
+        <tr><td>Develop visual identity (color, type, photography)</td><td>Brand</td><td><span class="pill pill-medium">Medium</span></td><td>High</td></tr>
+        <tr><td>Migrate site to Squarespace or Showit for SEO control</td><td>Platform</td><td><span class="pill pill-low">Later</span></td><td>High</td></tr>
+        <tr><td>Integrate Solidarity Economy values into main copy</td><td>Positioning</td><td><span class="pill pill-low">Later</span></td><td>Medium</td></tr>
+        <tr><td>Launch equity or reward crowdfunding campaign</td><td>Funding</td><td><span class="pill pill-low">Later</span></td><td>High</td></tr>
+        <tr><td>Apply for Capital Impact Partners Co-op Innovation Award</td><td>Funding</td><td><span class="pill pill-low">Later</span></td><td>Medium</td></tr>
+        <tr><td>Develop Appalachian content / SEO blog strategy</td><td>Content</td><td><span class="pill pill-low">Later</span></td><td>High</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     OFFERS / WORK WITH ME
+════════════════════════════════════════════════ -->
+<section class="offers-section">
+  <div class="container">
+
+    <!-- Hero -->
+    <div class="offers-hero">
+      <div>
+        <span class="eyebrow">Founding Mothers Media — How We Work Together</span>
+        <h2 class="offers-hero-headline">When you're ready,<br>here's how we<br>work <em>together.</em></h2>
+      </div>
+      <div class="offers-hero-side">
+        <p>My super-power is translating the "hard-to-explain-thing" visionary founders do into brand architecture, systems, and language that others can understand, fund, and support. What you've built with Taproot is exactly the kind of work that deserves to be seen clearly. Not sure where to start? That's what the free audit call is for.</p>
+        <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn-audit" target="_blank" rel="noopener">Book a Free Audit Call</a>
+      </div>
+    </div>
+
+    <!-- Project Offers -->
+    <span class="eyebrow" style="margin-bottom: var(--space-sm); display:block;">Project-Based Offers</span>
+    <div class="pkg-grid">
+
+      <!-- SEED -->
+      <div class="pkg-card">
+        <div class="pkg-num">01 / Seed</div>
+        <div class="pkg-name">Seed</div>
+        <div class="pkg-type">Foundation Package</div>
+        <hr class="pkg-rule">
+        <p class="pkg-desc">For organizations that need a credible home base, fast. A clean digital presence — booking, contact, the core pages you need to convert — followed by four months of async support.</p>
+        <div class="pkg-includes">
+          <span>Canva Sites build (5 pages)</span>
+          <span>Form creation + email capture setup</span>
+          <span>Booking integration</span>
+          <span>Brand voice + copy for key pages</span>
+          <span>4 months WhatsApp async support</span>
+        </div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">$950 down</div>
+          <div class="pkg-price-note">Then $500/mo × 4 months · $2,950 total<br>Or $2,750 paid in full</div>
+          <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn-apply-dark" target="_blank" rel="noopener">Apply</a>
+        </div>
+      </div>
+
+      <!-- EMERGE -->
+      <div class="pkg-card">
+        <div class="pkg-num">02 / Emerge</div>
+        <div class="pkg-name">Emerge</div>
+        <div class="pkg-type">Full Brand + Ops Restructure</div>
+        <hr class="pkg-rule">
+        <p class="pkg-desc">A full restructure — positioning, site rebuild, email infrastructure, offer architecture, content system — built over 6–8 weeks and handed off with clear systems. Plus 4 months of async priority support.</p>
+        <div class="pkg-includes">
+          <span>Full Brand Architecture Audit</span>
+          <span>Site rebuild + domain consolidation</span>
+          <span>Email CRM + welcome sequence</span>
+          <span>Offer architecture + pricing strategy</span>
+          <span>Marketing strategy</span>
+        </div>
+        <div class="pkg-price-block">
+          <div class="pkg-price">$3,000 down</div>
+          <div class="pkg-price-note">Then $1,500/mo × 4 months · $9,000 total<br>Or $8,500 paid in full</div>
+          <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn-apply-dark" target="_blank" rel="noopener">Apply</a>
+        </div>
+      </div>
+
+    </div><!-- /pkg-grid -->
+
+    <!-- Retainer Tiers -->
+    <span class="eyebrow" style="margin-bottom: var(--space-sm); display:block;">Ongoing Retainer — Root</span>
+    <div class="retainer-grid">
+
+      <!-- ROOT · ENTRY -->
+      <div class="retainer-card featured">
+        <span class="retainer-tag">Root · Entry</span>
+        <div class="retainer-name">Root</div>
+        <span class="retainer-sub">Ongoing Support — Starter</span>
+        <span class="retainer-rec">Recommended for Taproot</span>
+        <hr class="retainer-hr">
+        <p class="retainer-desc">The right-hand model, sized for where you are right now. As you're building the cooperative structure, applying for grants, and getting the CSA off the ground — having a second brain in your corner means fewer decisions made in isolation and more momentum toward the expansion.</p>
+        <div class="retainer-includes">
+          <span>Monthly strategy session</span>
+          <span>Unlimited async questions (voice / Loom)</span>
+          <span>Website restructuring + copy support</span>
+          <span>Offers, pricing + revenue architecture</span>
+          <span>Cancel with 30 days notice</span>
+        </div>
+        <div class="retainer-price">$500/mo</div>
+        <div class="retainer-price-note">Month-to-month · Stripe subscription</div>
+        <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn-apply-orange" target="_blank" rel="noopener">Apply</a>
+      </div>
+
+      <!-- ROOT · FULL -->
+      <div class="retainer-card">
+        <span class="retainer-tag">Root · Full</span>
+        <div class="retainer-name">Root</div>
+        <span class="retainer-sub" style="color:var(--mud);">Ongoing Support — Full Partnership</span>
+        <hr class="retainer-hr">
+        <p class="retainer-desc">The full right-hand model. For when the systems are moving and you need a strategic partner embedded in every layer — business planning, hiring systems, revenue architecture, and quarterly reviews. A second brain for every decision on the way to scale.</p>
+        <div class="retainer-includes">
+          <span>Business plan build + documentation</span>
+          <span>Website restructuring + copy</span>
+          <span>Onboarding + hiring systems</span>
+          <span>Referral program setup</span>
+          <span>Offers, pricing + revenue architecture</span>
+          <span>Monthly strategy session</span>
+          <span>Unlimited questions (voice / Loom)</span>
+          <span>Quarterly revenue + ops review</span>
+          <span>Cancel with 30 days notice</span>
+        </div>
+        <div class="retainer-price">$1,500/mo</div>
+        <div class="retainer-price-note">6-month commitment · Stripe subscription</div>
+        <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn-apply-dark" target="_blank" rel="noopener">Apply</a>
+      </div>
+
+    </div><!-- /retainer-grid -->
+
+    <!-- Four Steps -->
+    <div class="steps-block">
+      <span class="eyebrow">How it works</span>
+      <h3>Four steps to get started.</h3>
+      <div class="step-row">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-title">Select your package.</div>
+          <div class="step-body">I recommend Root Entry — ongoing support as the cooperative forms, the grants come together, and the CSA launches.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-title">Pay via Stripe.</div>
+          <div class="step-body">Root runs on a monthly Stripe subscription. Seed and Emerge: down payment to start, then monthly until complete — or pay in full for a discount. Invoice sent same day.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-title">Sign via Docuseal.</div>
+          <div class="step-body">A plain-English agreement sent digitally. Five minutes. Keeps both of us protected and aligned from day one.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">4</div>
+        <div>
+          <div class="step-title">Book your disco call.</div>
+          <div class="step-body">90-minute deep dive on Google Meet. We figure out scope, timeline, goals &amp; deliverables. Then we build.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audit CTA Bar -->
+    <div class="audit-cta-bar">
+      <div class="audit-cta-text">
+        Feeling unsure?<br>
+        Start with the <em>free audit call.</em><br>
+        Everything else follows from there.
+      </div>
+      <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn-audit-rose" target="_blank" rel="noopener">Book a Free Audit Call</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <span class="eyebrow eyebrow-light">Founding Mothers Media</span>
+    <p>Brand Architecture Audit · Taproot Botanical Alliance · March 2026</p>
+    <p style="margin-top:6px;">hello@kyraaulani.art</p>
+  </div>
+</footer>
+
+</body>
+</html>
