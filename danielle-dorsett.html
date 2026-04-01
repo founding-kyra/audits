@@ -144,8 +144,12 @@
     /* ── BUTTONS ── */
     .btn { font-family: var(--font-mono); font-stretch: expanded; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 12px 24px; border-radius: 10px; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
     .btn-primary { background: var(--orange); color: var(--white); }
+    .btn-rust    { background: var(--rust); color: var(--white); }
     .btn-dark    { background: var(--mud); color: var(--cream); }
     .btn-rose    { background: var(--rose); color: var(--mud); }
+    .btn-outline { background: transparent; color: var(--mud); border: 1.5px solid rgba(44,36,22,0.3); }
+    .btn-outline:hover { border-color: var(--mud); }
+    .pkg-btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
 
     /* ── UP NEXT BUTTONS ── */
     .tab-next {
@@ -665,7 +669,10 @@
         <div class="pkg-price-row">
           <div class="pkg-price">$950 down</div>
           <div class="pkg-price-note">Then $500/mo × 4 months · $2,950 total<br>Or $2,750 paid in full</div>
-          <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn btn-dark" target="_blank" rel="noopener">Apply</a>
+          <div class="pkg-btn-group">
+            <a href="https://buy.stripe.com/fZu6oG6ZQ0o10vrgZo8N206" class="btn btn-rust" target="_blank" rel="noopener">Apply — $950 Down</a>
+            <a href="https://buy.stripe.com/7sYbJ02JA5Ilgup6kK8N207" class="btn btn-outline" target="_blank" rel="noopener">Paid in Full — $2,750</a>
+          </div>
         </div>
       </div>
 
@@ -686,7 +693,10 @@
         <div class="pkg-price-row">
           <div class="pkg-price">$3,000 down</div>
           <div class="pkg-price-note">Then $1,500/mo × 4 months · $9,000 total<br>Or $8,500 paid in full</div>
-          <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn btn-dark" target="_blank" rel="noopener">Apply</a>
+          <div class="pkg-btn-group">
+            <a href="https://buy.stripe.com/5kQ00i97Y5Ila614cC8N208" class="btn btn-rust" target="_blank" rel="noopener">Apply — $3,000 Down</a>
+            <a href="https://buy.stripe.com/00w3cu5VM3Adba58sS8N209" class="btn btn-outline" target="_blank" rel="noopener">Paid in Full — $8,500</a>
+          </div>
         </div>
       </div>
 
@@ -712,7 +722,9 @@
         <div class="pkg-price-row">
           <div class="pkg-price">$1,500/mo</div>
           <div class="pkg-price-note">6-month commitment · Stripe subscription</div>
-          <a href="https://tidycal.com/foundingmothersmedia/free-brand-architecture-audit" class="btn btn-primary" target="_blank" rel="noopener">Apply</a>
+          <div class="pkg-btn-group">
+            <a href="https://buy.stripe.com/dRm3cuesidaN7XTbF48N205" class="btn btn-rust" target="_blank" rel="noopener">Apply</a>
+          </div>
         </div>
       </div>
 
