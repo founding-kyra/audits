@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Scope — Maureen Nadeau / The Soulful Creative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/albert-sans">
+<style>
+  :root {
+    --mud:    #2c2416;
+    --orange: #d4521e;
+    --cream:  #efeae0;
+    --gray:   #e3ded8;
+    --white:  #f5f3ef;
+    --rose:   #bc7e78;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-mono:  'Inconsolata', monospace;
+    --font-body:  'Albert Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--white);
+    color: var(--mud);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.75;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    opacity: 0.4;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  h1 em { font-style: italic; color: var(--rose); }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    opacity: 0.45;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(44,36,22,0.1);
+    line-height: 2;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 10px;
+    opacity: 0.4;
+    margin-bottom: 12px;
+  }
+
+  section { margin-bottom: 32px; }
+
+  .deliverable-card {
+    background: var(--cream);
+    padding: 24px 28px;
+    margin-bottom: 10px;
+  }
+
+  .deliverable-card .title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+
+  .deliverable-card .detail {
+    font-family: var(--font-body);
+    font-size: 14px;
+    opacity: 0.7;
+    line-height: 1.65;
+  }
+
+  .not-included {
+    background: var(--gray);
+    padding: 20px 28px;
+  }
+
+  .not-included ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .not-included ul li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    opacity: 0.6;
+    padding: 3px 0;
+  }
+
+  .not-included ul li::before {
+    content: "— ";
+    opacity: 0.5;
+  }
+
+  .access-block {
+    background: var(--white);
+    border: 1px solid rgba(44,36,22,0.12);
+    padding: 20px 28px;
+  }
+
+  .access-block ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .access-block ul li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    opacity: 0.7;
+    padding: 3px 0;
+  }
+
+  .access-block ul li::before {
+    content: "→ ";
+    color: var(--orange);
+  }
+
+  .fee-block {
+    background: var(--mud);
+    color: var(--cream);
+    padding: 32px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    margin-bottom: 20px;
+  }
+
+  .fee-block .label {
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 10px;
+    opacity: 0.5;
+    margin-bottom: 6px;
+  }
+
+  .fee-block .amount {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+  }
+
+  .fee-block .terms {
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .agreement-note {
+    font-family: var(--font-body);
+    font-size: 13px;
+    opacity: 0.55;
+    line-height: 1.6;
+    padding: 16px 28px;
+    border-left: 2px solid var(--orange);
+    background: var(--cream);
+  }
+
+  .agreement-note a {
+    color: var(--orange);
+    text-decoration: underline;
+  }
+
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(44,36,22,0.1);
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    opacity: 0.35;
+    text-align: center;
+  }
+
+  @media print {
+    .fee-block, .deliverable-card, .not-included, .access-block, .agreement-note {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="eyebrow">Project Scope</div>
+  <h1>The Soulful Creative<br><em>Rebirth Workshop Launch</em></h1>
+  <div class="meta">
+    CLIENT: MAUREEN NADEAU &nbsp;·&nbsp; MAUREENNADEAU1@GMAIL.COM<br>
+    SITE: MAUREENNADEAU.COM (SQUARESPACE)<br>
+    PREPARED BY: FOUNDING MOTHERS MEDIA &nbsp;·&nbsp; APRIL 2026
+  </div>
+
+  <section>
+    <div class="section-label">Deliverables</div>
+
+    <div class="deliverable-card">
+      <div class="title">Sales Page Restructure</div>
+      <div class="detail">Rebuild the Rebirth workshop page as a standalone page with its own navigation within Squarespace. Restructured layout with scannable copy flow and clear visual hierarchy. Pricing, payment terms, and payment links (provided by client) connected to CTA buttons. Terms of agreement section included on page.</div>
+    </div>
+
+    <div class="deliverable-card">
+      <div class="title">Payment Integration</div>
+      <div class="detail">Client will provide Stripe payment links for full pay ($297) and payment plan ($110 × 3). Links will be attached to corresponding CTA buttons on the sales page.</div>
+    </div>
+
+    <div class="deliverable-card">
+      <div class="title">Welcome Email — Flodesk</div>
+      <div class="detail">Automated welcome email triggered on purchase. Includes: confirmation, all three program dates, supply list, and what to expect. Designed to match the sales page. Sequence configured in Flodesk.</div>
+    </div>
+
+    <div class="deliverable-card">
+      <div class="title">Tech Stack Connection</div>
+      <div class="detail">Connect Squarespace → Stripe → Flodesk so the purchase-to-welcome flow runs automatically. Stripe confirmation email configured.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Access Needed From Client</div>
+    <div class="access-block">
+      <ul>
+        <li>Squarespace collaborator access</li>
+        <li>Flodesk account access</li>
+        <li>Google Drive folder with artwork/assets</li>
+        <li>Stripe payment links (once created)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Not Included</div>
+    <div class="not-included">
+      <ul>
+        <li>Post-session emails (sent manually by Maureen)</li>
+        <li>Session reminder emails</li>
+        <li>Copywriting beyond structural edits</li>
+        <li>Stripe account setup</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="fee-block">
+    <div>
+      <div class="label">Project Fee</div>
+      <div class="amount">$650</div>
+    </div>
+    <div class="terms">PAID IN FULL · DUE UPON INVOICE<br>COMPLETED WITHIN 1 WEEK OF PAYMENT</div>
+  </div>
+
+  <div class="agreement-note">
+    By paying this invoice, Maureen Nadeau agrees to the terms outlined in the <a href="#">Founding Mothers Media Creative Services Agreement</a>. Please review before submitting payment.
+  </div>
+
+  <div class="footer">FOUNDINGMOTHERSMEDIA.COM &nbsp;·&nbsp; KYRA@FOUNDINGMOTHERSMEDIA.COM</div>
+
+</body>
+</html>
