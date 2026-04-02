@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FMM — Avatar & Social Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mud:    #2c2416;
+    --moss:   #514619;
+    --orange: #d4521e;
+    --rust:   #bf3c10;
+    --maroon: #681704;
+    --rose:   #bc7e78;
+    --cream:  #efeae0;
+    --gray:   #e3ded8;
+    --white:  #f5f3ef;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-mono:  'Inconsolata', monospace;
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 32px;
+    --space-lg: 64px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--white);
+    color: var(--mud);
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.75;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 72px 48px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    opacity: 0.4;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: var(--space-md);
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  h3 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--rust);
+    margin-bottom: 10px;
+    margin-top: var(--space-md);
+  }
+
+  p { margin-bottom: var(--space-sm); font-size: 18px; }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(44,36,22,0.12);
+    margin: var(--space-lg) 0;
+  }
+
+  /* AXIOM — the repeatable truths */
+  .axiom {
+    border-left: 3px solid var(--orange);
+    padding: 18px 24px;
+    margin: var(--space-md) 0;
+    background: var(--cream);
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.55;
+  }
+
+  /* DARK BAND */
+  .dark {
+    background: var(--mud);
+    color: var(--cream);
+    padding: 52px 48px;
+    margin: var(--space-lg) -48px;
+  }
+  .dark h2, .dark h3, .dark p, .dark li { color: var(--cream); }
+  .dark h3 { color: var(--rose); }
+  .dark .axiom { background: rgba(239,234,224,0.07); border-color: var(--rose); }
+  .dark hr { border-color: rgba(239,234,224,0.1); }
+
+  /* GRAY BAND */
+  .gray {
+    background: var(--gray);
+    padding: 48px;
+    margin: var(--space-lg) -48px;
+  }
+
+  /* COPY EXAMPLES */
+  .copy-block {
+    background: var(--mud);
+    color: var(--cream);
+    padding: 22px 28px;
+    margin: 12px 0;
+    border-left: 3px solid var(--orange);
+  }
+  .copy-block p {
+    color: var(--cream);
+    font-style: italic;
+    font-size: 17px;
+    margin: 0;
+  }
+  .copy-label {
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 10px;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+
+  /* PILLAR */
+  .pillar {
+    border-top: 1px solid rgba(44,36,22,0.12);
+    padding: var(--space-md) 0;
+  }
+  .pillar-num {
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    opacity: 0.07;
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+  .pillar-tag {
+    font-family: var(--font-mono);
+    font-stretch: expanded;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 10px;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+  .pillar h3 { color: var(--mud); font-size: 1.25rem; margin-top: 6px; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+  .col {
+    padding: 28px 32px;
+  }
+  .col.avoid {
+    background: rgba(44,36,22,0.05);
+    border-top: 3px solid rgba(44,36,22,0.15);
+  }
+  .col.use {
+    background: var(--cream);
+    border-top: 3px solid var(--orange);
+  }
+  .col h3 {
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0 0 14px;
+    color: var(--mud);
+    opacity: 0.45;
+  }
+  .col.use h3 { color: var(--orange); opacity: 1; }
+  .col li { font-size: 16px; margin-bottom: 6px; }
+
+  /* CARD GRID */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    margin: var(--space-md) 0;
+  }
+  .card {
+    padding: 28px 30px;
+    background: var(--cream);
+    border-left: 3px solid var(--orange);
+  }
+  .card.inv {
+    background: var(--mud);
+    color: var(--cream);
+    border-left-color: var(--rose);
+  }
+  .card h3 { color: var(--mud); font-size: 1rem; margin-top: 0; }
+  .card.inv h3 { color: var(--rose); }
+  .card p, .card li { font-size: 16px; line-height: 1.6; }
+  .card.inv p, .card.inv li { color: var(--cream); }
+  ul { padding-left: 18px; margin-bottom: var(--space-sm); }
+  li { margin-bottom: 7px; font-size: 17px; line-height: 1.65; }
+
+  .page-header {
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(44,36,22,0.12);
+    margin-bottom: var(--space-lg);
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.35;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-stretch: expanded;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: var(--space-lg);
+  }
+
+  @media (max-width: 620px) {
+    body { padding: 48px 24px; }
+    .two-col, .card-grid { grid-template-columns: 1fr; }
+    .dark, .gray { margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="eyebrow">Founding Mothers Media — Internal Strategy</div>
+  <h1>Who She Is.<br><em>What to Say.</em></h1>
+</div>
+
+
+<!-- AVATAR -->
+<div class="eyebrow">01 — Avatar</div>
+<h2>Who You're Talking To</h2>
+
+<p>A wellness practitioner — bodyworker, astrologer, somatic guide, herbalist, movement teacher. Serious work. Real clients. Sustained by word of mouth because the work speaks for itself.</p>
+
+<p>But her digital presence doesn't match. Her site is a rough draft of who she was two years ago. Her offers live in her head. Her brand was built in a weekend and never revisited.</p>
+
+<p>She's not here because she found you on Instagram. Someone she respects said your name. She's already halfway convinced. She just needs to know you understand work that doesn't fit a template.</p>
+
+<div class="axiom">
+  The gap isn't between her and her audience. It's between who she is and what her business currently shows the world.
+</div>
+
+
+<!-- INTERNAL WORLD -->
+<div class="dark">
+  <div class="eyebrow">02 — Internal World</div>
+  <h2>What She's Carrying</h2>
+
+  <h3>The core tension</h3>
+  <p>"I do serious work. Nothing I've tried to build around it reflects that."</p>
+
+  <h3>What she actually wants</h3>
+  <ul>
+    <li>To stop re-explaining herself to every new person</li>
+    <li>To raise her rates without having to justify them</li>
+    <li>To feel proud when someone Googles her — not anxious</li>
+    <li>A business that runs when she's tired</li>
+  </ul>
+
+  <h3>What she's afraid of</h3>
+  <ul>
+    <li>Building something that flattens or cheapens the work</li>
+    <li>Handing it to someone who doesn't understand what she does</li>
+    <li>Spending money on something that looks like everyone else</li>
+    <li>Getting locked into a direction she'll outgrow</li>
+  </ul>
+
+  <h3>Why she stalls</h3>
+  <p>She's tried fixing this herself. It didn't land. She's not unmotivated — she's burned by iteration that didn't work. She needs someone who leads. Not someone who asks her to figure it out first.</p>
+
+  <div class="axiom">
+    She doesn't need convincing. She needs containment.
+  </div>
+</div>
+
+
+<!-- AXIOMS — the repeatable truths -->
+<div class="eyebrow">03 — Axioms</div>
+<h2>The Truths You Repeat</h2>
+<p>These aren't taglines. They're accurate statements that earn trust on contact. Use them across posts, captions, site copy, DMs.</p>
+
+<div class="axiom">Some work can't be niched down. It has to be architected.</div>
+<div class="axiom">The website isn't the problem. It's where the problem becomes visible.</div>
+<div class="axiom">Word of mouth keeps you alive. A brand keeps you from starting over every season.</div>
+<div class="axiom">You don't need to show up more. You need a presence that works when you don't.</div>
+<div class="axiom">Clarity isn't something you find. It's something you build structure around.</div>
+<div class="axiom">The brand has to hold the ask before you make it.</div>
+
+
+<!-- CONTENT PILLARS -->
+<div class="eyebrow">04 — Content Pillars</div>
+<h2>Five Things to Post About</h2>
+<p>Rotate between these. Don't live in one. Each maps to a real state she's in right now.</p>
+
+<div class="pillar">
+  <div class="pillar-num">01</div>
+  <div class="pillar-tag">The Diagnosis</div>
+  <h3>Name the real problem before she does</h3>
+  <p>She thinks it's aesthetic. It's structural. Say that clearly, without blame.</p>
+
+  <div class="copy-block">
+    <div class="copy-label">Hook</div>
+    <p>"If you've rewritten your bio three times and it still doesn't feel right — that's not a writing problem."</p>
+  </div>
+  <div class="copy-block">
+    <div class="copy-label">Caption</div>
+    <p>"Most practitioners don't have a brand problem. They have a clarity problem that shows up in the brand."</p>
+  </div>
+  <div class="copy-block">
+    <div class="copy-label">Opener</div>
+    <p>"The website isn't the issue. The website is just where the issue becomes visible."</p>
+  </div>
+</div>
+
+<div class="pillar">
+  <div class="pillar-num">02</div>
+  <div class="pillar-tag">The Container</div>
+  <h3>Show her you lead — she doesn't have to figure it out first</h3>
+  <p>Her fear is managing the process, not the outcome. Show her there's no sprawl.</p>
+
+  <div class="copy-block">
+    <div class="copy-label">Process post</div>
+    <p>"Clients don't need to know what they want the site to look like. They need to tell me what the work actually does. I take it from there."</p>
+  </div>
+  <div class="copy-block">
+    <div class="copy-label">Story fragment</div>
+    <p>"She came in with three different directions and a Canva folder full of midnight logos. We didn't use any of it. By week two she had something that finally felt like her."</p>
+  </div>
+</div>
+
+<div class="pillar">
+  <div class="pillar-num">03</div>
+  <div class="pillar-tag">The Uncategorizable</div>
+  <h3>Speak directly to work that resists easy description</h3>
+  <p>This is your white space. Nobody else is saying this. It will stop the scroll.</p>
+
+  <div class="copy-block">
+    <div class="copy-label">Identity post</div>
+    <p>"Some work sits at the intersection of three things that have no shared category. That's not a marketing problem. That's just what it means to do original work. The brand has to be built differently."</p>
+  </div>
+  <div class="copy-block">
+    <div class="copy-label">Short hook</div>
+    <p>"Not every practice fits a template. Some require architecture."</p>
+  </div>
+</div>
+
+<div class="pillar">
+  <div class="pillar-num">04</div>
+  <div class="pillar-tag">The Gap</div>
+  <h3>Make the distance between her work and her presence visible — without shame</h3>
+  <p>She already knows. She's embarrassed. Normalize it. Then orient her toward the fix.</p>
+
+  <div class="copy-block">
+    <div class="copy-label">Normalizing post</div>
+    <p>"The practitioners doing the most serious work are often the ones with the most outdated presence. Not because they don't care. Because nothing available quite fits."</p>
+  </div>
+  <div class="copy-block">
+    <div class="copy-label">Direct observation</div>
+    <p>"If you feel anxious when someone Googles you — not because you're hiding something, but because what they'll find doesn't represent you anymore — that's worth closing."</p>
+  </div>
+</div>
+
+<div class="pillar">
+  <div class="pillar-num">05</div>
+  <div class="pillar-tag">The After</div>
+  <h3>Show the quiet, specific relief — no hype</h3>
+  <p>Not transformation. Not "dream life." Grounded scenes. One real moment.</p>
+
+  <div class="copy-block">
+    <div class="copy-label">Client moment</div>
+    <p>"She sent me the link with no message. Just the link. I knew what that meant."</p>
+  </div>
+  <div class="copy-block">
+    <div class="copy-label">Result, no numbers</div>
+    <p>"Six weeks after we finished, she raised her rates. Not because I told her to — because the brand finally held the ask."</p>
+  </div>
+  <div class="copy-block">
+    <div class="copy-label">The baseline</div>
+    <p>"You send someone to your website and you're not nervous about what they'll find. That's what we're building toward."</p>
+  </div>
+</div>
+
+
+<!-- VOICE RULES -->
+<div class="gray">
+  <div class="eyebrow">05 — Voice</div>
+  <h2>How to Write Every Post</h2>
+
+  <div class="two-col">
+    <div class="col avoid">
+      <h3>Never</h3>
+      <ul>
+        <li>"Show up authentically"</li>
+        <li>"Dream clients"</li>
+        <li>"Scale your impact"</li>
+        <li>"You deserve this"</li>
+        <li>"Align your brand with your values"</li>
+        <li>Exclamation points</li>
+        <li>Emoji as decoration</li>
+        <li>Vague empowerment language</li>
+      </ul>
+    </div>
+    <div class="col use">
+      <h3>Always</h3>
+      <ul>
+        <li>Write to one real person</li>
+        <li>Name it before she does</li>
+        <li>Short sentences over long ones</li>
+        <li>Facts carry feeling — no extra coating</li>
+        <li>Calm tone, clear point</li>
+        <li>Specific over general, always</li>
+        <li>Say less than you think you need to</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- PLATFORM STRATEGY -->
+<div class="eyebrow">06 — Platform</div>
+<h2>Where & How</h2>
+
+<h3>Instagram is your referral closer — not your discovery engine</h3>
+<p>She's not scrolling looking for a brand strategist. Someone already told her your name. She's on your profile deciding if you understand her world. Every post is a trust signal for someone already halfway there.</p>
+
+<div class="card-grid">
+  <div class="card">
+    <h3>Format priority</h3>
+    <p>Carousels for diagnosis + process.<br>
+    Single image for axioms + observations.<br>
+    Reels only when grounded — no trending audio dependency.</p>
+  </div>
+  <div class="card">
+    <h3>Cadence</h3>
+    <p>3–4x per week. Consistency beats volume. One CTA per week max — make it a reply, not a link chase.</p>
+  </div>
+  <div class="card inv">
+    <h3>Content split</h3>
+    <p>60% — Diagnosis / observation, no pitch<br>
+    25% — Process / how you work<br>
+    15% — Soft invitation<br>
+    <em>Never lead with the offer. Earn it first.</em></p>
+  </div>
+  <div class="card inv">
+    <h3>Monthly must-have</h3>
+    <p>One post that names your client type so specifically a past client could forward it and say "this is what I meant." Highest ROI post you'll write.</p>
+  </div>
+</div>
+
+
+<!-- HORMOZI LEVERS -->
+<div class="dark">
+  <div class="eyebrow">07 — Emotional Levers</div>
+  <h2>Moments That Move Her</h2>
+  <p>Raw material for posts, carousels, captions. Each one is a specific scene — not a concept.</p>
+
+  <h3>What gets better</h3>
+  <ul>
+    <li>She sends someone to her website and feels proud, not apologetic</li>
+    <li>A new referral arrives already oriented — they read the site first</li>
+    <li>She raises her rates and the brand carries the ask</li>
+    <li>She stops rewriting her bio. It's done. It says the right thing</li>
+    <li>A practitioner she respects asks who built her site</li>
+  </ul>
+
+  <h3>What goes away</h3>
+  <ul>
+    <li>No longer anxious when someone Googles her</li>
+    <li>No longer re-explaining what she does to every new person</li>
+    <li>No longer holding her entire offer structure in her head</li>
+    <li>No longer making herself smaller to fit a template that wasn't built for her</li>
+  </ul>
+
+  <h3>What keeps getting worse if she waits</h3>
+  <ul>
+    <li>Another year of referrals landing on a website that doesn't close the loop</li>
+    <li>Watching peers with less depth build better presence — and get the inquiries</li>
+    <li>Word of mouth keeps her afloat. One slow season and there's no foundation</li>
+    <li>The gap between her work and her presence quietly widens as the work deepens</li>
+  </ul>
+
+  <h3>What she never gets to feel if she stays stuck</h3>
+  <ul>
+    <li>The relief of a business that reflects who she actually is</li>
+    <li>Clients arriving already trusting — before the first session</li>
+    <li>Feeling legitimate in the business layer — not just in the room with a client</li>
+  </ul>
+</div>
+
+
+<!-- WHAT SHE'S NOT HEARING -->
+<div class="eyebrow">08 — White Space</div>
+<h2>What Nobody Else Is Saying</h2>
+<p>This is your competitive advantage. Most brand people talk to founders (too corporate) or creatives (too aesthetic-obsessed). Nobody is speaking to the serious practitioner whose work resists packaging.</p>
+
+<p>She's hearing:</p>
+<ul>
+  <li>"Just niche down"</li>
+  <li>"Tell your story"</li>
+  <li>"Show up consistently"</li>
+</ul>
+
+<p>She needs to hear:</p>
+<ul>
+  <li>"Some work can't be niched. It has to be architected."</li>
+  <li>"The brand isn't a story. It's a container for the work."</li>
+  <li>"You don't need to show up more. You need a presence that works when you don't."</li>
+</ul>
+
+<div class="axiom">
+  Your competitor isn't another brand strategist. It's her continued tolerance of a business that underrepresents her.
+</div>
+
+<hr>
+
+<div class="footer">
+  <span>Founding Mothers Media</span>
+  <span>Avatar & Social Strategy — Internal</span>
+</div>
+
+</body>
+</html>
