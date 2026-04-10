@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G's Smoke & More — Website Proposal · Founding Mothers Media</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Inconsolata:wdth,wght@125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap');
+
+  :root {
+    --mud:    #2c2416;
+    --moss:   #514619;
+    --green:  #8b8635;
+    --cream:  #efeae0;
+    --gray:   #e3ded8;
+    --white:  #f5f3ef;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--white);
+    color: var(--mud);
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .label {
+    font-family: 'Inconsolata', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.38;
+    display: block;
+  }
+
+  /* Eyebrows — cream on dark, green on light */
+  .eyebrow {
+    font-family: 'Inconsolata', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .page { max-width: 860px; margin: 0 auto; padding: 64px 48px; }
+
+  section {
+    padding: 56px 0;
+    border-top: 1px solid rgba(44,36,22,0.08);
+  }
+
+  section:first-of-type { border-top: none; }
+
+  /* ── Cover (dark) ─────────────────────────────────── */
+  .cover {
+    background: var(--mud);
+    color: var(--cream);
+  }
+
+  .cover-inner {
+    min-height: 100vh;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cover .eyebrow { color: var(--cream); opacity: 0.55; }
+  .cover .label { color: var(--cream); }
+
+  .cover-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(80px, 13vw, 136px);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    margin: 52px 0 28px;
+    color: var(--cream);
+  }
+
+  .cover-title em { font-style: italic; color: var(--green); }
+
+  .tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--cream);
+    opacity: 0.5;
+    line-height: 1.4;
+  }
+
+  .cover hr.rule { border-top-color: rgba(239,234,224,0.12); }
+
+  .meta-value {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--cream);
+    opacity: 0.72;
+  }
+
+  .inv-block {
+    background: rgba(239,234,224,0.05);
+    border-left: 2px solid var(--green);
+    padding: 28px 32px;
+  }
+
+  .inv-number {
+    font-family: 'Instrument Serif', serif;
+    font-size: 48px;
+    line-height: 1;
+    margin: 8px 0 4px;
+    color: var(--cream);
+  }
+
+  /* ── Headings (on light bg) ────────────────────────── */
+  hr.rule { border: none; border-top: 1px solid rgba(44,36,22,0.08); margin: 28px 0; }
+  hr.rule-accent { border: none; border-top: 2px solid var(--green); margin: 20px 0 36px; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    font-weight: normal;
+    margin-bottom: 28px;
+    color: var(--mud);
+  }
+  h2 em { font-style: italic; color: var(--green); }
+
+  h3 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    font-weight: normal;
+    color: var(--mud);
+    margin-bottom: 8px;
+  }
+
+  p { margin-bottom: 14px; opacity: 0.78; font-size: 16px; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 700; opacity: 1; color: var(--mud); }
+
+  .ornament {
+    text-align: center;
+    padding: 28px 0;
+    opacity: 0.12;
+    letter-spacing: 0.6em;
+    font-size: 18px;
+    font-family: 'Instrument Serif', serif;
+    color: var(--mud);
+  }
+
+  .sec-num {
+    font-family: 'Inconsolata', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  /* ── Two-col ───────────────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .two-col.gap { gap: 48px; }
+
+  /* ── Cards (stay dark on light body) ───────────────── */
+  .card-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .card-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+
+  .card {
+    padding: 28px 24px;
+    background: var(--mud);
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .card-label {
+    font-family: 'Inconsolata', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.45;
+    display: block;
+  }
+
+  .card-body {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--cream);
+    opacity: 0.75;
+  }
+
+  /* ── Bullet list ───────────────────────────────────── */
+  .list-em {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 4px 0 20px;
+  }
+
+  .list-em li {
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.78;
+    padding-left: 20px;
+    position: relative;
+    color: var(--mud);
+  }
+
+  .list-em li::before {
+    content: '\2014';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-family: 'Instrument Serif', serif;
+  }
+
+  /* ── Table ─────────────────────────────────────────── */
+  .data-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+
+  .data-table th {
+    background: var(--mud);
+    font-family: 'Inconsolata', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.6;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 700;
+  }
+
+  .data-table td {
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 14px 16px;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(44,36,22,0.06);
+    color: var(--mud);
+    opacity: 0.82;
+  }
+
+  .data-table td:first-child {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    opacity: 0.55;
+  }
+
+  .data-table .total-row td {
+    background: var(--green);
+    color: var(--cream);
+    opacity: 1;
+    border: none;
+  }
+  .data-table .total-row td:first-child {
+    font-family: 'Inconsolata', monospace;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .data-table .total-row td:last-child {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    text-align: right;
+    color: var(--cream);
+  }
+
+  /* ── Steps ─────────────────────────────────────────── */
+  .steps { display: flex; flex-direction: column; }
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(44,36,22,0.06);
+  }
+  .step-num {
+    font-family: 'Inconsolata', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--green);
+    flex-shrink: 0;
+    width: 28px;
+  }
+  .step-text { font-size: 16px; line-height: 1.5; opacity: 0.82; color: var(--mud); }
+
+  /* ── CTA Block ─────────────────────────────────────── */
+  .cta-block {
+    background: var(--green);
+    padding: 32px 36px;
+    margin: 32px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .cta-btn {
+    font-family: 'Inconsolata', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: rgba(239,234,224,0.18);
+    color: var(--cream);
+    padding: 12px 20px;
+    border-radius: 10px;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  /* ── Doc footer ────────────────────────────────────── */
+  .doc-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid rgba(44,36,22,0.08);
+    margin-top: 12px;
+  }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .page-break { page-break-before: always; break-before: page; }
+    @page { size: letter; margin: 0.5in; }
+    .cover-inner { min-height: auto; padding-bottom: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     COVER (dark)
+══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-inner">
+
+    <div class="cover-top">
+      <div>
+        <span class="label" style="opacity:0.7;">Founding Mothers Media</span>
+        <div style="font-family:'Inconsolata',monospace;font-size:11px;color:var(--cream);opacity:0.3;margin-top:4px;letter-spacing:0.1em;">kyra@foundingmothersmedia.com</div>
+      </div>
+      <span class="label" style="text-align:right;opacity:0.3;">Proposal + Agreement<br>April 9, 2026</span>
+    </div>
+
+    <div>
+      <span class="eyebrow">Website strategy for</span>
+      <div class="cover-title">G's Smoke<br>&amp; <em>More</em></div>
+      <div class="tagline">North Fort Myers, FL</div>
+    </div>
+
+    <div>
+      <hr class="rule">
+      <div class="two-col gap" style="gap:56px;align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <span class="label" style="margin-bottom:6px;opacity:0.45;">For</span>
+            <div class="meta-value">Ghan Ilias<br>G's Smoke &amp; More<br>407-758-4908 · iliasathllc@gmail.com</div>
+          </div>
+          <div>
+            <span class="label" style="margin-bottom:6px;opacity:0.45;">Discovery Session</span>
+            <div class="meta-value">Monday, April 13 · 10:00 AM</div>
+          </div>
+        </div>
+        <div class="inv-block">
+          <span class="label" style="opacity:0.65;color:var(--green);">Investment</span>
+          <div class="inv-number">$2,000</div>
+          <div style="font-size:14px;color:var(--cream);opacity:0.5;margin-top:4px;">$500 / month &times; 4 months</div>
+          <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:14px;color:var(--cream);opacity:0.35;margin-top:4px;">First payment due on signing.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     BODY (light)
+══════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- 01 — The Plan -->
+  <section>
+    <span class="sec-num">01 — The Plan</span>
+    <h2>Simple. Fast. <em>Local.</em></h2>
+
+    <p><strong>The problem:</strong> G's has a Google Business Profile but no website. No next step for customers, no way to learn more.</p>
+    <p><strong>The fix:</strong> A clean Canva website — built, optimized, and launched in 1 month. With 3 months of live 1:1 support.</p>
+
+    <div class="ornament">· · ·</div>
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-label">Domain</span>
+        <div class="card-body">Custom domain registered at kickoff. DNS + SSL included.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Canva Website</span>
+        <div class="card-body">4 pages: Home, About, Contact, Reviews. Mobile-first. Easy for you to update.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Inquiry Form</span>
+        <div class="card-body">Tally form on Contact page. Submissions go straight to your inbox.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Google Reviews</span>
+        <div class="card-body">GBP linked + live review widget. Customers sell it for you, automatically.</div>
+      </div>
+      <div class="card" style="grid-column:span 2;">
+        <span class="card-label">Local Contact Block</span>
+        <div class="card-body">Address, phone, email, and hours on every page. Embedded map so customers show up instead of calling.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 02 — Why It Matters -->
+  <section>
+    <span class="sec-num">02 — Why It Matters</span>
+    <h2>Where this <em>pays off.</em></h2>
+
+    <div class="two-col gap" style="gap:40px;align-items:start;">
+      <div>
+        <h3>Visibility</h3>
+        <ul class="list-em">
+          <li><strong>"Smoke shop near me"</strong> now surfaces your site, not just your GBP</li>
+          <li><strong>NAP consistency</strong> (Name, Address, Phone) matching across site + GBP = stronger local ranking</li>
+          <li><strong>Full product range visible</strong> — vapes, kratom, D9, cigars, lotto</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Conversion</h3>
+        <ul class="list-em">
+          <li><strong>Live reviews</strong> build trust before they walk in</li>
+          <li><strong>Hours + map</strong> = fewer abandoned trips, fewer calls</li>
+          <li><strong>Inquiry form</strong> turns browsers into regulars</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 03 — Investment -->
+  <section class="page-break">
+    <span class="sec-num">03 — Investment</span>
+    <h2>The <em>numbers.</em></h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Deliverable</th>
+          <th style="text-align:right;width:14%;">Fee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Month 1</td>
+          <td>Discovery, domain, Canva site design, build + launch</td>
+          <td style="text-align:right;font-style:normal;opacity:1;">$500</td>
+        </tr>
+        <tr>
+          <td>Month 2</td>
+          <td>Live 1:1 support — SEO refinements, review widget, GBP optimization</td>
+          <td style="text-align:right;font-style:normal;opacity:1;">$500</td>
+        </tr>
+        <tr>
+          <td>Month 3</td>
+          <td>Live 1:1 support — content updates, performance check-ins</td>
+          <td style="text-align:right;font-style:normal;opacity:1;">$500</td>
+        </tr>
+        <tr>
+          <td>Month 4</td>
+          <td>Live 1:1 support — final refinements, training + handoff</td>
+          <td style="text-align:right;font-style:normal;opacity:1;">$500</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total</td>
+          <td style="opacity:0.75;color:var(--cream);">4-month engagement</td>
+          <td style="text-align:right;">$2,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ul class="list-em">
+      <li>$500 due on receipt of invoice, then auto-charged monthly on the date first payment is captured</li>
+      <li>All payments invoiced via Stripe (ACH/CC)</li>
+      <li>2 revision rounds included per phase</li>
+    </ul>
+  </section>
+
+
+  <!-- 04 — Agreement -->
+  <section>
+    <span class="sec-num">04 — Agreement</span>
+    <h2>The <em>terms.</em></h2>
+
+    <p style="font-size:14px;margin-bottom:20px;">Between <strong>Kyra Aulani / Founding Mothers Media</strong> ("Contractor") and <strong>Ghan Ilias / G's Smoke &amp; More</strong> ("Client"), effective on signing. This proposal accompanies the Creative Services Agreement, which governs the full terms of engagement.</p>
+
+    <div class="card-grid-3" style="margin-top:2px;">
+      <div class="card">
+        <span class="card-label">Scope</span>
+        <div class="card-body">Deliverables in Section 01. Out-of-scope work billed at $200/hr or quoted as a flat fee.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Client Responsibilities</span>
+        <div class="card-body">Single point of contact. Feedback within 48 hrs, compiled into one organized response per revision round.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Revisions</span>
+        <div class="card-body">2 rounds per phase. Adjustments to design, layout, and copy within agreed direction. Piecemeal feedback may count as additional rounds.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">IP + Ownership</span>
+        <div class="card-body">All deliverables are "work for hire" — owned by Client upon full payment. Contractor retains portfolio rights.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Communication</span>
+        <div class="card-body">Text, email, or voice message. M–F, 10 AM – 6 PM EST. 24-hour response time. Compile all edits into a single message.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Governing Law</span>
+        <div class="card-body">State of Florida. Disputes via good-faith negotiation first. Liability capped at total fees paid.</div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;opacity:0.5;margin-top:20px;font-style:italic;">Full terms — including confidentiality, termination rights, indemnification, and force majeure — are detailed in the accompanying Creative Services Agreement, sent separately for e-signature.</p>
+  </section>
+
+
+  <!-- 05 — Next Steps -->
+  <section>
+    <span class="sec-num">05 — Next Steps</span>
+    <h2>Let's <em>go.</em></h2>
+
+    <div class="steps" style="margin-bottom:32px;">
+      <div class="step">
+        <span class="step-num">01</span>
+        <span class="step-text">Sign the Creative Services Agreement (sent separately).</span>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <span class="step-text">Pay Month 1 via Stripe.</span>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <span class="step-text">Show up Monday, April 13 at 10:00 AM.</span>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div>
+        <span style="font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(239,234,224,0.6);display:block;margin-bottom:6px;">Secure payment via Stripe</span>
+        <div style="font-family:'Instrument Serif',serif;font-size:26px;color:var(--cream);">Pay Month 1 — $500</div>
+      </div>
+      <a href="https://buy.stripe.com/dRm00i0Bs2w9ba524u8N20d" class="cta-btn" style="text-decoration:none;">Pay Now &rarr;</a>
+    </div>
+    <p style="font-size:13px;opacity:0.45;text-align:center;font-style:italic;margin-top:-20px;">By completing payment, you agree to the terms outlined in the accompanying Creative Services Agreement.</p>
+
+    <div class="ornament" style="margin-top:40px;">· · ·</div>
+
+    <div class="doc-footer">
+      <span class="label">G's Smoke &amp; More · Website Proposal · April 2026</span>
+      <span class="label">Founding Mothers Media · kyra@foundingmothersmedia.com</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
