@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 2 — Grocery List</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #7A8E6B;
+    --green-light: #C6D4B8;
+    --green-pale: #EDF2E8;
+    --brown: #B8A08A;
+    --brown-light: #D9CBBB;
+    --brown-pale: #F0E8E0;
+    --cream: #FAF8F4;
+    --text: #3A3A3A;
+    --text-light: #9A9A9A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .header {
+    background: var(--green);
+    padding: 44px 24px 36px;
+    text-align: center;
+  }
+  .header .badge {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.9);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header p {
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+  }
+
+  /* Progress */
+  .progress-bar {
+    background: var(--green-pale);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 6px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .count {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green);
+    min-width: 54px;
+    text-align: right;
+  }
+
+  /* Content */
+  .content {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 32px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--green-light);
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .section-header .item-count {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-light);
+  }
+
+  /* Sub labels */
+  .sub-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--brown);
+    padding: 14px 0 4px;
+  }
+
+  /* Items */
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+  }
+  .item:hover { background: var(--green-pale); }
+  .item.checked { opacity: 0.4; }
+  .item.checked .item-name { text-decoration: line-through; color: var(--text-light); }
+
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid var(--green-light);
+    border-radius: 5px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    transition: all 0.2s ease;
+  }
+  .item.checked .checkbox {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .checkbox svg { opacity: 0; transition: opacity 0.2s; }
+  .item.checked .checkbox svg { opacity: 1; }
+
+  .item-name {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .item-note {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 1px;
+  }
+
+  /* Reset button */
+  .clear-btn {
+    display: block;
+    margin: 8px auto 0;
+    padding: 8px 24px;
+    background: none;
+    border: 1px solid var(--brown-light);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--brown);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .clear-btn:hover { border-color: var(--green); color: var(--green); }
+
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    color: var(--brown-light);
+  }
+
+  @media print {
+    .progress-bar, .clear-btn { display: none; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">Liver Rescue Protocol</div>
+  <h1>Week 2 Grocery List</h1>
+  <p>Detox Days + Full Routine</p>
+</div>
+
+<div class="progress-bar">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="count" id="progressCount">0 / 0</div>
+</div>
+
+<div class="content" id="listContent">
+
+  <!-- PRODUCE -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Produce</h2>
+      <span class="item-count" data-section></span>
+    </div>
+
+    <div class="sub-label">Daily Essentials</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Celery — bulk</div><div class="item-note">Daily juice, smoothies, soups</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Lemons &amp; Limes</div><div class="item-note">Morning water, dressings, soups</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Apples &amp; Medjool Dates</div><div class="item-note">Snacks &amp; applesauce</div></div></div>
+
+    <div class="sub-label">Leafy Greens</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Spinach — large bag</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Arugula</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Kale — large bunch</div></div></div>
+
+    <div class="sub-label">Root Vegetables</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Carrots</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Onions — red &amp; yellow</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Sweet Potatoes</div></div></div>
+
+    <div class="sub-label">Detox Vegetables</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Asparagus — at least 2 lbs</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Brussels Sprouts</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Cucumbers</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Zucchini</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Cauliflower</div></div></div>
+
+    <div class="sub-label">Aromatics &amp; Fresh Herbs</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Cilantro — large bunch</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Parsley — large bunch</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Basil &amp; Mint</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Fresh Ginger &amp; Turmeric Root</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Garlic &amp; Leeks</div></div></div>
+
+    <div class="sub-label">Fruits for Smoothies</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Bananas</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Mangoes &amp; Papaya</div></div></div>
+  </div>
+
+  <!-- GRAINS -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Grains, Beans &amp; Legumes</h2>
+      <span class="item-count" data-section></span>
+    </div>
+
+    <div class="sub-label">Grains</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Brown Rice</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Millet</div><div class="item-note">Morning porridge</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Barley</div><div class="item-note">Asparagus Barley Bowls</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Quinoa</div></div></div>
+
+    <div class="sub-label">Beans &amp; Lentils</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Mung Beans — split or whole</div><div class="item-note">Kitchari base</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Black Beans</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Garbanzo Beans</div></div></div>
+
+    <div class="sub-label">Oats</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Sprouted Rolled Oats</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Gluten-Free Oat Flour</div><div class="item-note">Muffins</div></div></div>
+  </div>
+
+  <!-- PANTRY -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Pantry &amp; Superfoods</h2>
+      <span class="item-count" data-section></span>
+    </div>
+
+    <div class="sub-label">Fats</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Ghee</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Tahini</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Coconut Oil</div></div></div>
+
+    <div class="sub-label">Nuts &amp; Seeds</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Chia Seeds &amp; Golden Flaxseeds</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Macadamia Nuts &amp; Walnuts</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Toasted Peanuts</div></div></div>
+
+    <div class="sub-label">Sweeteners</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Raw Honey</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Pure Maple Syrup</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Coconut Sugar</div></div></div>
+
+    <div class="sub-label">Liquids</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Distilled Water — bulk</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Almond or Oat Milk</div><div class="item-note">Unsweetened</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Coconut Water</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Apple Cider Vinegar</div></div></div>
+
+    <div class="sub-label">Flavor Boosters</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">White / Yellow Miso</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Tamari</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Dulse Seaweed / Flakes</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Kelp Noodles</div></div></div>
+
+    <div class="sub-label">Spices</div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Cinnamon, Cardamom, Turmeric</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Ground Ginger, Coriander, Cumin</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Fennel, Mustard Seeds, Asafoetida</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Bay Leaves &amp; Cayenne</div></div></div>
+  </div>
+
+  <!-- FROZEN -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Frozen</h2>
+      <span class="item-count" data-section></span>
+    </div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Wild Blueberries</div><div class="item-note">Porridge &amp; muffins</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Red Pitaya (Dragon Fruit)</div><div class="item-note">Liver Rescue Smoothie</div></div></div>
+  </div>
+
+  <!-- SUPPLEMENTS -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Supplements &amp; Detox</h2>
+      <span class="item-count" data-section></span>
+    </div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">CellCore Phase 1 Kit</div><div class="item-note">BC-ATP, BioToxin Binder, CT-Minerals, KL Support</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Oxy-Powder</div><div class="item-note">Nightly before bed</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Electrolytes</div><div class="item-note">Redmond Real Salt, Celtic Grey, or LMNT</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Castor Oil &amp; Liver Pack</div><div class="item-note">Nightly wind-down</div></div></div>
+  </div>
+
+  <!-- SELF-CARE -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Enema &amp; Self-Care</h2>
+      <span class="item-count" data-section></span>
+    </div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Organic Enema Coffee</div><div class="item-note">Light roast, mold-free</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">TUDCA</div><div class="item-note">Enhanced liver support</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Salt Scrub Materials</div><div class="item-note">Coarse salt + Tulsi, Clary Sage, Grapefruit, Cedarwood oils</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Therapeutic Teas</div><div class="item-note">Hibiscus, dandelion root, or Shilajit</div></div></div>
+  </div>
+
+  <!-- KITCHEN -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Kitchen Supplies</h2>
+      <span class="item-count" data-section></span>
+    </div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Mason Jars — 16 oz &amp; 32 oz</div><div class="item-note">Plastic lids for Sole, juices, dressings</div></div></div>
+    <div class="item" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="item-name">Pill Organizer</div><div class="item-note">For Week 2 supplement schedule</div></div></div>
+  </div>
+
+  <button class="clear-btn" onclick="clearAll()">Reset All</button>
+</div>
+
+<div class="footer">Week 2 — Liver Rescue Protocol</div>
+
+<script>
+  const KEY = 'w2-grocery';
+  function getState() { try { return JSON.parse(sessionStorage.getItem(KEY)||'{}'); } catch { return {}; } }
+  function saveState(s) { try { sessionStorage.setItem(KEY, JSON.stringify(s)); } catch {} }
+
+  function toggle(el) {
+    el.classList.toggle('checked');
+    const s = getState(); const i = el.dataset.idx;
+    el.classList.contains('checked') ? s[i]=true : delete s[i];
+    saveState(s); updateProgress();
+  }
+  function clearAll() {
+    document.querySelectorAll('.item.checked').forEach(e=>e.classList.remove('checked'));
+    sessionStorage.removeItem(KEY); updateProgress();
+  }
+  function updateProgress() {
+    const all = document.querySelectorAll('.item');
+    const done = document.querySelectorAll('.item.checked').length;
+    document.getElementById('progressFill').style.width = all.length?(done/all.length*100)+'%':'0%';
+    document.getElementById('progressCount').textContent = done+' / '+all.length;
+    document.querySelectorAll('.section').forEach(sec => {
+      const t=sec.querySelectorAll('.item').length, d=sec.querySelectorAll('.item.checked').length;
+      const b=sec.querySelector('.item-count'); if(b) b.textContent=d+'/'+t;
+    });
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const items=document.querySelectorAll('.item'), s=getState();
+    items.forEach((el,i)=>{ el.dataset.idx=i; if(s[i]) el.classList.add('checked'); });
+    updateProgress();
+  });
+</script>
+</body>
+</html>
