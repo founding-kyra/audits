@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Architecture Audit — Katelyn June Hair Studio — Founding Mothers Media</title>
+<meta name="description" content="Brand architecture audit for Katelyn June Hair Studio — independent hair stylist and Keune Cosmetics educator building a personal brand with real visibility.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wdth,wght@100,400;100,700;125,400;125,700&family=Instrument+Serif:ital@0;1&display=swap');
+
+:root {
+  --mud:     #2c2416;
+  --mauve:   #9a6e6a;
+  --mustard: #c49a28;
+  --rose:    #bc8a84;
+  --cream:   #efeae0;
+  --gray:    #e3ded8;
+  --white:   #f5f3ef;
+  --serif:   'Instrument Serif', Georgia, serif;
+  --font-body: 'Atkinson Hyperlegible', sans-serif;
+  --font-ui: 'Inconsolata', monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--mud);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── COVER ── */
+#cover {
+  background: var(--mud);
+  color: var(--cream);
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-rows: 1fr auto;
+  padding: clamp(48px, 6vw, 80px);
+  border-bottom: 4px solid var(--mustard);
+}
+.cover-left { display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.cover-eyebrow { font-family: var(--font-ui); font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--rose); font-stretch: expanded; }
+.cover-brand { font-family: var(--serif); font-size: clamp(64px, 9vw, 124px); line-height: 0.95; font-weight: 400; }
+.cover-sub { font-family: var(--serif); font-style: italic; font-size: clamp(24px, 3.2vw, 38px); color: var(--rose); line-height: 1.3; }
+.cover-right { display: flex; align-items: center; justify-content: center; }
+.screenshot-placeholder { width: 100%; aspect-ratio: 16/9; border: 1px solid rgba(239,234,224,0.15); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-size: 13px; color: rgba(239,234,224,0.35); background: rgba(239,234,224,0.04); }
+.cover-footer { grid-column: 1/-1; display: flex; justify-content: space-between; align-items: flex-end; padding-top: 40px; border-top: 1px solid rgba(239,234,224,0.1); margin-top: 40px; }
+.cover-footer-left { font-family: var(--font-ui); font-size: 12px; color: var(--mustard); }
+.cover-footer-right { font-family: var(--font-ui); font-size: 12px; color: rgba(239,234,224,0.5); }
+
+/* ── GLANCE ── */
+#glance { background: var(--white); padding: clamp(64px,8vw,104px) clamp(32px,6vw,80px); }
+.glance-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 40px; }
+.glance-card { padding: 32px 28px; background: var(--white); border-top: 3px solid var(--mud); }
+.glance-card:first-child { border-top-color: var(--mustard); }
+.card-label { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mauve); margin-bottom: 8px; font-stretch: expanded; }
+.card-value { font-family: var(--serif); font-size: clamp(32px,4vw,46px); line-height: 1.05; }
+.card-detail { font-family: var(--font-body); font-size: 14px; color: var(--mauve); margin-top: 8px; line-height: 1.5; }
+.glance-summary { font-family: var(--font-body); font-size: 15px; color: var(--mauve); line-height: 1.8; }
+.glance-summary span { display: block; }
+
+/* ── URGENT ── */
+#urgent { background: var(--mauve); color: var(--cream); padding: 28px clamp(32px,6vw,80px); display: flex; align-items: center; gap: 16px; }
+.urgent-label { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; white-space: nowrap; font-stretch: expanded; }
+.urgent-body { font-family: var(--serif); font-style: italic; font-size: clamp(22px,2.4vw,28px); line-height: 1.5; }
+
+/* ── AUDIT SECTION ── */
+.audit-section { display: grid; grid-template-columns: 280px 1fr; }
+.audit-left { background: var(--mud); color: var(--cream); padding: clamp(48px,6vw,80px) 32px; position: relative; overflow: hidden; }
+.audit-left .section-eyebrow { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--rose); font-stretch: expanded; }
+.ghost-num { position: absolute; top: -8px; left: 16px; font-family: var(--serif); font-style: italic; font-size: clamp(120px,15vw,200px); line-height: 1; color: rgba(239,234,224,0.04); pointer-events: none; user-select: none; }
+.audit-left .section-title { font-family: var(--serif); font-size: clamp(40px,5.5vw,60px); line-height: 1.0; margin-top: clamp(48px,8vw,88px); }
+.audit-left .section-title em { font-style: italic; color: var(--rose); }
+.audit-right { background: var(--white); padding: clamp(48px,6vw,80px) clamp(32px,6vw,64px); }
+
+/* ── POS BLOCKS ── */
+.pos-block { margin-bottom: 36px; }
+.pos-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.pos-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.pos-icon.check { background: var(--mud); color: var(--cream); }
+.pos-icon.warn { background: var(--mustard); color: var(--mud); }
+.pos-label { font-family: var(--font-ui); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-stretch: expanded; }
+.pos-body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; }
+.fix-box { background: var(--mustard); color: var(--mud); padding: 24px 28px; margin-top: 28px; border-radius: 2px; }
+.fix-box .fix-label { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; opacity: 0.7; font-stretch: expanded; }
+.fix-box .fix-body { font-family: var(--serif); font-size: clamp(26px,3.2vw,36px); line-height: 1.3; }
+
+/* ── BRAND IDENTITY ── */
+#brand-identity { display: grid; grid-template-columns: 1fr 1.4fr; }
+.bi-left { background: var(--cream); padding: clamp(48px,6vw,80px) clamp(32px,4vw,48px); }
+.bi-left .section-eyebrow { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mauve); margin-bottom: 16px; font-stretch: expanded; }
+.bi-left h2 { font-family: var(--serif); font-size: clamp(42px,5.5vw,64px); line-height: 1.0; margin-bottom: 24px; }
+.bi-left h2 em { font-style: italic; color: var(--mauve); }
+.bi-left .bi-body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; }
+.bi-right { background: var(--white); padding: clamp(48px,6vw,80px) clamp(32px,4vw,48px); }
+.bi-video { width: 100%; max-height: 480px; border-radius: 4px; margin-bottom: 32px; object-fit: cover; background: var(--gray); }
+.impression-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+.imp-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+.imp-icon.check { background: var(--mud); color: var(--cream); }
+.imp-icon.warn { background: var(--mustard); color: var(--mud); }
+.imp-title { font-family: var(--font-body); font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.imp-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--mauve); }
+
+/* ── SPLIT SECTION ── */
+.split-section { display: grid; grid-template-columns: 1fr 1.2fr; border-bottom: 3px solid var(--mud); }
+.split-left { background: var(--white); padding: clamp(48px,6vw,80px) clamp(32px,4vw,48px); position: relative; overflow: hidden; }
+.split-left .section-eyebrow { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mauve); font-stretch: expanded; }
+.split-left .section-title { font-family: var(--serif); font-size: clamp(42px,5.5vw,64px); line-height: 1.0; margin-top: clamp(48px,8vw,88px); }
+.split-left .current-copy-label { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mauve); margin-top: 32px; margin-bottom: 8px; opacity: 0.7; font-stretch: expanded; }
+.split-left .current-copy { font-family: var(--serif); font-style: italic; font-size: clamp(20px,2vw,24px); line-height: 1.6; color: var(--mauve); }
+.split-right { background: var(--mud); color: var(--cream); padding: clamp(48px,6vw,80px) clamp(32px,4vw,48px); }
+.split-right p { font-family: var(--font-body); font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
+.split-right em { color: var(--rose); font-style: italic; font-family: var(--serif); }
+
+/* ── OFFER ARCHITECTURE ── */
+#offer-arch { background: var(--white); padding: clamp(64px,8vw,104px) clamp(32px,6vw,80px); }
+.currently-box { background: var(--mustard); color: var(--mud); padding: 24px 28px; margin-bottom: 40px; border-radius: 2px; }
+.currently-box .cb-label { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; opacity: 0.7; font-stretch: expanded; }
+.currently-box .cb-body { font-family: var(--font-body); font-size: 15px; line-height: 1.7; }
+.offer-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.offer-card { padding: 32px 28px; border-top: 3px solid var(--mud); }
+.offer-card:first-child { border-top-color: var(--mustard); }
+.offer-num { font-family: var(--serif); font-style: italic; font-size: 50px; color: var(--mustard); opacity: 0.6; line-height: 1; margin-bottom: 8px; }
+.offer-tier { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mauve); margin-bottom: 8px; font-stretch: expanded; }
+.offer-name { font-family: var(--serif); font-size: clamp(28px,3.4vw,40px); line-height: 1.1; margin-bottom: 12px; }
+.offer-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: var(--mauve); }
+
+/* ── DARK SECTION ── */
+.dark-section { background: var(--mud); color: var(--cream); padding: clamp(64px,8vw,104px) clamp(32px,6vw,80px); }
+.dark-section .section-eyebrow { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--rose); font-stretch: expanded; }
+.dark-section .section-title { font-family: var(--serif); font-size: clamp(42px,5.5vw,64px); line-height: 1.0; }
+.infra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 40px; }
+.status-list { list-style: none; }
+.status-list li { padding: 10px 0; border-bottom: 1px solid rgba(239,234,224,0.08); font-family: var(--font-body); font-size: 15px; line-height: 1.5; display: flex; align-items: flex-start; gap: 12px; }
+.status-list li .status-icon { flex-shrink: 0; font-size: 14px; margin-top: 2px; }
+.status-list li .status-icon.check { color: var(--cream); }
+.status-list li .status-icon.gap { color: var(--mustard); }
+.tool-box { border: 1px solid rgba(239,234,224,0.1); padding: 32px; border-radius: 2px; }
+.tool-box h4 { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--rose); margin-bottom: 24px; font-stretch: expanded; }
+.tool-item { margin-bottom: 18px; }
+.tool-name { font-family: var(--serif); font-size: clamp(26px,2.8vw,34px); line-height: 1.2; }
+.tool-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--mauve); margin-top: 4px; }
+.tool-cta { font-family: var(--serif); font-style: italic; font-size: clamp(22px,2.2vw,28px); color: var(--rose); margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(239,234,224,0.08); }
+
+/* ── INCOME ── */
+.income-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+.metric-cell { padding: 24px; border: 1px solid var(--gray); }
+.metric-label { font-family: var(--font-ui); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mauve); margin-bottom: 8px; font-stretch: expanded; }
+.metric-value { font-family: var(--serif); font-size: clamp(36px,4.5vw,54px); line-height: 1.05; }
+.metric-note { font-family: var(--font-body); font-size: 13px; color: var(--mauve); margin-top: 4px; }
+.bottom-line-box { background: var(--mustard); color: var(--mud); padding: 24px 28px; border-radius: 2px; }
+.bottom-line-box p { font-family: var(--font-body); font-size: 15px; line-height: 1.6; margin-bottom: 8px; }
+.bottom-line-box .bl-cta { font-family: var(--serif); font-style: italic; font-size: clamp(24px,2.4vw,32px); }
+
+/* ── MARKETING ── */
+.marketing-header { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.marketing-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.marketing-cols h4 { font-family: var(--font-ui); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; color: var(--rose); font-stretch: expanded; }
+
+/* ── OPPORTUNITY ── */
+#opportunity { background: var(--mud); color: var(--cream); padding: clamp(80px,10vw,140px) clamp(32px,6vw,80px); }
+.opp-left { font-family: var(--serif); font-size: clamp(38px,5.5vw,68px); line-height: 1.05; max-width: 800px; margin-bottom: 40px; }
+.opp-left em, .opp-right em { color: var(--rose); font-style: italic; }
+.opp-right { font-family: var(--serif); font-size: clamp(38px,5.5vw,68px); line-height: 1.05; text-align: right; max-width: 800px; margin-left: auto; }
+
+/* ── RX ── */
+.rx-header { background: var(--mustard); color: var(--mud); padding: 40px clamp(32px,6vw,80px); display: flex; align-items: center; gap: 24px; }
+.rx-mark { font-family: var(--serif); font-style: italic; font-size: clamp(56px,7vw,82px); line-height: 1; opacity: 0.6; }
+.rx-title { font-family: var(--serif); font-size: clamp(30px,4vw,46px); line-height: 1.2; }
+.priority-list { background: var(--white); padding: clamp(32px,4vw,48px) clamp(32px,6vw,80px); }
+.priority-item { display: flex; align-items: flex-start; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--gray); }
+.priority-num { font-family: var(--serif); font-style: italic; font-size: clamp(56px,7vw,82px); line-height: 1; opacity: 0.15; flex-shrink: 0; min-width: 60px; }
+.priority-content { flex: 1; }
+.priority-title { font-family: var(--serif); font-size: clamp(28px,3.4vw,40px); line-height: 1.15; margin-bottom: 6px; }
+.priority-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: var(--mauve); }
+
+/* ── OFFER PITCH ── */
+#offer { background: var(--mud); color: var(--cream); display: grid; grid-template-columns: 1.2fr 1fr; padding: clamp(64px,8vw,104px) clamp(32px,6vw,80px); border-bottom: 4px solid var(--rose); }
+.offer-headline { font-family: var(--serif); font-size: clamp(42px,5.5vw,68px); line-height: 1.0; margin-bottom: 16px; }
+.offer-headline em { color: var(--rose); font-style: italic; }
+.offer-sub { font-family: var(--font-body); font-size: 15px; line-height: 1.6; color: var(--mauve); margin-bottom: 32px; }
+.offer-items { padding-left: 0; }
+.offer-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(239,234,224,0.08); }
+.offer-item-title { font-family: var(--serif); font-size: clamp(26px,2.8vw,34px); line-height: 1.2; margin-bottom: 4px; }
+.offer-item-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--mauve); }
+.price-box { grid-column: 1/-1; background: var(--rose); color: var(--mud); padding: 28px 32px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; border-radius: 2px; }
+.price-box .price-text { font-family: var(--serif); font-size: clamp(26px,3vw,36px); }
+.price-box a { color: var(--mud); font-family: var(--font-ui); font-size: 14px; text-decoration: underline; }
+
+/* ── CLOSING ── */
+#closing { background: var(--mud); color: var(--cream); min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(64px,8vw,104px) clamp(32px,6vw,80px); }
+.closing-body { max-width: 700px; }
+.closing-body p { font-family: var(--serif); font-size: clamp(38px,5.5vw,64px); line-height: 1.1; margin-bottom: 16px; }
+.closing-body p em { font-style: italic; color: var(--rose); }
+.closing-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 40px; border-top: 1px solid rgba(239,234,224,0.1); }
+.closing-footer a { color: var(--rose); font-family: var(--font-ui); font-size: 14px; text-decoration: none; }
+.closing-footer a:hover { text-decoration: underline; }
+.closing-footer .tagline { font-family: var(--font-ui); font-size: 12px; color: rgba(239,234,224,0.4); text-align: center; }
+.closing-footer .domain { font-family: var(--font-ui); font-size: 12px; color: rgba(239,234,224,0.4); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .audit-section { grid-template-columns: 220px 1fr; }
+  .glance-cards, .offer-cards { gap: 16px; }
+  #cover { grid-template-columns: 1fr; }
+  .cover-right { display: none; }
+  .split-section { grid-template-columns: 1fr 1.2fr; }
+  #brand-identity { grid-template-columns: 1fr 1.2fr; }
+  #offer { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .audit-section { grid-template-columns: 1fr; }
+  .audit-left { padding: 32px 24px; }
+  .audit-left .section-title { margin-top: 32px; }
+  .audit-right { padding: 32px 24px; }
+  .glance-cards, .offer-cards { grid-template-columns: 1fr; }
+  #brand-identity { grid-template-columns: 1fr; }
+  .split-section { grid-template-columns: 1fr; }
+  .infra-grid { grid-template-columns: 1fr; }
+  .marketing-cols { grid-template-columns: 1fr; }
+  .income-metrics { grid-template-columns: 1fr; }
+  #offer { grid-template-columns: 1fr; }
+  .priority-item { flex-direction: column; gap: 8px; }
+  .priority-num { min-width: auto; }
+  .opp-right { text-align: left; }
+  .closing-footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .price-box { flex-direction: column; gap: 12px; align-items: flex-start; }
+  #cover { min-height: auto; padding: 48px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ SECTION 1 — COVER ════════ -->
+<section id="cover">
+  <div class="cover-left">
+    <div class="cover-eyebrow">Founding Mothers Media</div>
+    <h1 class="cover-brand">Katelyn June<br>Hair Studio</h1>
+    <div class="cover-sub">Katelyn Strube — Lived-in Color Specialist &amp; Keune Cosmetics Educator</div>
+  </div>
+  <div class="cover-right">
+    <img src="headshot.jpg" alt="Katelyn Strube — Katelyn June Hair Studio" style="width: 100%; max-width: 420px; border-radius: 4px; object-fit: cover; aspect-ratio: 1/1;">
+  </div>
+  <div class="cover-footer">
+    <div class="cover-footer-left">Brand Architecture Audit — Independent Hair Stylist &amp; Educator, NC</div>
+    <div class="cover-footer-right">FM &nbsp;|&nbsp; foundingmothersmedia.com</div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 2 — AT A GLANCE ════════ -->
+<section id="glance">
+  <div class="glance-cards">
+    <div class="glance-card">
+      <div class="card-label">Category</div>
+      <div class="card-value">Hair Stylist + Educator</div>
+      <div class="card-detail">Lived-in color, curly sets, Keune Cosmetics</div>
+    </div>
+    <div class="glance-card">
+      <div class="card-label">Revenue Stage</div>
+      <div class="card-value">Pre-Brand</div>
+      <div class="card-detail">$210 avg service &nbsp;|&nbsp; 3 days/week &nbsp;|&nbsp; no personal brand infrastructure</div>
+    </div>
+    <div class="glance-card">
+      <div class="card-label">Core Gap</div>
+      <div class="card-value">Visibility</div>
+      <div class="card-detail">No owned web presence. No authority positioning.</div>
+    </div>
+  </div>
+  <div class="glance-summary">
+    <span><strong>What's solid:</strong> Clear niche. A Keune educator credential.</span>
+    <span style="margin-top: 8px; display: block;"><strong>The gap:</strong> No landing page, no search presence, no way for new clients to find or vet you.</span>
+  </div>
+</section>
+
+<!-- ════════ SECTION 3 — URGENT BAND ════════ -->
+<section id="urgent">
+  <div class="urgent-label">Time-sensitive</div>
+  <div class="urgent-body">"A fear is that I'm just working towards something I should've given up on a long time ago." — You have a credential most stylists never earn. This audit maps the infrastructure to make that visible.</div>
+</section>
+
+<!-- ════════ SECTION 4 — POSITIONING CLARITY ════════ -->
+<section class="audit-section">
+  <div class="audit-left">
+    <div class="section-eyebrow">Brand Foundation</div>
+    <div class="ghost-num">01</div>
+    <h2 class="section-title">Positioning /<br><em>Clarity</em></h2>
+  </div>
+  <div class="audit-right">
+    <div class="pos-block">
+      <div class="pos-header">
+        <div class="pos-icon check">&#10003;</div>
+        <div class="pos-label">Working</div>
+      </div>
+      <div class="pos-body"><strong>Keune Cosmetics Educator.</strong> Lived-in color, curly sets, intentional hair care.</div>
+    </div>
+    <div class="pos-block">
+      <div class="pos-header">
+        <div class="pos-icon warn">!</div>
+        <div class="pos-label">Unclear</div>
+      </div>
+      <div class="pos-body"><strong>Nobody can find any of it outside social.</strong> No landing page. No Google presence. The Keune credential is on your Instagram and Facebook, but not on a landing page, Linktree, or anywhere searchable. Your Linktree exists but doesn't position you — it just links out.</div>
+    </div>
+    <div class="fix-box">
+      <div class="fix-label">Positioning</div>
+      <div class="fix-body">Lived-in color specialist and Keune Cosmetics educator.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 5 — BRAND PRESENCE + IDENTITY ════════ -->
+<section id="brand-identity">
+  <div class="bi-left">
+    <div class="section-eyebrow">Visual Brand</div>
+    <h2>Brand<br>&amp; <em>Presence</em></h2>
+    <p class="bi-body"><strong>No owned visual brand.</strong> Instagram (@katelynjunehairs) and a Linktree are the entire online presence.</p>
+  </div>
+  <div class="bi-right">
+    <video class="bi-video" autoplay loop muted playsinline>
+      <source src="katelyn-june-instagram.mp4" type="video/mp4">
+    </video>
+    <div class="impression-item">
+      <div class="imp-icon warn">!</div>
+      <div>
+        <div class="imp-title">No Landing Page</div>
+        <div class="imp-desc">No owned web presence. Linktree is a bridge, not a brand.</div>
+      </div>
+    </div>
+    <div class="impression-item">
+      <div class="imp-icon warn">!</div>
+      <div>
+        <div class="imp-title">Keune Credential Has No Home</div>
+        <div class="imp-desc">Educator status is on Instagram and Facebook, but not on Linktree, a landing page, or any searchable context.</div>
+      </div>
+    </div>
+    <div class="impression-item">
+      <div class="imp-icon check">&#10003;</div>
+      <div>
+        <div class="imp-title">Instagram Shows Beautiful Work</div>
+        <div class="imp-desc">@katelynjunehairs has real portfolio content. Needs a home to point to.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 6 — THE REFRAME ════════ -->
+<section class="split-section">
+  <div class="split-left">
+    <div class="section-eyebrow">Copy + Voice</div>
+    <div class="ghost-num">03</div>
+    <h2 class="section-title">The /<br>Reframe</h2>
+    <div class="current-copy-label">Currently visible:</div>
+    <div class="current-copy">"I like to keep things relaxed — so when you come in, we'll figure out a style that fits your vibe, your routine, and what makes you feel great every day."</div>
+  </div>
+  <div class="split-right">
+    <p><strong>Keune-trained color specialist.</strong> Lived-in balayage. Curly sets. Intentional scheduling.</p>
+  </div>
+</section>
+
+<!-- ════════ SECTION 7 — OFFER ARCHITECTURE ════════ -->
+<section id="offer-arch">
+  <div class="currently-box">
+    <div class="cb-label">Current Offer State</div>
+    <div class="cb-body"><strong>A cold visitor can't find your services or pricing.</strong> No website. No service menu. No way to understand what you offer, what it costs, or why you're different from the next stylist in their feed. The Keune education angle — your biggest differentiator — isn't framed as an offer anywhere.</div>
+  </div>
+  <div class="offer-cards">
+    <div class="offer-card">
+      <div class="offer-num">1</div>
+      <div class="offer-tier">Entry</div>
+      <div class="offer-name">The Consult</div>
+      <div class="offer-desc">Free 15-min consultation. Assess hair, map a color plan, build trust before the first appointment.</div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-num">2</div>
+      <div class="offer-tier">Core</div>
+      <div class="offer-name">Signature Color</div>
+      <div class="offer-desc">Lived-in color, balayage, or curl work. $210. Your primary revenue driver.</div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-num">3</div>
+      <div class="offer-tier">Authority</div>
+      <div class="offer-name">Color Education</div>
+      <div class="offer-desc">Workshops for stylists. Leverage your Keune credential. Second revenue stream, no extra chair hours.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 8 — BACK-END INFRASTRUCTURE ════════ -->
+<section class="dark-section">
+  <div class="section-eyebrow">Operations</div>
+  <div style="display: flex; align-items: flex-start; gap: 24px; position: relative; overflow: hidden;">
+    <div class="ghost-num" style="position: relative; top: auto; left: auto; font-size: clamp(48px,6vw,72px); opacity: 0.06;">05</div>
+    <h2 class="section-title">Back-End<br>Infrastructure</h2>
+  </div>
+  <div class="infra-grid">
+    <div>
+      <ul class="status-list">
+        <li><span class="status-icon check">&#10003;</span> Booking runs through salon's Vagaro — functional for now.</li>
+        <li><span class="status-icon check">&#10003;</span> 3-day work week (W/F/Sa) — intentional.</li>
+        <li><span class="status-icon check">&#10003;</span> $210 pricing — reflects skill level.</li>
+        <li><span class="status-icon check">&#10003;</span> Keune educator credential — real authority asset.</li>
+        <li><span class="status-icon gap">&#9651;</span> No personal booking system outside the salon.</li>
+        <li><span class="status-icon gap">&#9651;</span> No contracts or cancellation policy.</li>
+        <li><span class="status-icon gap">&#9651;</span> No CRM or client follow-up system.</li>
+        <li><span class="status-icon gap">&#9651;</span> No email list.</li>
+        <li><span class="status-icon gap">&#9651;</span> No domain.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="tool-box">
+        <h4>Personal Brand Stack</h4>
+        <div class="tool-item">
+          <div class="tool-name">Canva Site</div>
+          <div class="tool-desc">Landing page: positioning, Keune credential, services, portfolio, booking link. Free plan or ~$13/mo for Canva Pro.</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-name">Google Business Profile</div>
+          <div class="tool-desc">Free. Immediate local search visibility. Add photos, hours, and booking link.</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-name">Domain + Business Email</div>
+          <div class="tool-desc">Own the name. ~$12/yr domain + ~$6/mo Google Workspace for branded email. Professional contact for education bookings.</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-name">Email Capture</div>
+          <div class="tool-desc">Simple opt-in on landing page. Monthly email to bring back lapsed clients.</div>
+        </div>
+        <div class="tool-cta">One owned home base that connects everything.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 9 — INCOME ARCHITECTURE ════════ -->
+<section class="audit-section">
+  <div class="audit-left">
+    <div class="section-eyebrow">The Math</div>
+    <div class="ghost-num">06</div>
+    <h2 class="section-title">Income /<br><em>Architecture</em></h2>
+  </div>
+  <div class="audit-right">
+    <div class="income-metrics">
+      <div class="metric-cell">
+        <div class="metric-label">Current Price</div>
+        <div class="metric-value">$210</div>
+        <div class="metric-note">Per color session</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-label">12-Month Goal</div>
+        <div class="metric-value">Stability</div>
+        <div class="metric-note">"Renting or owning a home"</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-label">Weekly Target</div>
+        <div class="metric-value">8–10</div>
+        <div class="metric-note">$1,680–$2,100/week</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-label">Revenue Stream 2</div>
+        <div class="metric-value">Education</div>
+        <div class="metric-note">Keune workshops — not yet launched</div>
+      </div>
+    </div>
+    <div class="bottom-line-box">
+      <p><strong>The math works.</strong> 8–10 clients/week = $7k–$8.4k/month. The pipeline to fill it doesn't exist yet.</p>
+      <div class="bl-cta">Visibility fills the pipeline.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 10 — MARKETING + CONTENT ════════ -->
+<section class="dark-section">
+  <div class="marketing-header">
+    <div class="ghost-num" style="position: relative; top: auto; left: auto; font-size: clamp(48px,6vw,72px); opacity: 0.06;">07</div>
+    <div>
+      <div class="section-eyebrow">Visibility</div>
+      <h2 class="section-title">Marketing +<br>Content</h2>
+    </div>
+  </div>
+  <div class="marketing-cols">
+    <div>
+      <h4>What's Working</h4>
+      <ul class="status-list">
+        <li><span class="status-icon check">&#10003;</span> Word of mouth is active.</li>
+        <li><span class="status-icon check">&#10003;</span> Instagram shows real work.</li>
+        <li><span class="status-icon check">&#10003;</span> DMs convert to bookings.</li>
+        <li><span class="status-icon check">&#10003;</span> Linktree exists as a bridge.</li>
+      </ul>
+      <div class="fix-box" style="margin-top: 24px;">
+        <div class="fix-label">Authority angle</div>
+        <div class="fix-body">Add "Keune Cosmetics Educator" to your Linktree headline and landing page. Make it searchable.</div>
+      </div>
+    </div>
+    <div>
+      <h4>What Needs Building</h4>
+      <ul class="status-list">
+        <li><span class="status-icon gap">&#9651;</span> No Google Business Profile.</li>
+        <li><span class="status-icon gap">&#9651;</span> No website or landing page.</li>
+        <li><span class="status-icon gap">&#9651;</span> No email list.</li>
+        <li><span class="status-icon gap">&#9651;</span> No content strategy or posting cadence.</li>
+        <li><span class="status-icon gap">&#9651;</span> Keune credential on social only — not on Linktree, landing page, or Google.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 11 — THE BIG OPPORTUNITY ════════ -->
+<section id="opportunity">
+  <div class="opp-left">You have a credential <em>most stylists never earn.</em></div>
+  <div class="opp-right">The credential is <em>displayed</em> — but not <em>deployed.</em></div>
+</section>
+
+<!-- ════════ SECTION 12 — rX PRIORITIES ════════ -->
+<div class="rx-header">
+  <div class="rx-mark">rX</div>
+  <h2 class="rx-title">Do these 6 things. In this order.</h2>
+</div>
+<section class="priority-list">
+  <div class="priority-item">
+    <div class="priority-num">1</div>
+    <div class="priority-content">
+      <div class="priority-title">Add "Keune Cosmetics Educator" to your Linktree headline</div>
+      <div class="priority-desc">It's on your Instagram and Facebook — now put it where it's searchable. Your Linktree headline should lead with the credential.</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-num">2</div>
+    <div class="priority-content">
+      <div class="priority-title">Claim your Google Business Profile</div>
+      <div class="priority-desc">business.google.com. Add "Katelyn June Hair Studio," booking link, hours, and 5–10 portfolio photos. Free. 20 minutes.</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-num">3</div>
+    <div class="priority-content">
+      <div class="priority-title">Buy your domain</div>
+      <div class="priority-desc">katelynjunehair.com or similar. ~$12/year. Gives you a branded email and a place to build.</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-num">4</div>
+    <div class="priority-content">
+      <div class="priority-title">Build a landing page</div>
+      <div class="priority-desc">Positioning, Keune credential, services, portfolio, booking link. Replaces Linktree as your owned home base. This one is on our list.</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-num">5</div>
+    <div class="priority-content">
+      <div class="priority-title">Start an email list with current clients</div>
+      <div class="priority-desc">One monthly email: "what's open + a before/after." Turns past clients into repeat clients without DMs.</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-num">6</div>
+    <div class="priority-content">
+      <div class="priority-title">Film one Keune education Reel per month</div>
+      <div class="priority-desc">Color technique, product knowledge, educator POV. Builds authority. Reels under 30 seconds reach non-followers 3x more than static posts.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 13 — OFFER PITCH ════════ -->
+<section id="offer">
+  <div>
+    <h2 class="offer-headline">This is where<br><em>the growth</em> happens.</h2>
+  </div>
+  <div class="offer-items">
+    <div class="offer-item">
+      <div class="offer-item-title">Canva Site + Landing Page</div>
+      <div class="offer-item-desc">Your personal brand site — positioning, Keune credential headline, services, portfolio, booking link. Built and live. Canva Pro ~$13/mo.</div>
+    </div>
+    <div class="offer-item">
+      <div class="offer-item-title">Domain + Business Email + Booking</div>
+      <div class="offer-item-desc">Domain (~$12/yr), Google Workspace email (~$6/mo), Google Business Profile, and booking integration.</div>
+    </div>
+    <div class="offer-item">
+      <div class="offer-item-title">4 Months WhatsApp Support</div>
+      <div class="offer-item-desc">Async access. Content questions, strategy gut-checks, someone in your corner.</div>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-text">Seed — $950 down + $500/mo &times; 4</div>
+    <a href="https://foundingmothersmedia.com" target="_blank" rel="noopener">foundingmothersmedia.com</a>
+  </div>
+</section>
+
+<!-- ════════ SECTION 14 — CLOSING ════════ -->
+<section id="closing">
+  <div class="closing-body">
+    <p><em>Building forward.</em></p>
+    <p>Steady clients.</p>
+    <p><em>Real visibility.</em></p>
+  </div>
+  <div class="closing-footer">
+    <a href="https://foundingmothersmedia.com">Let's Work Together</a>
+    <div class="tagline">brand architecture for creative visionaries (&amp; total babes)</div>
+    <div class="domain">foundingmothersmedia.com</div>
+  </div>
+</section>
+
+</body>
+</html>
